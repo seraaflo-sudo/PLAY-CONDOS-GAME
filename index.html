@@ -3,79 +3,126 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Condo | Meet a Neko</title>
+<title>Meet a Neko - Private Servers</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gotham:wght@400;700;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#06040a;color:#d1c5e8;font-family:'Space Grotesk',sans-serif;}
+body{background:#1e1e28;color:#fff;font-family:'Gotham',Arial,sans-serif;overflow-x:hidden;}
 
-/* HERO */
-.hero{height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:20px;background:radial-gradient(circle at 50% 30%, #7c3aed15, transparent 70%);}
-.hero h1{font-size:clamp(50px,10vw,120px);font-weight:700;letter-spacing:-3px;color:#fff;}
-.hero .dot{color:#a855f7;}
-.hero p{color:#a78bfa;margin-top:15px;font-size:18px;font-weight:400;}
-.scroll{position:absolute;bottom:40px;color:#7c3aed;font-size:12px;animation:bounce 2s infinite;}
-@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+/* ROBLOX TOPBAR */
+.topbar{background:#23232e;height:60px;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid #393944;}
+.logo{font-size:22px;font-weight:900;color:#fff;}
+.logo span{color:#00b2ff;}
+.music-ctrl{margin-left:auto;display:flex;align-items:center;gap:10px;background:#2b2b38;padding:8px 14px;border-radius:8px;cursor:pointer;}
+.music-ctrl:hover{background:#393944;}
 
-/* CONDOS */
-.section{padding:100px 20px;max-width:1000px;margin:0 auto;}
-.section h2{font-size:32px;text-align:center;margin-bottom:50px;font-weight:600;color:#fff;}
-.condo{display:flex;gap:40px;align-items:center;margin-bottom:80px;}
-.condo:nth-child(even){flex-direction:row-reverse;}
-.condo-img{flex:1;height:300px;background:linear-gradient(135deg,#7c3aed30,#ec489930);border-radius:20px;border:1px solid #7c3aed40;}
-.condo-info{flex:1;}
-.condo-info h3{font-size:28px;color:#fff;margin-bottom:12px;}
-.condo-info p{color:#a78bfa;line-height:1.7;margin-bottom:20px;}
-.btn{background:transparent;border:1px solid #a855f7;color:#c084fc;padding:12px 24px;border-radius:10px;font-weight:600;cursor:pointer;transition:0.3s;}
-.btn:hover{background:#a855f7;color:#fff;}
+/* HERO GAME BANNER */
+.banner{height:300px;background:linear-gradient(180deg, #ff6b9d, #c44569);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.banner::after{content:'';position:absolute;width:200%;height:200%;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="50">🐱</text></svg>') repeat;opacity:0.05;animation:move 20s linear infinite;}
+@keyframes move{from{background-position:0 0}to{background-position:1000px 1000px}}
+.banner h1{font-size:48px;font-weight:900;z-index:2;text-shadow:0 4px 20px rgba(0,0,0,0.3);}
+
+/* SERVER LIST */
+.container{max-width:900px;margin:-50px auto 0;padding:20px;position:relative;z-index:3;}
+.section-title{background:#2b2b38;padding:15px 20px;border-radius:8px;font-weight:700;font-size:18px;margin-bottom:15px;}
+.server-list{background:#2b2b38;border-radius:8px;padding:10px;}
+.server{display:flex;justify-content:space-between;align-items:center;padding:15px;margin:8px 0;background:#23232e;border-radius:6px;transition:0.2s;}
+.server:hover{background:#393944;}
+.server-info b{font-size:16px;}
+.server-info p{font-size:13px;color:#b8b8d0;margin-top:4px;}
+.players{color:#00b2ff;font-weight:700;}
+.join-btn{background:#00b2ff;border:none;color:#fff;padding:10px 20px;border-radius:6px;font-weight:700;cursor:pointer;transition:0.2s;}
+.join-btn:hover{background:#0096d6;transform:scale(1.05);}
 
 /* FOOTER */
-.footer{text-align:center;padding:60px 20px;border-top:1px solid #7c3aed20;color:#7c3aed;font-size:14px;}
-.footer a{color:#c084fc;text-decoration:none;}
+.footer{text-align:center;padding:40px;color:#7c7c8a;font-size:12px;}
 </style>
 </head>
 <body>
 
-<div class="hero">
-<h1>Condo<span class="dot">.</span></h1>
-<p>a private space in Meet a Neko</p>
-<div class="scroll">scroll down</div>
-</div>
-
-<div class="section">
-<h2>Current Spaces</h2>
-
-<div class="condo">
-<div class="condo-img"></div>
-<div class="condo-info">
-<h3>Penthouse</h3>
-<p>City lights. Late night talks. Just a place to sit, play music, and hang out with people you like.</p>
-<button class="btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Visit</button>
+<!-- TOPBAR -->
+<div class="topbar">
+<div class="logo">ROBLOX<span>MEET A NEKO</span></div>
+<div class="music-ctrl" id="musicBtn">
+<span>🔊</span> <span id="musicText">Music On</span>
+<audio id="bgm" loop autoplay>
+<source src="https://cdn.pixabay.com/download/audio/2024/06/20/audio_ae6f3b2a1e.mp3?filename=lofi-chill-213712.mp3" type="audio/mpeg">
+</audio>
 </div>
 </div>
 
-<div class="condo">
-<div class="condo-img"></div>
-<div class="condo-info">
-<h3>Rooftop</h3>
-<p>Pool, stars, and good vibes. We usually chill here on weekends. You're welcome to join.</p>
-<button class="btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Visit</button>
-</div>
+<!-- BANNER -->
+<div class="banner">
+<h1>🐱 PRIVATE CONDOS 🐱</h1>
 </div>
 
-<div class="condo">
-<div class="condo-img"></div>
-<div class="condo-info">
-<h3>Studio</h3>
-<p>Small, cozy, and quiet. Perfect for decorating and taking screenshots.</p>
-<button class="btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Visit</button>
+<!-- SERVER LIST -->
+<div class="container">
+<div class="section-title">Friends' Private Servers</div>
+<div class="server-list">
+<div class="server">
+<div class="server-info">
+<b>Condo #01 - Penthouse</b>
+<p><span class="players">3/10 Players</span> • Ping: 22ms • Host: UZOTH</p>
 </div>
+<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Join</button>
 </div>
 
+<div class="server">
+<div class="server-info">
+<b>Condo #02 - Rooftop Pool</b>
+<p><span class="players">6/10 Players</span> • Ping: 18ms • Host: RIP INDRA</p>
+</div>
+<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Join</button>
+</div>
+
+<div class="server">
+<div class="server-info">
+<b>Condo #03 - City Apartment</b>
+<p><span class="players">2/10 Players</span> • Ping: 35ms • Host: GAMER BOT</p>
+</div>
+<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">Join</button>
+</div>
+</div>
 </div>
 
 <div class="footer">
-<p>made with care • <a href="https://roblox.com.bz/games/14153443454">Meet a Neko</a></p>
+<p>Meet a Neko © 2023 | Private Server Access</p>
 </div>
+
+<script>
+// MUSIC FIX
+const bgm = document.getElementById('bgm');
+const musicBtn = document.getElementById('musicBtn');
+const musicText = document.getElementById('musicText');
+let playing = true;
+
+// Try autoplay, if blocked wait for click
+bgm.volume = 0.25;
+bgm.play().catch(()=>{
+musicText.innerText = 'Click to play music';
+playing = false;
+});
+
+musicBtn.onclick = () => {
+if(playing){
+bgm.pause();
+musicText.innerText = 'Music Off';
+}else{
+bgm.play();
+musicText.innerText = 'Music On';
+}
+playing = !playing;
+}
+
+// Auto play after first click anywhere
+document.addEventListener('click', () => {
+if(!playing){
+bgm.play();
+musicText.innerText = 'Music On';
+playing = true;
+}
+}, {once: true})
+</script>
 
 </body></html>
