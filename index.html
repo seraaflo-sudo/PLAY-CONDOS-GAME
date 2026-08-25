@@ -3,44 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUXE CLUB | Private Access Only</title>
+<title>LUXE CLUB | Private Condo Access</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800;900&display=swap');
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#030005;color:#fff;font-family:'Poppins',sans-serif;}
-.bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;background:radial-gradient(circle at 30% 20%, #ff00ff30, transparent 60%), #030005;}
+body{background:#010002;color:#fff;font-family:'Inter',sans-serif;}
+.bg{position:fixed;width:100%;height:100%;background:radial-gradient(circle at 50% 0%, #ff00ff20, transparent 70%), #010002;z-index:-1;}
 
-.header{text-align:center;padding:70px 20px;}
-.header h1{font-family:'Bebas Neue';font-size:clamp(45px,10vw,90px);letter-spacing:5px;background:linear-gradient(90deg,#ff00ff,#ff99ff,#ff00ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 2s infinite alternate;}
-@keyframes glow{from{text-shadow:0 0 20px #ff00ff;}to{text-shadow:0 0 40px #ff00ff,0 0 60px #9900ff;}}
-.header p{color:#ff99ff;font-size:16px;letter-spacing:2px;margin-top:8px;}
-.pill{display:inline-block;background:linear-gradient(90deg,#ff00ff,#9900ff);padding:8px 20px;border-radius:30px;font-size:12px;font-weight:800;margin-top:15px;animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+/* HEADER */
+.header{text-align:center;padding:80px 20px;}
+.header h1{font-family:'Bebas Neue';font-size:clamp(50px,10vw,110px);letter-spacing:4px;background:linear-gradient(90deg,#ff00ff,#ffccff,#9900ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:glow 2s infinite alternate;}
+@keyframes glow{from{text-shadow:0 0 20px #ff00ff}to{text-shadow:0 0 60px #ff00ff,0 0 100px #9900ff}}
+.sub{color:#ff99ff;font-size:18px;font-weight:600;letter-spacing:2px;margin-top:10px;}
+.verified{display:inline-flex;align-items:center;gap:8px;background:rgba(0,255,150,0.15);border:1px solid #00ff99;color:#00ff99;padding:8px 18px;border-radius:30px;font-size:13px;font-weight:800;margin-top:15px;}
 
+/* COUNTDOWN */
+.countdown{display:flex;justify-content:center;gap:15px;margin:30px 0;}
+.time-box{background:rgba(255,0,255,0.15);border:2px solid #ff00ff;padding:15px 20px;border-radius:12px;text-align:center;min-width:80px;}
+.time-box b{font-size:28px;color:#ff00ff;display:block;}
+.time-box span{font-size:11px;color:#dd88ff;text-transform:uppercase;}
+
+/* STATS */
+.stats{display:flex;justify-content:center;gap:40px;margin:40px 0;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat b{font-size:32px;color:#ff00ff;font-weight:900;}
+.stat span{color:#aa88cc;font-size:13px;}
+
+/* MAIN CARD */
 .container{max-width:1200px;margin:0 auto;padding:0 20px;}
-.alert{background:linear-gradient(90deg,rgba(255,0,255,0.2),rgba(153,0,255,0.2));border:1px solid #ff00ff;border-radius:12px;padding:15px;margin:20px 0;text-align:center;font-weight:600;}
-.alert b{color:#ff99ff;}
+.main-card{background:linear-gradient(135deg,rgba(40,0,60,0.7),rgba(20,0,30,0.7));border:2px solid #ff00ff;border-radius:25px;padding:40px;margin:40px 0;backdrop-filter:blur(25px);box-shadow:0 0 50px #ff00ff30;position:relative;}
+.main-card::before{content:'LIMITED SLOTS';position:absolute;top:20px;right:-35px;background:#ff0044;color:#fff;padding:6px 45px;transform:rotate(45deg);font-weight:900;font-size:11px;letter-spacing:1px;}
+.main-card h2{font-size:34px;margin-bottom:12px;font-family:'Bebas Neue';letter-spacing:1px;}
+.main-card p{color:#dd99ff;font-size:15px;margin-bottom:20px;}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:25px;margin:40px 0;}
-.card{background:rgba(20,0,40,0.5);border:1px solid #ff00ff40;border-radius:20px;padding:25px;backdrop-filter:blur(20px);transition:0.4s;position:relative;}
-.card:hover{transform:translateY(-10px);border-color:#ff00ff;box-shadow:0 20px 60px #ff00ff50;}
-.card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px;}
-.card h3{font-size:22px;}
-.live{background:#ff0044;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:900;animation:blink 1s infinite;}
-@keyframes blink{50%{opacity:0.3}}
-.players{color:#dd88ff;font-size:14px;margin:10px 0;}
-.players b{color:#fff;font-size:18px;}
-.features{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0;}
-.tag{background:#ff00ff20;color:#ff99ff;padding:5px 10px;border-radius:8px;font-size:12px;font-weight:600;}
-.join-btn{width:100%;background:linear-gradient(90deg,#ff00ff,#9900ff);border:none;color:#fff;padding:16px;border-radius:12px;font-weight:900;font-size:18px;cursor:pointer;font-family:'Bebas Neue';letter-spacing:1px;transition:0.3s;}
-.join-btn:hover{transform:scale(1.05);box-shadow:0 0 40px #ff00ff;}
-.join-btn:active{transform:scale(0.95);}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:25px 0;}
+.feature{background:rgba(255,0,255,0.1);border:1px solid #ff00ff30;padding:12px 16px;border-radius:10px;font-weight:600;font-size:14px;}
+.feature span{margin-right:8px;}
 
-.testi{background:rgba(20,0,40,0.5);border:1px solid #ff00ff30;border-radius:15px;padding:25px;margin:50px 0;text-align:center;}
-.testi p{font-size:16px;font-style:italic;color:#ddbbff;}
-.testi b{color:#ff99ff;display:block;margin-top:10px;}
+.join-btn{width:100%;background:linear-gradient(90deg,#ff00ff,#9900ff);border:none;color:#fff;padding:22px;border-radius:15px;font-weight:900;font-size:24px;cursor:pointer;font-family:'Bebas Neue';letter-spacing:2px;transition:0.3s;box-shadow:0 0 40px #ff00ff;}
+.join-btn:hover{transform:scale(1.03);box-shadow:0 0 80px #ff00ff;}
+.disclaimer{text-align:center;color:#aa88cc;font-size:12px;margin-top:10px;}
 
-.footer{text-align:center;padding:40px 20px;color:#aa88cc;font-size:13px;border-top:1px solid #ff00ff30;}
+/* TESTIMONIALS */
+.testi-title{font-family:'Bebas Neue';font-size:32px;color:#ff00ff;text-align:center;margin:60px 0 30px;letter-spacing:2px;}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;}
+.testi-card{background:rgba(20,0,40,0.6);border:1px solid #ff00ff40;padding:25px;border-radius:15px;backdrop-filter:blur(10px);}
+.stars{color:#ffdd00;margin-bottom:10px;}
+.testi-card p{color:#ddbbff;font-style:italic;line-height:1.6;}
+.testi-card b{color:#ff99ff;display:block;margin-top:12px;font-weight:800;}
+
+.footer{text-align:center;padding:50px 20px;color:#aa88cc;font-size:13px;border-top:1px solid #ff00ff30;margin-top:60px;}
 </style>
 </head>
 <body>
@@ -48,44 +60,77 @@ body{background:#030005;color:#fff;font-family:'Poppins',sans-serif;}
 
 <div class="header">
 <h1>LUXE NIGHT CLUB</h1>
-<p>PRIVATE CONDO • MEET A NEKO</p>
-<div class="pill">🔥 6 SLOTS LEFT TONIGHT</div>
+<div class="sub">PRIVATE CONDOMINIUM • MEET A NEKO</div>
+<div class="verified">✓ VERIFIED PRIVATE SERVER</div>
+
+<div class="countdown">
+<div class="time-box"><b>02</b><span>Hours</span></div>
+<div class="time-box"><b>14</b><span>Minutes</span></div>
+<div class="time-box"><b>53</b><span>Seconds</span></div>
+</div>
+</div>
+
+<div class="stats">
+<div class="stat"><b>12.4K+</b><span>Total Members</span></div>
+<div class="stat"><b>7/10</b><span>VIP Slots Left</span></div>
+<div class="stat"><b>4.9★</b><span>Community Rating</span></div>
 </div>
 
 <div class="container">
-<div class="alert">⚠️ <b>WARNING:</b> Server hampir FULL! Join sekarang sebelum kehabisan slot VIP</div>
+<div class="main-card">
+<h2>EXCLUSIVE VIP ROOFTOP EXPERIENCE</h2>
+<p>Join the most aesthetic private condo in Meet a Neko. 100% No Toxic. Host your own parties, decorate freely, and meet new friends in a safe environment.</p>
 
-<h2 style="font-family:'Bebas Neue';font-size:32px;margin:40px 0 20px;color:#ff00ff;">JOIN VIP CONDO NOW</h2>
-<div class="grid">
-<div class="card">
-<div class="card-head"><h3>Penthouse Suite</h3><span class="live">LIVE</span></div>
-<div class="players"><b>7/10</b> Players Online</div>
-<div class="features"><span class="tag">🍾 Bottle Service</span><span class="tag">🎵 DJ</span><span class="tag">🏙️ City View</span></div>
-<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">JOIN NOW →</button>
+<div class="features">
+<div class="feature"><span>🎁</span>FREE Welcome Outfit</div>
+<div class="feature"><span>🏊</span>Rooftop Pool & Lounge</div>
+<div class="feature"><span>🎵</span>24/7 DJ Music</div>
+<div class="feature"><span>📸</span>Instagram Photo Spots</div>
+<div class="feature"><span>👑</span>Friendly Admin Team</div>
+<div class="feature"><span>🔒</span>Private & Secure</div>
 </div>
 
-<div class="card">
-<div class="card-head"><h3>Rooftop Pool Party</h3><span class="live">LIVE</span></div>
-<div class="players"><b>9/10</b> Players Online</div>
-<div class="features"><span class="tag">🏊 Pool</span><span class="tag">💃 Dance</span><span class="tag">🌙 Night Event</span></div>
-<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">JOIN NOW →</button>
+<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">CLAIM YOUR VIP ACCESS NOW →</button>
+<p class="disclaimer">*Slots are limited. Join before they run out!</p>
 </div>
 
-<div class="card">
-<div class="card-head"><h3>Neon Mansion</h3><span class="live">LIVE</span></div>
-<div class="players"><b>5/10</b> Players Online</div>
-<div class="features"><span class="tag">✨ Neon Lights</span><span class="tag">🎤 Karaoke</span><span class="tag">VIP ONLY</span></div>
-<button class="join-btn" onclick="window.location.href='https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283'">JOIN NOW →</button>
+<h2 class="testi-title">WHAT OUR MEMBERS SAY</h2>
+<div class="testi-grid">
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p>"This is literally the best condo in Meet a Neko. The vibes are amazing and the admins are so nice!"</p>
+<b>- @sarah_neko</b>
 </div>
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p>"I join every night for the pool parties. The community here is so welcoming. 10/10 recommend!"</p>
+<b>- @gamer_global</b>
 </div>
-
-<div class="testi">
-<p>"Gila sih ini condo paling aesthetic. Udah 3x balik lagi buat party sama temen"</p>
-<b>- @PlayerXYZ</b>
+<div class="testi-card">
+<div class="stars">★★★★★</div>
+<p>"Been to 20+ servers and this is by far the most aesthetic and well-managed one."</p>
+<b>- @luxury_rp</b>
+</div>
 </div>
 </div>
 
 <div class="footer">
-<p>LUXE NIGHT CLUB © 2023 | PRIVATE ACCESS | 18+ RP COMMUNITY</p>
+<p>LUXE NIGHT CLUB © 2023 | PRIVATE ACCESS ONLY | 18+ ROLEPLAY COMMUNITY</p>
 </div>
+
+<script>
+// Simple countdown timer
+let time = 2*3600 + 14*60 + 53;
+setInterval(()=>{
+if(time>0){
+time--;
+let h = String(Math.floor(time/3600)).padStart(2,'0');
+let m = String(Math.floor((time%3600)/60)).padStart(2,'0');
+let s = String(time%60).padStart(2,'0');
+document.querySelectorAll('.time-box b')[0].innerText = h;
+document.querySelectorAll('.time-box b')[1].innerText = m;
+document.querySelectorAll('.time-box b')[2].innerText = s;
+}
+},1000)
+</script>
 </body></html>
