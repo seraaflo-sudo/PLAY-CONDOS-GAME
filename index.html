@@ -3,23 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LUXE — Night Server</title>
+<title>LUXE — Private Night</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
-html{
-scroll-behavior:smooth
-}
+html{scroll-behavior:smooth}
 
 body{
-background:#07070b;
+background:#08070d;
 color:#fff;
 font-family:Inter,Arial,sans-serif;
 overflow-x:hidden
@@ -29,27 +23,25 @@ body:before{
 content:"";
 position:fixed;
 inset:0;
-pointer-events:none;
 z-index:-2;
 background:
-radial-gradient(circle at 20% 10%,#7626ff20,transparent 30%),
-radial-gradient(circle at 85% 45%,#ff247d18,transparent 32%),
-linear-gradient(#07070b,#0b0812)
+radial-gradient(circle at 15% 15%,#8d24ff25,transparent 28%),
+radial-gradient(circle at 90% 35%,#ff187d20,transparent 30%),
+linear-gradient(135deg,#07060b,#100817 50%,#07060b)
 }
 
 body:after{
 content:"";
 position:fixed;
-width:500px;
-height:500px;
-left:50%;
-top:20%;
-transform:translate(-50%,-50%);
-border-radius:50%;
-background:#9b00ff12;
-filter:blur(120px);
+inset:0;
+z-index:-1;
 pointer-events:none;
-z-index:-1
+opacity:.18;
+background-image:
+linear-gradient(#fff 1px,transparent 1px),
+linear-gradient(90deg,#fff 1px,transparent 1px);
+background-size:70px 70px;
+mask-image:linear-gradient(to bottom,transparent,#000 20%,transparent 90%)
 }
 
 /* HEADER */
@@ -59,286 +51,257 @@ position:fixed;
 top:0;
 left:0;
 right:0;
-height:76px;
+height:72px;
 padding:0 6%;
 display:flex;
 align-items:center;
 justify-content:space-between;
-z-index:99;
-background:linear-gradient(#07070bee,#07070b00);
-backdrop-filter:blur(10px)
+z-index:100;
+background:#08070dcc;
+backdrop-filter:blur(16px);
+border-bottom:1px solid #ffffff0c
 }
 
 .logo{
 font:38px "Bebas Neue";
 letter-spacing:5px;
-text-shadow:0 0 25px #9c00ff
+text-shadow:0 0 25px #a000ff
 }
 
-.header-right{
-display:flex;
-align-items:center;
-gap:18px
-}
-
-.live{
+.status{
 font-size:9px;
 font-weight:800;
 letter-spacing:2px;
-color:#9cffc9
+color:#62ffb0
 }
 
-.live i{
+.status i{
 display:inline-block;
 width:7px;
 height:7px;
-border-radius:50%;
-background:#35ff91;
-box-shadow:0 0 12px #35ff91;
 margin-right:6px;
-animation:blink 1.2s infinite
+border-radius:50%;
+background:#48ff9c;
+box-shadow:0 0 12px #48ff9c;
+animation:pulse 1.2s infinite
 }
 
-@keyframes blink{
+@keyframes pulse{
 50%{opacity:.3}
 }
 
 .header-btn{
+margin-left:18px;
 padding:10px 18px;
 border-radius:8px;
 text-decoration:none;
+color:#fff;
 font-size:9px;
 font-weight:900;
-letter-spacing:1.5px;
-color:#fff;
-background:#ffffff0b;
-border:1px solid #ffffff18
+letter-spacing:1px;
+background:linear-gradient(135deg,#ff168e,#7628ff);
+box-shadow:0 5px 25px #8b00ff30
 }
 
 /* HERO */
 
 .hero{
 min-height:100vh;
-padding:140px 7% 100px;
+padding:125px 6% 90px;
 display:flex;
 align-items:center;
 position:relative;
 overflow:hidden
 }
 
-.hero-grid{
+.hero-wrap{
 width:100%;
 max-width:1250px;
 margin:auto;
 display:grid;
-grid-template-columns:1.15fr .85fr;
-gap:60px;
+grid-template-columns:1fr .82fr;
+gap:55px;
 align-items:center
 }
 
-.eyebrow{
+.tag{
 display:inline-flex;
 align-items:center;
 gap:8px;
-padding:8px 13px;
-border:1px solid #a83cff45;
-background:#9b00ff0c;
-border-radius:6px;
+padding:9px 14px;
+border:1px solid #b044ff45;
+background:#9c00ff0d;
+border-radius:7px;
+color:#ca9aff;
 font-size:8px;
-font-weight:800;
+font-weight:900;
 letter-spacing:2px;
-color:#c997ff;
-margin-bottom:22px
+margin-bottom:20px
 }
 
-.eyebrow span{
-width:5px;
-height:5px;
+.tag b{
+width:6px;
+height:6px;
 border-radius:50%;
-background:#ff36ad;
-box-shadow:0 0 10px #ff36ad
+background:#ff238d;
+box-shadow:0 0 12px #ff238d
 }
 
 .hero h1{
-font:clamp(90px,15vw,190px)/.78 "Bebas Neue";
+font:clamp(100px,17vw,210px)/.72 "Bebas Neue";
 letter-spacing:5px;
-background:linear-gradient(
-180deg,
-#fff 0%,
-#eee 28%,
-#c47aff 65%,
-#7d16ff 100%
-);
+background:linear-gradient(180deg,#fff,#e6cfff 42%,#a12cff 80%,#ff168d);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-filter:drop-shadow(0 10px 35px #8c00ff30)
+filter:drop-shadow(0 20px 35px #7800ff35)
 }
 
 .hero h2{
-font-size:15px;
-letter-spacing:5px;
+font-size:14px;
+letter-spacing:4px;
 margin-top:25px;
-color:#ddd
+color:#eee
 }
 
 .hero p{
-max-width:580px;
-margin-top:20px;
-font-size:12px;
-line-height:1.9;
-color:#777
+max-width:570px;
+margin-top:18px;
+color:#777;
+font-size:11px;
+line-height:1.9
 }
 
-.hero-buttons{
+.buttons{
 display:flex;
 gap:12px;
-margin-top:30px;
-flex-wrap:wrap
+flex-wrap:wrap;
+margin-top:28px
 }
 
-.main-btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:15px 26px;
-border-radius:9px;
-text-decoration:none;
-font-size:10px;
-font-weight:900;
-letter-spacing:1.5px;
-color:#fff;
-background:linear-gradient(135deg,#ff168e,#7a22ff);
-box-shadow:0 10px 35px #8d00ff38;
-transition:.25s
-}
-
-.main-btn:hover{
-transform:translateY(-4px);
-box-shadow:0 15px 45px #a000ff60
-}
-
-.second-btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
+.btn{
 padding:15px 24px;
 border-radius:9px;
 text-decoration:none;
-font-size:10px;
-font-weight:800;
+font-size:9px;
+font-weight:900;
 letter-spacing:1.5px;
+transition:.25s
+}
+
+.btn-main{
+color:#fff;
+background:linear-gradient(135deg,#ff138c,#7625ff);
+box-shadow:0 12px 35px #8900ff35
+}
+
+.btn-main:hover{
+transform:translateY(-4px);
+box-shadow:0 18px 45px #9b00ff60
+}
+
+.btn-second{
 color:#aaa;
 border:1px solid #ffffff16;
 background:#ffffff05
 }
 
-.second-btn:hover{
+.btn-second:hover{
 color:#fff;
 background:#ffffff0c
 }
 
-/* HERO PREVIEW */
+/* IMAGE */
 
-.preview{
-position:relative;
-padding:10px;
-border:1px solid #ffffff12;
+.visual{
+position:relative
+}
+
+.visual-frame{
+padding:9px;
+border:1px solid #ffffff15;
 border-radius:20px;
-background:#ffffff05;
-box-shadow:0 30px 100px #0008
+background:#ffffff06;
+box-shadow:0 30px 100px #0009;
+transform:rotate(1deg)
 }
 
-.preview:before{
-content:"";
-position:absolute;
-inset:-2px;
-border-radius:21px;
-background:linear-gradient(
-135deg,
-#ff008c55,
-transparent 35%,
-#7d00ff55
-);
-z-index:-1;
-filter:blur(8px)
-}
-
-.preview img{
+.visual-frame img{
 width:100%;
 height:470px;
 display:block;
 object-fit:cover;
 object-position:center;
 border-radius:13px;
-filter:saturate(1.1) contrast(1.04)
+filter:saturate(1.15) contrast(1.05)
 }
 
-.preview-info{
+.visual-frame:after{
+content:"";
 position:absolute;
-left:25px;
-right:25px;
-bottom:25px;
-padding:16px;
-border:1px solid #ffffff18;
-background:#08080dcc;
-backdrop-filter:blur(12px);
-border-radius:11px;
-display:flex;
-justify-content:space-between;
-align-items:center
+inset:-20px;
+z-index:-1;
+border-radius:30px;
+background:linear-gradient(135deg,#ff008c35,#7b00ff35);
+filter:blur(35px)
 }
 
-.preview-info small{
+.floating{
+position:absolute;
+left:-25px;
+bottom:30px;
+padding:14px 18px;
+border:1px solid #ffffff18;
+border-radius:10px;
+background:#09080ee8;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 40px #0008
+}
+
+.floating small{
 display:block;
+color:#666;
 font-size:7px;
 letter-spacing:2px;
-color:#777;
 margin-bottom:5px
 }
 
-.preview-info strong{
-font-size:12px
+.floating strong{
+font-size:11px
 }
 
-.preview-online{
-font-size:8px;
-font-weight:800;
-color:#65ffb1
-}
+/* SERVERS */
 
-/* SERVER SECTION */
-
-.servers-section{
+.servers{
 padding:100px 6%
 }
 
-.section-head{
+.heading{
 max-width:1200px;
-margin:0 auto 35px;
+margin:auto auto 35px;
 display:flex;
 justify-content:space-between;
 align-items:end
 }
 
-.section-head small{
+.heading small{
+color:#b978ff;
 font-size:8px;
-font-weight:800;
-letter-spacing:3px;
-color:#b56cff
+font-weight:900;
+letter-spacing:3px
 }
 
-.section-head h2{
-font:58px "Bebas Neue";
+.heading h2{
+font:60px "Bebas Neue";
 letter-spacing:3px;
-margin-top:5px
+margin-top:4px
 }
 
-.section-head p{
-font-size:9px;
+.heading p{
+max-width:270px;
+text-align:right;
 color:#666;
-max-width:260px;
-line-height:1.6;
-text-align:right
+font-size:9px;
+line-height:1.7
 }
 
 .server-grid{
@@ -349,117 +312,99 @@ grid-template-columns:repeat(3,1fr);
 gap:18px
 }
 
-.server{
-padding:12px;
-border:1px solid #ffffff10;
-border-radius:16px;
-background:linear-gradient(
-145deg,
-#ffffff08,
-#ffffff02
-);
-transition:.3s;
+.card{
 position:relative;
-overflow:hidden
+overflow:hidden;
+padding:10px;
+border:1px solid #ffffff12;
+border-radius:17px;
+background:linear-gradient(145deg,#ffffff09,#ffffff02);
+transition:.3s
 }
 
-.server:hover{
-transform:translateY(-7px);
-border-color:#a43cff55;
-box-shadow:0 25px 70px #6f00ff18
+.card:hover{
+transform:translateY(-8px);
+border-color:#b22fff55;
+box-shadow:0 25px 70px #7600ff20
 }
 
-.server-image{
+.card-img{
 width:100%;
-height:190px;
-object-fit:cover;
-border-radius:10px;
+height:200px;
 display:block;
-filter:saturate(1.05)
+object-fit:cover;
+border-radius:11px
 }
 
-.server-body{
-padding:15px 8px 7px
+.card-content{
+padding:15px 8px 8px
 }
 
-.server-top{
+.card-top{
 display:flex;
 justify-content:space-between;
 align-items:center
 }
 
-.server-id{
+.id{
 font-size:7px;
 font-weight:900;
 letter-spacing:2px;
-color:#8f8f9a
+color:#777
 }
 
-.server-state{
+.state{
 font-size:7px;
 font-weight:900;
 letter-spacing:1px
 }
 
-.open{
-color:#55ffa7
-}
+.open{color:#54ffa7}
+.busy{color:#ffc04e}
+.full{color:#ff4f9b}
 
-.busy{
-color:#ffc04d
-}
-
-.almost{
-color:#ff609e
-}
-
-.server h3{
-font:34px "Bebas Neue";
+.card h3{
+font:36px "Bebas Neue";
 letter-spacing:2px;
-margin:13px 0 5px
+margin:12px 0 4px
 }
 
-.server-desc{
+.desc{
 font-size:9px;
-color:#707078;
 line-height:1.7;
-min-height:32px
+color:#707078;
+min-height:31px
 }
-
-/* CAPACITY */
 
 .capacity-row{
 display:flex;
 justify-content:space-between;
+margin-top:15px;
 font-size:7px;
 font-weight:800;
-color:#666;
-margin-top:15px
+color:#666
 }
 
-.capacity{
-height:4px;
-background:#ffffff0b;
+.bar{
+height:5px;
+margin-top:7px;
 border-radius:20px;
-overflow:hidden;
-margin-top:7px
+background:#ffffff0b;
+overflow:hidden
 }
 
-.capacity span{
+.bar span{
 display:block;
 height:100%;
 border-radius:20px;
-background:linear-gradient(90deg,#7925ff,#ff188c)
+background:linear-gradient(90deg,#7625ff,#ff168d)
 }
 
-.c65{width:65%}
-.c86{width:86%}
-.c94{width:94%}
-
-/* JOIN */
+.w65{width:65%}
+.w86{width:86%}
+.w94{width:94%}
 
 .join{
-width:100%;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -468,38 +413,44 @@ margin-top:15px;
 padding:14px;
 border-radius:9px;
 text-decoration:none;
+color:#fff;
 font-size:9px;
 font-weight:900;
 letter-spacing:2px;
-color:#fff;
-background:linear-gradient(
-135deg,
-#ff138c,
-#8524ff
-);
-box-shadow:0 8px 25px #8900ff30;
-border:1px solid #ffffff1c;
+background:linear-gradient(135deg,#ff138c,#7824ff);
+box-shadow:0 8px 25px #8800ff30;
 transition:.25s
 }
 
 .join:hover{
 transform:scale(1.025);
-box-shadow:
-0 12px 35px #a000ff55,
-0 0 20px #ff008c22
+box-shadow:0 12px 35px #a000ff55
 }
 
-.arrow{
-font-size:13px
+.arrow{font-size:13px}
+
+/* NOTICE */
+
+.notice{
+max-width:1200px;
+margin:25px auto 0;
+padding:14px 18px;
+border:1px solid #ffba3b20;
+border-radius:10px;
+background:#ffb00007;
+color:#8f8a80;
+font-size:8px;
+text-align:center;
+letter-spacing:.5px
 }
 
-/* INFO */
+/* FEATURES */
 
-.info{
+.features{
 padding:70px 6%
 }
 
-.info-grid{
+.feature-grid{
 max-width:1000px;
 margin:auto;
 display:grid;
@@ -507,29 +458,35 @@ grid-template-columns:repeat(3,1fr);
 gap:15px
 }
 
-.info-card{
-padding:27px 20px;
+.feature{
+padding:30px 20px;
+text-align:center;
 border:1px solid #ffffff0d;
-border-radius:14px;
+border-radius:15px;
 background:#ffffff03;
-text-align:center
+transition:.25s
 }
 
-.info-icon{
-font-size:24px;
-margin-bottom:13px
+.feature:hover{
+background:#ffffff07;
+transform:translateY(-5px)
 }
 
-.info-card h3{
+.icon{
+font-size:25px;
+margin-bottom:12px
+}
+
+.feature h3{
 font-size:10px;
 letter-spacing:1px
 }
 
-.info-card p{
+.feature p{
 font-size:9px;
 line-height:1.7;
 color:#666;
-margin-top:7px
+margin-top:8px
 }
 
 /* CTA */
@@ -542,46 +499,28 @@ text-align:center
 .cta-box{
 max-width:850px;
 margin:auto;
-padding:70px 30px;
-border:1px solid #a23cff30;
+padding:75px 25px;
+border:1px solid #a52cff35;
 border-radius:22px;
 background:
-radial-gradient(circle at center,#8a00ff14,transparent 65%);
+radial-gradient(circle at 50% 50%,#8c00ff16,transparent 65%);
 position:relative;
 overflow:hidden
 }
 
-.cta-box:before{
-content:"";
-position:absolute;
-width:250px;
-height:250px;
-border-radius:50%;
-background:#ff008c;
-filter:blur(130px);
-opacity:.08;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%)
-}
-
-.cta-box>*{
-position:relative
-}
-
-.cta small{
+.cta-box small{
 font-size:8px;
 letter-spacing:4px;
-color:#b56cff
+color:#bb77ff
 }
 
-.cta h2{
+.cta-box h2{
 font:70px "Bebas Neue";
 letter-spacing:4px;
-margin:10px 0
+margin:8px 0
 }
 
-.cta p{
+.cta-box p{
 font-size:10px;
 color:#666;
 margin-bottom:25px
@@ -590,9 +529,9 @@ margin-bottom:25px
 /* FOOTER */
 
 footer{
-border-top:1px solid #ffffff0c;
 padding:35px 20px;
-text-align:center
+text-align:center;
+border-top:1px solid #ffffff0b
 }
 
 footer strong{
@@ -601,53 +540,50 @@ letter-spacing:3px
 }
 
 footer p{
+margin-top:7px;
 font-size:7px;
 letter-spacing:2px;
-color:#555;
-margin-top:7px
+color:#555
 }
 
 /* MOBILE */
 
 @media(max-width:900px){
 
-.hero-grid{
-grid-template-columns:1fr;
-gap:40px
-}
-
 .hero{
-padding-top:120px
+padding-top:115px
 }
 
-.preview{
+.hero-wrap{
+grid-template-columns:1fr;
+gap:45px
+}
+
+.visual{
 max-width:600px;
+width:100%;
 margin:auto
-}
-
-.preview img{
-height:380px
 }
 
 .server-grid{
 grid-template-columns:1fr
 }
 
-.server{
+.card{
 max-width:600px;
-margin:auto;
-width:100%
+width:100%;
+margin:auto
 }
 
-.info-grid{
+.feature-grid{
 grid-template-columns:1fr
 }
 
-.section-head{
+.heading{
 display:block
 }
 
-.section-head p{
+.heading p{
 text-align:left;
 margin-top:8px
 }
@@ -660,12 +596,12 @@ header{
 padding:0 5%
 }
 
-.logo{
-font-size:32px
+.status{
+display:none
 }
 
-.live{
-display:none
+.header-btn{
+margin-left:0
 }
 
 .hero{
@@ -674,7 +610,7 @@ padding-right:5%
 }
 
 .hero h2{
-font-size:11px;
+font-size:10px;
 letter-spacing:3px
 }
 
@@ -682,21 +618,25 @@ letter-spacing:3px
 font-size:10px
 }
 
-.preview img{
-height:330px
+.visual-frame img{
+height:350px
 }
 
-.servers-section{
+.floating{
+left:10px
+}
+
+.servers{
 padding-left:5%;
 padding-right:5%
 }
 
-.section-head h2{
+.heading h2{
 font-size:48px
 }
 
-.cta h2{
-font-size:52px
+.cta-box h2{
+font-size:55px
 }
 
 }
@@ -709,11 +649,8 @@ font-size:52px
 
 <div class="logo">LUXE</div>
 
-<div class="header-right">
-
-<div class="live">
-<i></i> SERVER ONLINE
-</div>
+<div>
+<span class="status"><i></i>SERVER ONLINE</span>
 
 <a
 class="header-btn"
@@ -722,24 +659,19 @@ target="_blank"
 rel="noopener noreferrer">
 JOIN
 </a>
-
 </div>
 
 </header>
 
 
-<main>
-
-<!-- HERO -->
-
 <section class="hero">
 
-<div class="hero-grid">
+<div class="hero-wrap">
 
 <div>
 
-<div class="eyebrow">
-<span></span>
+<div class="tag">
+<b></b>
 PRIVATE NIGHT SERVER
 </div>
 
@@ -748,23 +680,23 @@ PRIVATE NIGHT SERVER
 <h2>YOUR NEXT NIGHT STARTS HERE</h2>
 
 <p>
-Enter the private server, explore the night,
-and see what is waiting inside.
-Choose a server below and jump in.
+Masuk ke private server, pilih room yang masih tersedia,
+dan langsung join. Beberapa server sedang ramai dan
+sebagian sudah OTW FULL.
 </p>
 
-<div class="hero-buttons">
+<div class="buttons">
 
 <a
-class="main-btn"
+class="btn btn-main"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
 target="_blank"
 rel="noopener noreferrer">
-JOIN SERVER&nbsp; →
+JOIN SERVER →
 </a>
 
 <a
-class="second-btn"
+class="btn btn-second"
 href="#servers">
 VIEW SERVERS
 </a>
@@ -774,20 +706,20 @@ VIEW SERVERS
 </div>
 
 
-<div class="preview">
+<div class="visual">
 
-<img id="heroImage" alt="Server preview">
+<div class="visual-frame">
 
-<div class="preview-info">
+<img
+id="heroImage"
+alt="LUXE server preview">
 
-<div>
+</div>
+
+<div class="floating">
+
 <small>FEATURED SERVER</small>
-<strong>LUXE NIGHT</strong>
-</div>
-
-<div class="preview-online">
-● ONLINE
-</div>
+<strong>NEON NIGHT • ONLINE</strong>
 
 </div>
 
@@ -798,23 +730,24 @@ VIEW SERVERS
 </section>
 
 
-<!-- SERVERS -->
-
 <section
-class="servers-section"
+class="servers"
 id="servers">
 
-<div class="section-head">
+<div class="heading">
 
 <div>
+
 <small>LIVE SERVER LIST</small>
-<h2>CHOOSE YOUR SERVER</h2>
+
+<h2>CHOOSE YOUR ROOM</h2>
+
 </div>
 
 <p>
-Beberapa server sedang ramai.
-Server dengan kapasitas tinggi ditandai
-sebagai OTW FULL.
+Server dengan kapasitas tinggi
+ditandai OTW FULL supaya kamu
+bisa langsung pilih.
 </p>
 
 </div>
@@ -823,34 +756,26 @@ sebagai OTW FULL.
 <div class="server-grid">
 
 
-<!-- SERVER 01 -->
-
-<div class="server">
+<div class="card">
 
 <img
-class="server-image"
-alt="LUXE server preview">
+class="card-img"
+alt="Server 01">
 
-<div class="server-body">
+<div class="card-content">
 
-<div class="server-top">
+<div class="card-top">
 
-<span class="server-id">
-SERVER 01
-</span>
+<span class="id">SERVER 01</span>
 
-<span class="server-state open">
-● OPEN
-</span>
+<span class="state open">● OPEN</span>
 
 </div>
 
-<h3>
-NEON ROOM
-</h3>
+<h3>NEON ROOM</h3>
 
-<p class="server-desc">
-Server tersedia dan masih punya banyak slot.
+<p class="desc">
+Masih tersedia dan siap menerima pemain baru.
 </p>
 
 <div class="capacity-row">
@@ -858,8 +783,8 @@ Server tersedia dan masih punya banyak slot.
 <span>65%</span>
 </div>
 
-<div class="capacity">
-<span class="c65"></span>
+<div class="bar">
+<span class="w65"></span>
 </div>
 
 <a
@@ -867,44 +792,33 @@ class="join"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
 target="_blank"
 rel="noopener noreferrer">
-
-JOIN SERVER
-<span class="arrow">→</span>
-
+JOIN SERVER <span class="arrow">→</span>
 </a>
 
 </div>
 </div>
 
 
-<!-- SERVER 02 -->
-
-<div class="server">
+<div class="card">
 
 <img
-class="server-image"
-alt="LUXE server preview">
+class="card-img"
+alt="Server 02">
 
-<div class="server-body">
+<div class="card-content">
 
-<div class="server-top">
+<div class="card-top">
 
-<span class="server-id">
-SERVER 02
-</span>
+<span class="id">SERVER 02</span>
 
-<span class="server-state busy">
-● OTW FULL
-</span>
+<span class="state busy">● OTW FULL</span>
 
 </div>
 
-<h3>
-NIGHT ROOFTOP
-</h3>
+<h3>NIGHT ROOFTOP</h3>
 
-<p class="server-desc">
-Server sedang ramai. Slot mulai terbatas.
+<p class="desc">
+Sedang ramai. Slot mulai terbatas.
 </p>
 
 <div class="capacity-row">
@@ -912,8 +826,8 @@ Server sedang ramai. Slot mulai terbatas.
 <span>86%</span>
 </div>
 
-<div class="capacity">
-<span class="c86"></span>
+<div class="bar">
+<span class="w86"></span>
 </div>
 
 <a
@@ -921,43 +835,32 @@ class="join"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
 target="_blank"
 rel="noopener noreferrer">
-
-JOIN SERVER
-<span class="arrow">→</span>
-
+JOIN SERVER <span class="arrow">→</span>
 </a>
 
 </div>
 </div>
 
 
-<!-- SERVER 03 -->
-
-<div class="server">
+<div class="card">
 
 <img
-class="server-image"
-alt="LUXE server preview">
+class="card-img"
+alt="Server 03">
 
-<div class="server-body">
+<div class="card-content">
 
-<div class="server-top">
+<div class="card-top">
 
-<span class="server-id">
-SERVER 03
-</span>
+<span class="id">SERVER 03</span>
 
-<span class="server-state almost">
-● ALMOST FULL
-</span>
+<span class="state full">● ALMOST FULL</span>
 
 </div>
 
-<h3>
-SECRET HOUSE
-</h3>
+<h3>SECRET HOUSE</h3>
 
-<p class="server-desc">
+<p class="desc">
 Kapasitas hampir penuh. Slot semakin sedikit.
 </p>
 
@@ -966,8 +869,8 @@ Kapasitas hampir penuh. Slot semakin sedikit.
 <span>94%</span>
 </div>
 
-<div class="capacity">
-<span class="c94"></span>
+<div class="bar">
+<span class="w94"></span>
 </div>
 
 <a
@@ -975,110 +878,83 @@ class="join"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
 target="_blank"
 rel="noopener noreferrer">
-
-JOIN SERVER
-<span class="arrow">→</span>
-
+JOIN SERVER <span class="arrow">→</span>
 </a>
 
 </div>
 </div>
 
-
 </div>
+
+
+<div class="notice">
+⚡ STATUS SERVER DI HALAMAN INI ADALAH DISPLAY DESAIN DAN BUKAN DATA LIVE ROBLOX.
+</div>
+
 </section>
 
 
-<!-- FEATURES -->
+<section class="features">
 
-<section class="info">
+<div class="feature-grid">
 
-<div class="info-grid">
-
-<div class="info-card">
-
-<div class="info-icon">⚡</div>
-
-<h3>NEON ATMOSPHERE</h3>
-
+<div class="feature">
+<div class="icon">⚡</div>
+<h3>FAST ACCESS</h3>
 <p>
-Dark world dengan lighting
-neon yang vibrant.
+Klik join dan lanjut ke server.
 </p>
-
 </div>
 
-
-<div class="info-card">
-
-<div class="info-icon">🎮</div>
-
+<div class="feature">
+<div class="icon">🎮</div>
 <h3>PRIVATE SERVER</h3>
-
 <p>
-Pilih server dan langsung
-masuk ke experience.
+Pilih room yang tersedia.
 </p>
-
 </div>
 
-
-<div class="info-card">
-
-<div class="info-icon">🌙</div>
-
+<div class="feature">
+<div class="icon">🌙</div>
 <h3>NIGHT EXPERIENCE</h3>
-
 <p>
-Explore suasana malam
-dan area rahasia.
+Tema malam dengan suasana neon.
 </p>
-
 </div>
 
 </div>
 
 </section>
 
-
-<!-- CTA -->
 
 <section class="cta">
 
 <div class="cta-box">
 
-<small>
-PRIVATE ACCESS
-</small>
+<small>PRIVATE ACCESS</small>
 
-<h2>
-READY TO JOIN?
-</h2>
+<h2>READY TO JOIN?</h2>
 
 <p>
-Pilih server yang masih tersedia dan mulai sekarang.
+Pilih server lalu masuk sekarang.
 </p>
 
 <a
-class="main-btn"
+class="btn btn-main"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
 target="_blank"
 rel="noopener noreferrer">
-ENTER SERVER&nbsp; →
+ENTER SERVER →
 </a>
 
 </div>
 
 </section>
 
-</main>
-
 
 <footer>
 
-<strong>
-LUXE NIGHT
-</strong>
+<strong>LUXE NIGHT</strong>
 
 <p>
 PRIVATE SERVER • NIGHT EXPERIENCE • © 2026
@@ -1089,27 +965,18 @@ PRIVATE SERVER • NIGHT EXPERIENCE • © 2026
 
 <script>
 
-/*
-==================================================
-FOTO YANG LO KIRIM
-Sudah diubah ke WebP supaya lebih ringan.
-Foto hanya disimpan sekali lalu dipakai
-untuk hero + semua server card.
-==================================================
-*/
+/* FOTO SUDAH EMBED LANGSUNG DI SINI */
+const photo="data:image/webp;base64,UklGRmIUAABXRUJQVlA4IFYUAAAwgQCdASrqAA4BPvVqrE4qpiSjK1NuSVAeiWIAw6qJ3x7Df1/QNwbgNkG/KUnHcbM5Mpa274MhhhNu1lVDlnI+ei0kC8nUxgSNUOK0Tu0xYGyR4yxlRttCl/+vf6a7u5CinwiBzugyL7Qq1VkN9ItexQ44Rf9qRghqQeTjU1152FMnjIdEh1Ncd8N6zjQ4qdnxxzXGUe7D9rWrn6+zRZ1O9mMzoCl5tKIsK8wGQLU5HPcrQ2cDMFZsCvUJ3L+TLfWPFSzPJCqZ21MJaM42kQuwH1iOn+AzqnF08RNSNepyuzfv7vUdydfNt28PDDBAF9bTsehuQmVfqHqSemcwU7z/OCh5Tnp52vyGj8pCtOLi/tXEsvtgkLN6fIAXJlqv5xU9TLlFN6GruokMqOhG/DAao4d6ZcjD98q7IJw7GlHT/GNEZLSFq15EJs+2YcRMpFfXLMT7Sq4TK/yEEGdspSsAd68aeZheSHWQr7GutYB1NbV0VrByruT0YjCTd6ps1ZdQYmqS2KJEyaBcDycN6gMnu8kOeoBWxzbcudmcXkqxZs3jyvnpu6lOrajc/fWZ/PS/WcsC/2eqr2hRaFMN+AIevjfqBMABQcngwkYFG/CV/GlEX//GZjp2V8MxNQ36ZJtizizkRiGkA7BdBgElnsJew0lgMrw56Ly3LAUMfSUaG0QCiJomqBNWzUS/oY2n/a9Y0zpfO9nhFZBK3hU8SQ2jHLgFh1Heri9TRLVFmLhxf5Cdwk2fzf6zRo7Polws/HK1ySAWKZt7ZP/n+kM10lVeGq7s/AWxG+U5BjemKX6V7tFUxx9f8GcIpYpqvwuDdu/UWo5wMQI+8WIKA+nr7c7qWayV+j4t3gfG7anPf6pL/cWhvy6lEFzjUje9preDb5XeHn0OR5kzxC3SqPGRbPj4yZB7P8nGSoLbyl4lgCJwcRTY90MKC2HRIhpIt7rh7ouMHMIjJ2h4fOmwmARDLvxbgneTshnKyJIqclNWGGkMwhbbIwDd3tdza9C4MTsXvJP1gF8kSXbFEZcw8nDAw+iKTxbbA5LURTJlKI4MU2sxFDc8FmJz+/YopY1GOVo+CI39vfh/FKkRUVRcslWN5X7qMndsMuGyHQXF3/EGRXCXXU8oRYGnlfMapDnu/je0IgW5sluF7d/Ksuxce2q7i/FzJJ1g1ooLrV1DD4b1Llk+Ue7YMvB1y9Iqz3uAFkOT8xWpKam1XQ2cCam9uI7uHS7erBSkADCzyz8PIzUiZCVZrkTjG1BLJ6O4to98Rbsn+8gbGoqu71yXf7zMeZ1awjmFhFgfZAXRw7if88v1vkdfCoW2GDsqSOlXnBd9cT7vYyzs3cV4Yw+uLkbdJPINX0bg0ve/s3Uesm86Kj9KvxpgiwIAAP73d4Q4llTWFYN+Y3nQFdthKoPY77H0JyRonCxGk9jYCdM6JUa8L/2SiQJekwKsiVgvf1Caeh6baWAWj+Mt234wlbRmChxN47qacHQuvSSnJtIer57cyL3F9iY+/U8QgypS+6saFYM7poO5Af+3Bg9TkxJWS5BlSu9wF4iepqQ2hSlAi1qfhPZi2W2uOaa5xqtbIgiwr86PKEUetX67cVVXsaBbt5Fe0JrY2+7/U4kstMWkd3BJAUYzsLPxNRzz8JEcTJvFQf9JtV4kjc0N7BO3VCfM80f4XMo4Zlt+ndRa3DkjSSmvgI33p2DhRRkD/9kDWSxSa1tXrJVb3OL5a+hLPYOb+bbsOerJr55v6Ap6wWlVyZiBryETWSJjmkfLy1LZv4NUFTXoqeMjyibDiW1eptdV4wCrmCRoHZPZ9C3sKFbt/dMnXSqwhCg01dVZPCfXr9sNOKkZFTxRB2VK9u1efOa1Umh1ITJ4aSueGWIgPg150CHGKjVOMurohy14aX1xae0wixy1QtzgI76x3tcXT9pmz+C2KpCHEFhHPBJGq1YYj2lD8rpPy1Yh440gV3gBGjTYTMJrE5WuFY+KFkfjG3IVKSKAEr4rTZ7TB/w7JTsPb4fQsXH93pC/wooj6EflnPfQO/O4DKFgLGL6wcBdXDGeD0wPVBUlb5bQxCfVQodjWk+subt2boTSECsrUAkjiOnTyu7APDEbt66ciZMuposFzLJhSYvkOs2zWP89rGIwi7WnhLnTEf1RLQMCacnQQuY3MyiBfWdSF4ChA/l+rxrDQyKTuAOSEu6G8SQPcp6rEobGm68K2EJO0j33DXlWgIWEe4RKP6yHJz2/vd2Fa9CR/Oqq9k9YDdfh4d+euHzRPewE0nXkGy806fpGHCb7tIHMWNchv9qQX5diRsIYAxHDARREx4wm7IcfcMs16L2fAB1nDTIHXkbJBW5ily6llWx1u9IiJocPmSe3kBnbvt9/yoXc0+I2CQyNU0iBo4LbQaPQeAYP9IytK+lZ1kfCyMjlHFySIX/yeVYku0EKKPa5rX6wWSI4JX5DvAwyX10kJk6TKUsKGadEVA6zzpfoQ/tHGPNtGKt40u8f+yODewfkKgM51UlpxO5pH7tnLGTWojamoOy0AC3/ltI0G07yyKgbjDOUGCmEU0tEDxIiyx1dkvreiLFMieuft+mIc2kPwLc66ZBVQtyUQXcUBYSyHTriZ/nlqy6tucbH2kpj8NoqPCdG28fbId8GherEqSjzAlbe61bb9dznSR/t+KfXVXZMgbjZAsQA/V+Ct/sTmqOIs/ZylkvS7RQSxjjVc7cH5Q8tOWMUSAtD6Jmj99lXI5gASGh3yJKqGqYjlqTNpFaJCGAXbtFXGr9dAb6RWYCriGM8R75lLhbf6+6hKOpgQhaTXrJAj7qVZ1y0KfTAe0jjvhSx9eEN2KNk8kRms4tN+MQK2RRuwDxHTvuGlootpJsVsfXIr3pnXwXGLHaYpirKq+Rrkwjw3gmxx8pbfWgdzr8WKgYXBK4dsJgI47KZhKBugUIx5hXESXiRJBNAAjaqwAab0hjW02bQXzg0mIHbrVXVd+XfZt9uYzleKra+Ua+glJ3ioBB5xQ5SrkCtbkKeytE6BWejo4lcer3OqrWv3SI90FF2SecdHdI6CTDO7eglaZrhwXw5Oj2k/c2eC6eHpBJI4/PQ8GhKU73iYBu36fPTVEJ1nF/duAPAUOI+39aPARZYGX1CTl8RTEQwwgwLr98oG0H6byDzUfehmyGwyjh88wazr2ZPZzwXv/yZtHOMYfe04dK7057mSTtd1GozbIR21wHX7qT9qRAQIGNXLaAnaaMxTFY16TTTnEwM1M4giiN5jNCsXwTlo9ZGbcmcZqy5ri3ploL74kL1ewB1Px3i6iLxsaKhqMQHwLAPhG/ww8+xeS9KMZqfyXgSRaIJ1dCrTdwUCGe1auz9MOrqzeB+qm1tLQon8WrDrb/WY25doJ8+DmyNxkSKquqgswlGnJCF1mjYks885wQL2tnlToLCTtfCOLoprHSbRhuFddx8t4pFNUDxXCw72EGVXq/5F7riCl7TPtPYlwh1NgESEjqPKMJFXGsxBcN4HCjOzn2w7ESYqygFvNwpDZTrdXIf2bvbZYfmFTG8TwpOoXAem5BU3f2sa9V1rhJjqu9HFQgq+vT8hQx5mi6IUjs6NQiFO7dPL7hf9exfUWsfOnPoAmNh8g9whbc7s7X0GE1Yfj7gl94awlOsidwHHsj4iIGKRU7uX1/z7+pl4fLOsN6eFvCE8MBzAztKx05/3BTUuC5ZJs7gq6OLtlhKGN6TM7lqn+V3UYGWEZZ37o7tXckpXVxYtbaOu4iZ09AsVpONNhqRaN+FT43hxYefJxG+BFaDOnxXLxTHNuYKg9ys3KtMOwtTNyZ9G+UliTwaBjAgFxBrQyZvM5EsHNrg5KwMgonCS6ijc0NBIpBUMo6RrN4dyFDKdL51g8JikGlaPnoFj2/xB1cZH/YiLNVeJXRLUvF1gjqUrmpcaRej9ylF80veKpEa0r4kS2yiyjwqwfeBOr62XF5oE2dxqrHLfZzKmN1pR+mjcMCROfwvNGo2LpiKdW11SVeGzDy9nUPC6pjHUv7u8iwKW0m36uWJB1bmYwFayrmL9KT3gji6C/s+IRDOjvC3UYcgypf2cSzLjwyhhFYNwoaEL6/CLrDEU9Fh9IpwBVi+kxevb+HnWcNqxRjJEMocwgXoEwde5lvQEHCXuZFfidilRsooy6um2ci98QFODx0KOIaO1iYAK1xayjrn6LzesfybNW0EZ/j1YDpYPrPIxWymiJWDUE9NnuHmRP6OYup8vWOdeNgIHdNdCsUfURpKWS1hXqZhZiiXmWMk6IyVrBpAkUbLMruHufPd8/l59Z67lLWW/5MsP+49C5WlGhuV8OnRIe9qAE1B7bE39pXHl7KLv7Wn1UnqClq+uEFibybvxQH6+qal7KzJbvLhQwyDV3+q1gsUKIV1CfjMUds6TRzvfOWeCAb7OdUuDtxnUDj8nO54Px4hhJA0LLK2nOdh6Yzr/iUt9S7/hnqfpGDadWW12bWH36ZDii9MP14tdhM7ne8R0JTpsNwUocahptGlM8QXgvD96np8qtalT1BuLvdLn3ylfVrWC4B6iCFcybJDTOiuHERtRyQiVNKnluGju5frdwKk+NNI7Xj47MclTG3WoCpSWuz2XGqTxZaTQ3iQZuoefgl2stEweS8GjVMRYzqn/BRhJxD3GpXJl9g1u1/kuZd9Y28VEsEpaBUWn2pu7u4d7A1l8xMpTEdfGZQ/3qQTecy8OUHkJqXAIa+ic994y3P2+Jtv0r3DECFPvZhMk5Y1IDVaGwwj1eIelbZsyyvtOCnRDvQJKDG2Fns1+RxzpKrxapptcgBlbeaQjK/9w8lDMd9yB11ZcXeQJGWQO5PzAe00OfQQu9lsTbuGLlEp1OKp6qT1J4cg/zUHtCMaqtiJShLGCOiNN+Eb8bqtFrWgYXJhC0jvRuTZvUC9K9s+GqGT8RYAgKXaoC9Y6+pFJ+OUYB8qTRnhBd1I1HZQM0lDYxvZFhnexeQYmJ4yLiLgD9vfFibifbtprBSuHulgwcC7FzBKmU6uDZpi5uUQgJy6XZMEIyDo50z2o6zerlKLTaqHkXxZfI12omhruiMdbsr6hwmasevKprlvB6UdXIGQn/Jul2FlQMOVSBH1c/xp381BSC1CFrNarZfGHbGoDi0onDwwKvx3FlsD/67ljUD/2JtpYvly84k2SB0aOvLTsS6pi89ZD5qL1vt3nl2y4AzqA+J5j9Myuk5kAFAxA+/Fi/kG/QDaTNtYmEUtGn4drOiTOtjHiCRk6dY6b7lpcDPLUgcbPIDDFbdqSx2cG8zVjSy8Df0e1GFeoikzb9nqhNZDah46//FEgpiq+gN0p9yrzlmeB4AUNmm5GEDLxM/9Bj/K+JyHt6XpgNPmWrKJrtLraQ8BMRehL63HGKxZFc/ujXLbA3+CSSnK0cxIx9rU1PdAu2XA8dbZMkwNeFYFSQJjPLi4OYKjvECtlEUaNxA82KtWz4arYJFbP+h+pznwrwDgrx6rodTZkjrsDmhkCR6L2Z5UFsk1G3bJl+mH4c8KCWzBvYSInYiU8BTpo23WPR4E8Tt1mncJMBMWbGICkWE5HqXvVfiHOOdEVNteejOKoH95mOpdmUOOt8T7qGLsWCEaZvtG5SS6KNdorf/8XsBa8C9GIDf6Q7tG20vebT2FrIGjjrM1Y3RPaqlP7gl3DIEDhiclLiUPHQz4TdUBXYw4HEFUgcc7M67BJsbUMvpHFwOTIzoLaH6lfLU++x4QvjAOGTL9aF/4IZqibfmrhl2yRqYgb4u70It6/+iDuvw/IDptz5BUzMsUeqh+pZc+ztTVim79ZMwCCKs9aqAXDA4kW1mmqByNy/tJM0slNTX/2sCrxGxO99pklueEFhjKqjDvrn0kTud3L/o6kBpPcyWr7EygzGuhNJl5t7nGGNOA9PuY5skje591X8Ywmw/NQtP1S0Z39gHlS3ogFApslhP/L4JEKloFVk5uhwRyyg7FTDc21Kf0wP3dYiHghhIkE24ahqcJNZhKWf8brr+9nkAud79QSRzXHvgflqHU4x9Pn1TlaH1/y/kxaDOlCWWBnl3ccAOyCBNiokUuizuSjNkNNOh5/IC8m0jCj+75Q6mrkYGcjXxcdoB68ivZ4Y49aJ+X/qrohVH22kLM9umzaZqhVD+d2yCV4SEiHCiAn33H6+oC8We+6a3QCeWInuI3k/lC3B3+LxYKr8fvntUMygb12tjiEJFdgq0czrucuA5KDZlKh66WmXNwl9GAjsQguobA7HKj0TjR+FLC1tEga1htrf5lTeZWHJqZ9GhZ00fYNNQsAXrNpg3wbWto5jHYsrArxanfxwruLis6b9X0KeobY5c3YnrtNNTGD7YCoSzxSm+TYNbNU9DOHu/XwNUpNOJ/A7GQqFXaqkKO5Ya+FK5MIBpOSVFAuqdNXO7QMvbjOl1w/DlaTjRXSnFoCYlPm7alEXDKYya3q0THux2Hl4ndmpaKvydz6Ix0/Csy9jH6oxmjL2dqbigJBjqs76y4vjnvQz2v2OzMGpKT8ciyqby9PMn3+YjWMKD3jkQLkAX8GSt54etXx01XX8UXrQPhJquDl4u8KjU4zZJNYDMQyXLng+b67kdQzUsAC7Eu4oh6AeFhpUFQT1BHIZeqYFYcemsXUcwACiNeuhnBC8zA54t/y90wsA33e8SV42HSoE4kQIzgs6spWzQrfHONOS3QZewJOiMu1xyD/toq4cqsUQgdXAm/mFD+/z85B0vw0ciJ+JItQFEvru9uYUE2n53q0YDTHq6COg88DyzlyY2s1wg7dqObOHnyopZukaMjFWH2EMvZC4ki6o7j0l2fsxs5lFlVr6O0UgxE/j3jG4flyrg4txx2gutAvPQ/Fvog3Nuwr0DZY6pXaLIK+IBuAe9toQfFX5L1esc0jmQMMw0q/eg7k9A4u946BzXX7rNgNR4SnO9HJAq0AAAA";
 
-const serverPhoto =
-"data:image/webp;base64,REPLACEME";
-
-document.getElementById("heroImage").src=serverPhoto;
+document.getElementById("heroImage").src=photo;
 
 document
-.querySelectorAll(".server-image")
+.querySelectorAll(".card-img")
 .forEach(img=>{
-img.src=serverPhoto;
+img.src=photo;
 });
 
 </script>
 
 </body>
-</html>
+  </html>
