@@ -4,158 +4,528 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>NEON NIGHT | Roblox Private Server</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box}
+
 html{scroll-behavior:smooth}
+
 body{
-background:#05030b;color:#fff;font-family:Poppins,sans-serif;
+background:#05030b;
+color:#fff;
+font-family:Poppins,sans-serif;
 overflow-x:hidden;
 background-image:
 radial-gradient(circle at 15% 20%,rgba(155,0,255,.16),transparent 28%),
 radial-gradient(circle at 85% 70%,rgba(255,0,190,.13),transparent 30%);
 }
-body:before,body:after{
-content:"";position:fixed;width:300px;height:300px;border-radius:50%;
-filter:blur(120px);opacity:.18;pointer-events:none;z-index:-1
+
+body:before,
+body:after{
+content:"";
+position:fixed;
+width:300px;
+height:300px;
+border-radius:50%;
+filter:blur(120px);
+opacity:.18;
+pointer-events:none;
+z-index:-1
 }
-body:before{background:#8b00ff;left:-120px;top:25%}
-body:after{background:#ff008c;right:-120px;bottom:15%}
+
+body:before{
+background:#8b00ff;
+left:-120px;
+top:25%
+}
+
+body:after{
+background:#ff008c;
+right:-120px;
+bottom:15%
+}
+
+/* HEADER */
 
 header{
-position:fixed;top:0;left:0;right:0;z-index:100;
-padding:20px 7%;display:flex;justify-content:space-between;align-items:center;
-background:linear-gradient(#05030bee,transparent);backdrop-filter:blur(8px)
+position:fixed;
+top:0;
+left:0;
+right:0;
+z-index:100;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:linear-gradient(#05030bf2,transparent);
+backdrop-filter:blur(8px)
 }
+
 .logo{
-font:35px "Bebas Neue";letter-spacing:5px;
+font:35px "Bebas Neue";
+letter-spacing:5px;
 text-shadow:0 0 20px #d000ff
 }
+
 .status{
-font-size:9px;letter-spacing:3px;color:#ff62d7;
-display:flex;align-items:center;gap:7px
+font-size:9px;
+letter-spacing:3px;
+color:#ff62d7;
+display:flex;
+align-items:center;
+gap:7px
 }
+
 .dot{
-width:7px;height:7px;border-radius:50%;background:#00ff9d;
+width:7px;
+height:7px;
+border-radius:50%;
+background:#00ff9d;
 box-shadow:0 0 12px #00ff9d
 }
 
-.hero{
-min-height:100vh;padding:150px 20px 100px;
-display:flex;align-items:center;justify-content:center;text-align:center;
-position:relative;overflow:hidden
-}
-.hero:before{
-content:"";position:absolute;width:600px;height:600px;border-radius:50%;
-background:radial-gradient(circle,rgba(255,0,200,.22),transparent 65%);
-filter:blur(30px);animation:pulse 4s infinite alternate
-}
-@keyframes pulse{to{transform:scale(1.25);opacity:.55}}
+/* HERO */
 
-.hero-content{position:relative;z-index:2;max-width:900px}
+.hero{
+min-height:100vh;
+padding:150px 20px 100px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden
+}
+
+.hero:before{
+content:"";
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+background:radial-gradient(circle,rgba(255,0,200,.22),transparent 65%);
+filter:blur(30px);
+animation:pulse 4s infinite alternate
+}
+
+@keyframes pulse{
+to{
+transform:scale(1.25);
+opacity:.55
+}
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:900px
+}
+
 .tag{
-display:inline-block;padding:9px 18px;border:1px solid #ff36cf66;
-border-radius:50px;background:#ff00c30d;color:#ff70dc;
-font-size:9px;font-weight:700;letter-spacing:3px;margin-bottom:25px;
+display:inline-block;
+padding:9px 18px;
+border:1px solid #ff36cf66;
+border-radius:50px;
+background:#ff00c30d;
+color:#ff70dc;
+font-size:9px;
+font-weight:700;
+letter-spacing:3px;
+margin-bottom:25px;
 box-shadow:0 0 25px #ff00c414
 }
+
 h1{
 font:clamp(100px,22vw,220px)/.72 "Bebas Neue";
 letter-spacing:8px;
-background:linear-gradient(180deg,#fff 10%,#ffb2ee 45%,#d000ff 100%);
--webkit-background-clip:text;-webkit-text-fill-color:transparent;
+background:linear-gradient(
+180deg,
+#fff 10%,
+#ffb2ee 45%,
+#d000ff 100%
+);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 filter:drop-shadow(0 0 25px #d000ff55)
 }
+
 .hero h2{
-margin-top:25px;font-size:15px;letter-spacing:6px;color:#ddd
+margin-top:25px;
+font-size:15px;
+letter-spacing:6px;
+color:#ddd
 }
+
 .hero p{
-max-width:620px;margin:25px auto;color:#888;font-size:12px;line-height:1.9
+max-width:620px;
+margin:25px auto;
+color:#888;
+font-size:12px;
+line-height:1.9
 }
-.buttons{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+
+.buttons{
+display:flex;
+justify-content:center;
+gap:14px;
+flex-wrap:wrap;
+margin-top:30px
+}
+
 .btn{
-display:inline-block;padding:16px 30px;border-radius:12px;
-text-decoration:none;color:#fff;font-size:10px;font-weight:800;
-letter-spacing:2px;border:1px solid #ffffff20;
-background:#ffffff08;transition:.3s
+display:inline-block;
+padding:16px 30px;
+border-radius:12px;
+text-decoration:none;
+color:#fff;
+font-size:10px;
+font-weight:800;
+letter-spacing:2px;
+border:1px solid #ffffff20;
+background:#ffffff08;
+transition:.3s
 }
-.btn:hover{transform:translateY(-5px);box-shadow:0 15px 35px #ff00c52e}
+
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:0 15px 35px #ff00c52e
+}
+
 .primary{
 background:linear-gradient(135deg,#ff009d,#7b00ff);
-border:0;box-shadow:0 0 35px #d000ff40
+border:0;
+box-shadow:0 0 35px #d000ff40
 }
 
-section{padding:100px 7%}
-.title{text-align:center;margin-bottom:45px}
-.title span{color:#ff5bd3;font-size:9px;letter-spacing:4px}
-.title h2{font:55px "Bebas Neue";letter-spacing:3px;margin-top:8px}
+/* SECTION */
+
+section{
+padding:100px 7%
+}
+
+.title{
+text-align:center;
+margin-bottom:45px
+}
+
+.title span{
+color:#ff5bd3;
+font-size:9px;
+letter-spacing:4px
+}
+
+.title h2{
+font:55px "Bebas Neue";
+letter-spacing:3px;
+margin-top:8px
+}
+
+/* SERVER */
 
 .server-grid{
-max-width:1100px;margin:auto;
-display:grid;grid-template-columns:repeat(3,1fr);gap:20px
+max-width:1100px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
 }
+
 .card{
-position:relative;padding:30px;min-height:280px;overflow:hidden;
-border:1px solid #ffffff12;border-radius:22px;
-background:linear-gradient(145deg,#b000ff12,#ffffff04);
+position:relative;
+padding:22px;
+min-height:470px;
+overflow:hidden;
+border:1px solid #ffffff12;
+border-radius:22px;
+background:
+linear-gradient(145deg,#b000ff12,#ffffff04);
 transition:.35s
 }
+
 .card:after{
-content:"";position:absolute;width:120px;height:120px;
-right:-50px;top:-50px;border-radius:50%;background:#ff00c8;
-filter:blur(65px);opacity:.2
+content:"";
+position:absolute;
+width:120px;
+height:120px;
+right:-50px;
+top:-50px;
+border-radius:50%;
+background:#ff00c8;
+filter:blur(65px);
+opacity:.2
 }
+
 .card:hover{
-transform:translateY(-9px);border-color:#ff39d855;
+transform:translateY(-9px);
+border-color:#ff39d855;
 box-shadow:0 20px 60px #ff00c51a
 }
-.num{font-size:9px;letter-spacing:3px;color:#ff5bd3}
-.card h3{font:38px "Bebas Neue";letter-spacing:2px;margin:28px 0 12px}
-.card p{font-size:11px;line-height:1.8;color:#777}
-.join{
-display:inline-block;margin-top:25px;color:#fff;text-decoration:none;
-font-size:9px;font-weight:800;letter-spacing:2px
+
+.num{
+font-size:9px;
+letter-spacing:3px;
+color:#ff5bd3;
+margin-bottom:12px
 }
-.join:hover{color:#ff65d8}
+
+/* FOTO */
+
+.server-img{
+width:100%;
+height:190px;
+border-radius:15px;
+object-fit:cover;
+object-position:center;
+display:block;
+border:1px solid #ffffff15;
+box-shadow:
+0 8px 30px #0008,
+0 0 25px #a000ff18;
+margin-bottom:18px
+}
+
+.card h3{
+font:38px "Bebas Neue";
+letter-spacing:2px;
+margin:8px 0 10px
+}
+
+.card p{
+font-size:11px;
+line-height:1.8;
+color:#777;
+min-height:55px
+}
+
+/* SERVER STATUS */
+
+.server-status{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-top:17px;
+font-size:8px;
+font-weight:800;
+letter-spacing:1.5px
+}
+
+.online{
+color:#00ff9d
+}
+
+.warning{
+color:#ffb300
+}
+
+.fullsoon{
+color:#ff4d8d
+}
+
+.status-dot{
+width:6px;
+height:6px;
+display:inline-block;
+border-radius:50%;
+margin-right:5px
+}
+
+.green{
+background:#00ff9d;
+box-shadow:0 0 10px #00ff9d
+}
+
+.yellow{
+background:#ffb300;
+box-shadow:0 0 10px #ffb300
+}
+
+.red{
+background:#ff4d8d;
+box-shadow:0 0 10px #ff4d8d
+}
+
+/* CAPACITY */
+
+.capacity{
+margin-top:8px;
+height:5px;
+width:100%;
+background:#ffffff0d;
+border-radius:10px;
+overflow:hidden
+}
+
+.capacity span{
+display:block;
+height:100%;
+border-radius:10px;
+background:linear-gradient(90deg,#8b00ff,#ff00a8)
+}
+
+.cap-65{width:65%}
+.cap-87{width:87%}
+.cap-94{width:94%}
+
+/* JOIN BUTTON */
+
+.join{
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+margin-top:20px;
+padding:14px 15px;
+border-radius:12px;
+color:#fff;
+text-decoration:none;
+font-size:10px;
+font-weight:900;
+letter-spacing:2px;
+background:linear-gradient(135deg,#ff009d,#7900ff);
+border:1px solid #ff73dd55;
+box-shadow:
+0 8px 25px #d000ff35,
+inset 0 1px #ffffff30;
+transition:.25s
+}
+
+.join:hover{
+transform:translateY(-3px) scale(1.02);
+box-shadow:
+0 12px 35px #ff00c755,
+0 0 25px #ff00c733
+}
+
+/* FEATURES */
 
 .features{
-max-width:1000px;margin:auto;display:grid;
-grid-template-columns:repeat(3,1fr);gap:20px
+max-width:1000px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px
 }
+
 .feature{
-padding:35px 20px;text-align:center;
-border:1px solid #ffffff0b;border-radius:18px;
+padding:35px 20px;
+text-align:center;
+border:1px solid #ffffff0b;
+border-radius:18px;
 background:#ffffff03
 }
-.icon{font-size:30px;margin-bottom:15px}
-.feature h3{font-size:12px;letter-spacing:1px}
-.feature p{font-size:10px;color:#666;line-height:1.8;margin-top:8px}
+
+.icon{
+font-size:30px;
+margin-bottom:15px
+}
+
+.feature h3{
+font-size:12px;
+letter-spacing:1px
+}
+
+.feature p{
+font-size:10px;
+color:#666;
+line-height:1.8;
+margin-top:8px
+}
+
+/* CTA */
 
 .cta{
-margin:50px auto 100px;max-width:1000px;text-align:center;
-padding:70px 25px;border:1px solid #ff26d333;border-radius:28px;
-background:radial-gradient(circle at center,#a000ff18,transparent 65%)
+margin:50px auto 100px;
+max-width:1000px;
+text-align:center;
+padding:70px 25px;
+border:1px solid #ff26d333;
+border-radius:28px;
+background:
+radial-gradient(circle at center,#a000ff18,transparent 65%)
 }
-.cta h2{font:60px "Bebas Neue";letter-spacing:4px}
-.cta p{color:#777;font-size:11px;margin:12px 0 25px}
+
+.cta h2{
+font:60px "Bebas Neue";
+letter-spacing:4px
+}
+
+.cta p{
+color:#777;
+font-size:11px;
+margin:12px 0 25px
+}
+
+/* FOOTER */
 
 footer{
-padding:45px 20px;text-align:center;border-top:1px solid #ffffff0d
+padding:45px 20px;
+text-align:center;
+border-top:1px solid #ffffff0d
 }
-footer strong{font:25px "Bebas Neue";letter-spacing:3px}
-footer p{font-size:8px;color:#555;letter-spacing:2px;margin-top:8px}
+
+footer strong{
+font:25px "Bebas Neue";
+letter-spacing:3px
+}
+
+footer p{
+font-size:8px;
+color:#555;
+letter-spacing:2px;
+margin-top:8px
+}
+
+/* MOBILE */
 
 @media(max-width:800px){
-header{padding:18px 5%}
-.logo{font-size:29px}
-.server-grid,.features{grid-template-columns:1fr}
-section{padding:80px 5%}
-.hero{padding-top:130px}
-.hero h2{font-size:11px;letter-spacing:4px}
-.hero p{font-size:11px}
-.title h2{font-size:48px}
-.cta h2{font-size:48px}
+
+header{
+padding:18px 5%
+}
+
+.logo{
+font-size:29px
+}
+
+.server-grid,
+.features{
+grid-template-columns:1fr
+}
+
+section{
+padding:80px 5%
+}
+
+.hero{
+padding-top:130px
+}
+
+.hero h2{
+font-size:11px;
+letter-spacing:4px
+}
+
+.hero p{
+font-size:11px
+}
+
+.title h2{
+font-size:48px
+}
+
+.cta h2{
+font-size:48px
+}
+
+.card{
+min-height:auto
+}
+
+.server-img{
+height:210px
+}
 }
 </style>
 </head>
@@ -163,9 +533,18 @@ section{padding:80px 5%}
 <body>
 
 <header>
-<div class="logo">NEON</div>
-<div class="status"><i class="dot"></i> SERVER ONLINE</div>
+
+<div class="logo">
+NEON
+</div>
+
+<div class="status">
+<i class="dot"></i>
+SERVER ONLINE
+</div>
+
 </header>
+
 
 <main>
 
@@ -173,7 +552,9 @@ section{padding:80px 5%}
 
 <div class="hero-content">
 
-<div class="tag">ROBLOX • PRIVATE SERVER • NIGHT EVENT</div>
+<div class="tag">
+ROBLOX • PRIVATE SERVER • NIGHT EVENT
+</div>
 
 <h1>LUXE</h1>
 
@@ -187,129 +568,284 @@ what's waiting inside.
 
 <div class="buttons">
 
-<a class="btn primary"
+<a
+class="btn primary"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank" rel="noopener noreferrer">
+target="_blank"
+rel="noopener noreferrer">
 JOIN SERVER →
 </a>
 
-<a class="btn" href="#rooms">
-EXPLORE →
+<a
+class="btn"
+href="#rooms">
+EXPLORE SERVERS ↓
 </a>
 
 </div>
 
 </div>
+
 </section>
+
 
 <section id="rooms">
 
 <div class="title">
-<span>CHOOSE YOUR DESTINATION</span>
-<h2>PRIVATE ROOMS</h2>
+
+<span>
+CHOOSE YOUR SERVER
+</span>
+
+<h2>
+PRIVATE SERVERS
+</h2>
+
 </div>
+
 
 <div class="server-grid">
 
-<div class="card">
-<div class="num">01 / NEON</div>
-<h3>PENTHOUSE</h3>
-<p>
-A glowing rooftop environment surrounded
-by neon lights. Explore the private area
-and see what happens after dark.
-</p>
-<a class="join"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank" rel="noopener noreferrer">
-ENTER ROOM →
-</a>
-</div>
+
+<!-- SERVER 01 -->
 
 <div class="card">
-<div class="num">02 / NIGHT</div>
-<h3>ROOFTOP</h3>
-<p>
-City lights, dark skies and a mysterious
-night atmosphere. Your next destination
-is waiting.
-</p>
-<a class="join"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank" rel="noopener noreferrer">
-ENTER ROOM →
-</a>
+
+<div class="num">
+01 / ONLINE
 </div>
+
+<img
+class="server-img"
+alt="Server preview"
+src="data:image/webp;base64,DATA_FOTO_DI_SINI"
+>
+
+<h3>
+NEON PENTHOUSE
+</h3>
+
+<p>
+Private server dengan suasana neon.
+Masuk sekarang sebelum kapasitasnya penuh.
+</p>
+
+<div class="server-status online">
+<span>
+<i class="status-dot green"></i>
+OPEN
+</span>
+<span>
+65% FULL
+</span>
+</div>
+
+<div class="capacity">
+<span class="cap-65"></span>
+</div>
+
+<a
+class="join"
+href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
+target="_blank"
+rel="noopener noreferrer">
+JOIN SERVER →
+</a>
+
+</div>
+
+
+<!-- SERVER 02 -->
 
 <div class="card">
-<div class="num">03 / SECRET</div>
-<h3>NEON HOUSE</h3>
+
+<div class="num">
+02 / BUSY
+</div>
+
+<img
+class="server-img"
+alt="Server preview"
+src="data:image/webp;base64,DATA_FOTO_DI_SINI"
+>
+
+<h3>
+ROOFTOP NIGHT
+</h3>
+
 <p>
-A hidden location for players looking
-for something different. Enter and
-explore the unknown.
+Server sedang ramai. Kapasitas mulai
+mendekati penuh, jadi jangan terlalu lama.
 </p>
-<a class="join"
+
+<div class="server-status warning">
+<span>
+<i class="status-dot yellow"></i>
+OTW FULL
+</span>
+<span>
+87% FULL
+</span>
+</div>
+
+<div class="capacity">
+<span class="cap-87"></span>
+</div>
+
+<a
+class="join"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank" rel="noopener noreferrer">
-ENTER ROOM →
+target="_blank"
+rel="noopener noreferrer">
+JOIN SERVER →
 </a>
+
+</div>
+
+
+<!-- SERVER 03 -->
+
+<div class="card">
+
+<div class="num">
+03 / ALMOST FULL
+</div>
+
+<img
+class="server-img"
+alt="Server preview"
+src="data:image/webp;base64,DATA_FOTO_DI_SINI"
+>
+
+<h3>
+NEON HOUSE
+</h3>
+
+<p>
+Server ini hampir penuh. Join sekarang
+kalau masih ingin mendapatkan slot.
+</p>
+
+<div class="server-status fullsoon">
+<span>
+<i class="status-dot red"></i>
+FULL SOON
+</span>
+<span>
+94% FULL
+</span>
+</div>
+
+<div class="capacity">
+<span class="cap-94"></span>
+</div>
+
+<a
+class="join"
+href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
+target="_blank"
+rel="noopener noreferrer">
+JOIN SERVER →
+</a>
+
 </div>
 
 </div>
+
 </section>
+
 
 <section>
 
 <div class="title">
-<span>INSIDE THE SERVER</span>
-<h2>THE EXPERIENCE</h2>
+
+<span>
+INSIDE THE SERVER
+</span>
+
+<h2>
+THE EXPERIENCE
+</h2>
+
 </div>
+
 
 <div class="features">
 
 <div class="feature">
-<div class="icon">⚡</div>
-<h3>NEON WORLD</h3>
+
+<div class="icon">
+⚡
+</div>
+
+<h3>
+NEON WORLD
+</h3>
+
 <p>
 Dark environments filled with
 bright neon lights.
 </p>
+
 </div>
 
+
 <div class="feature">
-<div class="icon">🎮</div>
-<h3>PRIVATE SERVER</h3>
+
+<div class="icon">
+🎮
+</div>
+
+<h3>
+PRIVATE SERVER
+</h3>
+
 <p>
 Jump directly into the private
 Roblox experience.
 </p>
+
 </div>
 
+
 <div class="feature">
-<div class="icon">🌙</div>
-<h3>NIGHT MODE</h3>
+
+<div class="icon">
+🌙
+</div>
+
+<h3>
+NIGHT MODE
+</h3>
+
 <p>
 A mysterious atmosphere designed
 for late-night gaming.
 </p>
+
 </div>
 
 </div>
+
 </section>
+
 
 <div class="cta">
 
-<h2>READY TO ENTER?</h2>
+<h2>
+READY TO ENTER?
+</h2>
 
 <p>
-The server is waiting. Bring your friends
+The server is waiting. Choose your server
 and start the night.
 </p>
 
-<a class="btn primary"
+<a
+class="btn primary"
 href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank" rel="noopener noreferrer">
+target="_blank"
+rel="noopener noreferrer">
 JOIN THE SERVER →
 </a>
 
@@ -317,10 +853,38 @@ JOIN THE SERVER →
 
 </main>
 
+
 <footer>
-<strong>NEON NIGHT</strong>
-<p>ROBLOX PRIVATE SERVER • © 2026</p>
+
+<strong>
+NEON NIGHT
+</strong>
+
+<p>
+ROBLOX PRIVATE SERVER • © 2026
+</p>
+
 </footer>
 
+
+<script>
+
+/*
+Foto preview server.
+Foto hanya disimpan 1x di JavaScript,
+lalu dipasang otomatis ke semua card.
+*/
+
+const serverImage =
+"data:image/webp;base64,DATA_FOTO_DI_SINI";
+
+document
+.querySelectorAll(".server-img")
+.forEach(img=>{
+img.src=serverImage;
+});
+
+</script>
+
 </body>
-</html>
+  </html>
