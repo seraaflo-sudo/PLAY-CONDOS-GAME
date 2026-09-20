@@ -1,9 +1,3 @@
-<video
-    class="server-image"
-    autoplay
-    muted
-    loop
-    playsinline
->
+<video class="server-image" autoplay muted loop playsinline preload="auto">
     <source src="/server-video.mp4" type="video/mp4">
 </video>
