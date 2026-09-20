@@ -37,10 +37,11 @@ body{
 
 main{
     min-height:100vh;
+
     background:
         radial-gradient(
             circle at 50% 20%,
-            rgba(255,255,255,.045),
+            rgba(100,80,255,.045),
             transparent 45%
         ),
         #080808;
@@ -131,8 +132,10 @@ main{
 
 .intro-sub{
     margin-top:28px;
+
     font-size:11px;
     letter-spacing:6px;
+
     color:#999;
     text-transform:uppercase;
 }
@@ -145,9 +148,12 @@ main{
 .progress-top{
     display:flex;
     justify-content:space-between;
+
     color:#777;
+
     font-size:9px;
     letter-spacing:2px;
+
     margin-bottom:10px;
 }
 
@@ -160,31 +166,37 @@ main{
 .progress-bar{
     height:100%;
     width:0%;
+
     background:#fff;
 
     box-shadow:
         0 0 12px rgba(255,255,255,.5);
 
-    transition:width .15s linear;
+    transition:
+        width .15s linear;
 }
 
 .skip{
     position:absolute;
+
     right:25px;
     bottom:25px;
 
     background:rgba(0,0,0,.3);
 
     border:1px solid #333;
+
     color:#888;
 
     padding:10px 15px;
 
     font-size:9px;
     letter-spacing:2px;
+
     text-transform:uppercase;
 
     cursor:pointer;
+
     transition:.25s;
 }
 
@@ -210,6 +222,7 @@ header{
 
 .logo{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:30px;
     letter-spacing:2px;
 }
@@ -220,6 +233,7 @@ header{
     gap:9px;
 
     font-size:9px;
+
     text-transform:uppercase;
     letter-spacing:2px;
 
@@ -229,6 +243,7 @@ header{
 .status-dot{
     width:7px;
     height:7px;
+
     border-radius:50%;
 
     background:var(--green);
@@ -248,17 +263,23 @@ header{
 
 .eyebrow{
     color:#777;
+
     text-transform:uppercase;
     letter-spacing:5px;
+
     font-size:9px;
+
     margin-bottom:20px;
 }
 
 .hero h1{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:clamp(65px,10vw,140px);
+
     line-height:.82;
     letter-spacing:2px;
+
     max-width:850px;
 }
 
@@ -278,7 +299,9 @@ header{
 
 .hero-description{
     color:#999;
+
     max-width:480px;
+
     font-size:13px;
     line-height:1.8;
 }
@@ -289,14 +312,18 @@ header{
 
 .players-number{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:48px;
     line-height:1;
 }
 
 .players-label{
     color:#777;
+
     font-size:8px;
+
     letter-spacing:3px;
+
     text-transform:uppercase;
 }
 
@@ -307,8 +334,12 @@ header{
 
 .server-grid{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:20px;
+
     padding-bottom:100px;
 }
 
@@ -319,7 +350,8 @@ header{
 
 .server{
     position:relative;
-    min-height:570px;
+
+    min-height:700px;
 
     background:#111;
 
@@ -334,13 +366,18 @@ header{
 }
 
 .server:hover{
-    border-color:rgba(255,255,255,.4);
+    border-color:
+        rgba(255,255,255,.4);
 
-    transform:translateY(-5px);
+    transform:
+        translateY(-5px);
 
     box-shadow:
         0 20px 60px rgba(0,0,0,.45);
 }
+
+
+/* IMAGE */
 
 .server-image{
     position:absolute;
@@ -352,6 +389,7 @@ header{
     object-fit:cover;
 
     opacity:1;
+
     filter:none;
 
     transition:
@@ -377,7 +415,7 @@ header{
             rgba(0,0,0,.02) 0%,
             rgba(0,0,0,.04) 28%,
             rgba(0,0,0,.20) 55%,
-            rgba(0,0,0,.80) 100%
+            rgba(0,0,0,.88) 100%
         );
 }
 
@@ -397,6 +435,9 @@ header{
         );
 }
 
+
+/* SERVER CONTENT */
+
 .server-content{
     position:absolute;
     inset:0;
@@ -412,41 +453,52 @@ header{
 
 .server-top{
     display:flex;
+
     justify-content:space-between;
     align-items:flex-start;
 }
 
 .badge{
-    border:1px solid rgba(255,255,255,.32);
+    border:
+        1px solid rgba(255,255,255,.32);
 
     padding:7px 10px;
 
     font-size:8px;
+
     text-transform:uppercase;
     letter-spacing:2px;
 
     color:#fff;
 
-    background:rgba(0,0,0,.18);
+    background:
+        rgba(0,0,0,.18);
 
-    backdrop-filter:blur(6px);
+    backdrop-filter:
+        blur(6px);
 }
 
 .number{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:75px;
     line-height:.7;
 
-    color:rgba(255,255,255,.5);
+    color:
+        rgba(255,255,255,.5);
 
     text-shadow:
         0 3px 20px rgba(0,0,0,.35);
 }
 
+
+/* INFO */
+
 .server-info h2{
     font-family:"Bebas Neue",sans-serif;
 
     font-size:45px;
+
     letter-spacing:1px;
 
     color:#fff;
@@ -457,22 +509,30 @@ header{
 
 .server-name{
     color:#ddd;
+
     font-size:11px;
+
     margin-top:3px;
 
     text-shadow:
         0 2px 10px rgba(0,0,0,.8);
 }
 
+
+/* CAPACITY */
+
 .capacity-row{
     display:flex;
+
     justify-content:space-between;
     align-items:center;
 
     margin-top:30px;
 
     font-size:9px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 
     color:#eee;
@@ -480,30 +540,43 @@ header{
 
 .capacity-value{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:30px;
+
     letter-spacing:0;
+
     color:#fff;
 }
 
 .capacity{
-    height:3px;
+    height:4px;
 
     background:
-        rgba(255,255,255,.25);
+        rgba(255,255,255,.18);
 
     margin-top:9px;
 
     overflow:hidden;
+
+    border-radius:10px;
 }
 
 .capacity-fill{
     height:100%;
 
-    background:#fff;
+    background:
+        linear-gradient(
+            90deg,
+            #6654ff,
+            #a56cff
+        );
 
     box-shadow:
-        0 0 12px rgba(255,255,255,.55);
+        0 0 12px rgba(120,80,255,.65);
 }
+
+
+/* DESCRIPTION */
 
 .server-desc{
     margin-top:20px;
@@ -511,6 +584,7 @@ header{
     color:#ddd;
 
     font-size:11px;
+
     line-height:1.7;
 
     max-width:470px;
@@ -521,68 +595,99 @@ header{
 
 
 /* ==================================================
-   JOIN BUTTON — LEBIH MENONJOL
+   JOIN BUTTON
+   MODEL SESUAI SCREENSHOT
 ================================================== */
 
 .join{
-    margin-top:28px;
+    margin-top:32px;
+
+    width:100%;
+
+    min-height:82px;
 
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+    justify-content:center;
 
-    border-top:
-        1px solid rgba(255,255,255,.35);
+    gap:22px;
 
-    padding-top:20px;
+    border:none;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4d3ee8 0%,
+            #6240ed 45%,
+            #8a35ed 100%
+        );
 
     color:#fff;
 
     text-decoration:none;
 
-    font-size:12px;
-    font-weight:800;
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
 
-    letter-spacing:3px;
+    font-size:24px;
 
-    text-transform:uppercase;
+    font-weight:500;
 
-    transition:
-        color .25s ease,
-        letter-spacing .25s ease,
-        text-shadow .25s ease;
+    letter-spacing:-.5px;
 
-    text-shadow:
-        0 2px 12px rgba(0,0,0,.9);
-}
+    box-shadow:
+        0 12px 30px
+        rgba(91,55,235,.35),
 
-.join span:first-child{
-    font-weight:900;
-}
-
-.join span:last-child{
-    font-size:26px;
-    font-weight:400;
+        inset 0 1px 0
+        rgba(255,255,255,.15);
 
     transition:
         transform .25s ease,
-        text-shadow .25s ease;
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.join span:first-child{
+    font-weight:500;
+}
+
+.join span:last-child{
+    font-size:42px;
+
+    font-weight:300;
+
+    line-height:1;
+
+    transition:
+        transform .25s ease;
 }
 
 .join:hover{
-    color:var(--green);
+    color:#fff;
 
-    letter-spacing:3.5px;
+    transform:
+        translateY(-3px);
 
-    text-shadow:
-        0 0 15px rgba(114,255,155,.45);
+    filter:
+        brightness(1.08);
+
+    box-shadow:
+        0 18px 40px
+        rgba(91,55,235,.5),
+
+        0 0 25px
+        rgba(123,65,245,.25);
 }
 
 .join:hover span:last-child{
-    transform:translateX(7px);
-
-    text-shadow:
-        0 0 12px rgba(114,255,155,.6);
+    transform:
+        translateX(8px);
 }
 
 
@@ -591,18 +696,25 @@ header{
 ================================================== */
 
 footer{
-    border-top:1px solid var(--line);
-    padding:65px 0 35px;
+    border-top:
+        1px solid var(--line);
+
+    padding:
+        65px 0 35px;
 }
 
 .footer-grid{
     display:grid;
-    grid-template-columns:2fr 1fr 1fr;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
     gap:40px;
 }
 
 .footer-brand{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:55px;
 }
 
@@ -612,15 +724,19 @@ footer{
     color:#666;
 
     font-size:9px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 }
 
 .footer-column h3{
     font-size:8px;
+
     color:#666;
 
     letter-spacing:3px;
+
     text-transform:uppercase;
 
     margin-bottom:13px;
@@ -628,23 +744,30 @@ footer{
 
 .footer-column p{
     font-size:10px;
+
     color:#888;
+
     line-height:1.8;
 }
 
 .copyright{
-    border-top:1px solid var(--line);
+    border-top:
+        1px solid var(--line);
 
     margin-top:55px;
+
     padding-top:20px;
 
     color:#555;
 
     font-size:8px;
+
     letter-spacing:2px;
+
     text-transform:uppercase;
 
     display:flex;
+
     justify-content:space-between;
 }
 
@@ -673,6 +796,7 @@ footer{
 
     .players{
         text-align:left;
+
         margin-top:30px;
     }
 
@@ -681,7 +805,7 @@ footer{
     }
 
     .server{
-        min-height:560px;
+        min-height:700px;
     }
 
     .footer-grid{
@@ -690,10 +814,11 @@ footer{
 
     .copyright{
         display:block;
+
         line-height:2;
     }
-
 }
+
 
 @media(max-width:480px){
 
@@ -723,17 +848,22 @@ footer{
     }
 
     .join{
-        font-size:11px;
-        letter-spacing:2.5px;
+        min-height:78px;
+
+        border-radius:25px;
+
+        font-size:22px;
+
+        gap:18px;
     }
 
     .join span:last-child{
-        font-size:23px;
+        font-size:38px;
     }
-
 }
 </style>
 </head>
+
 
 <body>
 
@@ -790,7 +920,9 @@ footer{
     <button
         class="skip"
         id="skip">
+
         Skip intro
+
     </button>
 
 </section>
@@ -861,7 +993,7 @@ footer{
 
 
     <!-- ==================================================
-         SERVER CARDS
+         SERVER GRID
     ================================================== -->
 
     <section class="server-grid">
@@ -1175,7 +1307,6 @@ const loading = setInterval(() => {
             intro.classList.add("hide");
 
         },500);
-
     }
 
     progressBar.style.width =
@@ -1225,4 +1356,4 @@ document
 </script>
 
 </body>
-</html>
+    </html>
