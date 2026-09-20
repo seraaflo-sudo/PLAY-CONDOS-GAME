@@ -52,9 +52,9 @@ main{
 }
 
 
-/* =========================
+/* ==================================================
    INTRO
-========================= */
+================================================== */
 
 #intro{
     position:fixed;
@@ -194,9 +194,9 @@ main{
 }
 
 
-/* =========================
+/* ==================================================
    HEADER
-========================= */
+================================================== */
 
 header{
     height:80px;
@@ -238,9 +238,9 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    HERO
-========================= */
+================================================== */
 
 .hero{
     padding:100px 0 70px;
@@ -301,9 +301,9 @@ header{
 }
 
 
-/* =========================
+/* ==================================================
    SERVER GRID
-========================= */
+================================================== */
 
 .server-grid{
     display:grid;
@@ -313,9 +313,9 @@ header{
 }
 
 
-/* =========================
-   SERVER
-========================= */
+/* ==================================================
+   SERVER CARD
+================================================== */
 
 .server{
     position:relative;
@@ -519,6 +519,11 @@ header{
         0 2px 10px rgba(0,0,0,.9);
 }
 
+
+/* ==================================================
+   JOIN BUTTON — LEBIH MENONJOL
+================================================== */
+
 .join{
     margin-top:28px;
 
@@ -527,41 +532,63 @@ header{
     align-items:center;
 
     border-top:
-        1px solid rgba(255,255,255,.25);
+        1px solid rgba(255,255,255,.35);
 
-    padding-top:18px;
+    padding-top:20px;
 
     color:#fff;
 
     text-decoration:none;
 
-    font-size:9px;
-    letter-spacing:2px;
+    font-size:12px;
+    font-weight:800;
+
+    letter-spacing:3px;
+
     text-transform:uppercase;
 
-    transition:.25s;
+    transition:
+        color .25s ease,
+        letter-spacing .25s ease,
+        text-shadow .25s ease;
 
     text-shadow:
-        0 2px 10px rgba(0,0,0,.8);
+        0 2px 12px rgba(0,0,0,.9);
+}
+
+.join span:first-child{
+    font-weight:900;
 }
 
 .join span:last-child{
-    font-size:20px;
-    transition:.25s;
+    font-size:26px;
+    font-weight:400;
+
+    transition:
+        transform .25s ease,
+        text-shadow .25s ease;
 }
 
 .join:hover{
     color:var(--green);
+
+    letter-spacing:3.5px;
+
+    text-shadow:
+        0 0 15px rgba(114,255,155,.45);
 }
 
 .join:hover span:last-child{
-    transform:translateX(5px);
+    transform:translateX(7px);
+
+    text-shadow:
+        0 0 12px rgba(114,255,155,.6);
 }
 
 
-/* =========================
+/* ==================================================
    FOOTER
-========================= */
+================================================== */
 
 footer{
     border-top:1px solid var(--line);
@@ -622,9 +649,9 @@ footer{
 }
 
 
-/* =========================
+/* ==================================================
    MOBILE
-========================= */
+================================================== */
 
 @media(max-width:800px){
 
@@ -665,6 +692,7 @@ footer{
         display:block;
         line-height:2;
     }
+
 }
 
 @media(max-width:480px){
@@ -693,13 +721,26 @@ footer{
     .number{
         font-size:60px;
     }
+
+    .join{
+        font-size:11px;
+        letter-spacing:2.5px;
+    }
+
+    .join span:last-child{
+        font-size:23px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
+
+<!-- ==================================================
+     INTRO
+================================================== -->
 
 <section id="intro">
 
@@ -722,8 +763,15 @@ footer{
         <div class="progress-wrap">
 
             <div class="progress-top">
-                <span>Synchronizing world</span>
-                <span id="progressText">0%</span>
+
+                <span>
+                    Synchronizing world
+                </span>
+
+                <span id="progressText">
+                    0%
+                </span>
+
             </div>
 
             <div class="progress">
@@ -739,18 +787,23 @@ footer{
 
     </div>
 
-    <button class="skip" id="skip">
+    <button
+        class="skip"
+        id="skip">
         Skip intro
     </button>
 
 </section>
 
 
-<!-- MAIN -->
+<!-- ==================================================
+     MAIN
+================================================== -->
 
 <main>
 
 <div class="container">
+
 
     <!-- HEADER -->
 
@@ -807,7 +860,9 @@ footer{
     </section>
 
 
-    <!-- SERVERS -->
+    <!-- ==================================================
+         SERVER CARDS
+    ================================================== -->
 
     <section class="server-grid">
 
@@ -825,6 +880,7 @@ footer{
             <div class="server-overlay"></div>
 
             <div class="server-content">
+
 
                 <div class="server-top">
 
@@ -918,6 +974,7 @@ footer{
 
             <div class="server-content">
 
+
                 <div class="server-top">
 
                     <div class="badge">
@@ -1004,6 +1061,7 @@ footer{
 
         <div class="footer-grid">
 
+
             <div>
 
                 <div class="footer-brand">
@@ -1058,6 +1116,7 @@ footer{
 
             </div>
 
+
         </div>
 
 
@@ -1082,9 +1141,9 @@ footer{
 
 <script>
 
-/* =========================
+/* ==================================================
    INTRO LOADING
-========================= */
+================================================== */
 
 const intro =
     document.getElementById("intro");
@@ -1116,6 +1175,7 @@ const loading = setInterval(() => {
             intro.classList.add("hide");
 
         },500);
+
     }
 
     progressBar.style.width =
@@ -1127,25 +1187,28 @@ const loading = setInterval(() => {
 },120);
 
 
-/* =========================
+/* ==================================================
    SKIP INTRO
-========================= */
+================================================== */
 
 skip.addEventListener("click", () => {
 
     clearInterval(loading);
 
-    progressBar.style.width = "100%";
-    progressText.textContent = "100%";
+    progressBar.style.width =
+        "100%";
+
+    progressText.textContent =
+        "100%";
 
     intro.classList.add("hide");
 
 });
 
 
-/* =========================
+/* ==================================================
    IMAGE FALLBACK
-========================= */
+================================================== */
 
 document
 .querySelectorAll(".server-image")
