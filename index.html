@@ -1,1663 +1,1356 @@
-<!DOCTYPE html>  <html lang="en">  
-<head>  
-<meta charset="UTF-8">  
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>CONDO GAME — Private Server</title>  <style>  
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');  
-  
-*{  
-    margin:0;  
-    padding:0;  
-    box-sizing:border-box;  
-}  
-  
-:root{  
-    --bg:#080808;  
-    --white:#fff;  
-    --gray:#777;  
-    --light:#ddd;  
-    --line:rgba(255,255,255,.14);  
-    --green:#72ff9b;  
-}  
-  
-html{  
-    scroll-behavior:smooth;  
-}  
-  
-body{  
-    background:#080808;  
-    color:#fff;  
-    font-family:Inter,Arial,sans-serif;  
-    overflow-x:hidden;  
-}  
-  
-main{  
-    min-height:100vh;  
-  
-    background:  
-        radial-gradient(  
-            circle at 50% 20%,  
-            rgba(100,80,255,.045),  
-            transparent 45%  
-        ),  
-        #080808;  
-}  
-  
-.container{  
-    width:min(1200px,90%);  
-    margin:auto;  
-}  
-  
-  
-/* ==================================================  
-   INTRO  
-================================================== */  
-  
-#intro{  
-    position:fixed;  
-    inset:0;  
-    z-index:99999;  
-  
-    display:flex;  
-    align-items:center;  
-    justify-content:center;  
-  
-    background:#000;  
-  
-    transition:  
-        opacity .7s ease,  
-        visibility .7s ease;  
-}  
-  
-#intro.hide{  
-    opacity:0;  
-    visibility:hidden;  
-    pointer-events:none;  
-}  
-  
-.intro-grid{  
-    position:absolute;  
-    inset:0;  
-  
-    background-image:  
-        linear-gradient(  
-            rgba(255,255,255,.035) 1px,  
-            transparent 1px  
-        ),  
-        linear-gradient(  
-            90deg,  
-            rgba(255,255,255,.035) 1px,  
-            transparent 1px  
-        );  
-  
-    background-size:50px 50px;  
-  
-    mask-image:  
-        linear-gradient(  
-            to bottom,  
-            transparent,  
-            black 25%,  
-            black 75%,  
-            transparent  
-        );  
-}  
-  
-.intro-content{  
-    position:relative;  
-    width:min(900px,90%);  
-    text-align:center;  
-}  
-  
-.intro-small{  
-    font-size:10px;  
-    letter-spacing:5px;  
-    text-transform:uppercase;  
-    color:#777;  
-    margin-bottom:25px;  
-}  
-  
-.intro-title{  
-    font-family:"Bebas Neue",sans-serif;  
-    font-size:clamp(70px,15vw,190px);  
-    line-height:.8;  
-    letter-spacing:3px;  
-  
-    text-shadow:  
-        0 0 35px rgba(255,255,255,.08);  
-}  
-  
-.intro-sub{  
-    margin-top:28px;  
-  
-    font-size:11px;  
-    letter-spacing:6px;  
-  
-    color:#999;  
-    text-transform:uppercase;  
-}  
-  
-.progress-wrap{  
-    width:min(430px,80%);  
-    margin:55px auto 0;  
-}  
-  
-.progress-top{  
-    display:flex;  
-    justify-content:space-between;  
-  
-    color:#777;  
-  
-    font-size:9px;  
-    letter-spacing:2px;  
-  
-    margin-bottom:10px;  
-}  
-  
-.progress{  
-    height:3px;  
-    background:#202020;  
-    overflow:hidden;  
-}  
-  
-.progress-bar{  
-    height:100%;  
-    width:0%;  
-  
-    background:#fff;  
-  
-    box-shadow:  
-        0 0 12px rgba(255,255,255,.5);  
-  
-    transition:  
-        width .15s linear;  
-}  
-  
-.skip{  
-    position:absolute;  
-  
-    right:25px;  
-    bottom:25px;  
-  
-    background:rgba(0,0,0,.3);  
-  
-    border:1px solid #333;  
-  
-    color:#888;  
-  
-    padding:10px 15px;  
-  
-    font-size:9px;  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-  
-    cursor:pointer;  
-  
-    transition:.25s;  
-}  
-  
-.skip:hover{  
-    border-color:#777;  
-    color:#fff;  
-}  
-  
-  
-/* ==================================================  
-   HEADER  
-================================================== */  
-  
-header{  
-    height:80px;  
-  
-    border-bottom:1px solid var(--line);  
-  
-    display:flex;  
-    align-items:center;  
-    justify-content:space-between;  
-}  
-  
-.logo{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:30px;  
-    letter-spacing:2px;  
-}  
-  
-.status{  
-    display:flex;  
-    align-items:center;  
-    gap:9px;  
-  
-    font-size:9px;  
-  
-    text-transform:uppercase;  
-    letter-spacing:2px;  
-  
-    color:#aaa;  
-}  
-  
-.status-dot{  
-    width:7px;  
-    height:7px;  
-  
-    border-radius:50%;  
-  
-    background:var(--green);  
-  
-    box-shadow:  
-        0 0 12px rgba(114,255,155,.8);  
-}  
-  
-  
-/* ==================================================  
-   HERO  
-================================================== */  
-  
-.hero{  
-    padding:100px 0 70px;  
-}  
-  
-.eyebrow{  
-    color:#777;  
-  
-    text-transform:uppercase;  
-    letter-spacing:5px;  
-  
-    font-size:9px;  
-  
-    margin-bottom:20px;  
-}  
-  
-.hero h1{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:clamp(65px,10vw,140px);  
-  
-    line-height:.82;  
-    letter-spacing:2px;  
-  
-    max-width:850px;  
-}  
-  
-.hero h1 span{  
-    color:#777;  
-}  
-  
-.hero-bottom{  
-    margin-top:40px;  
-  
-    display:flex;  
-    align-items:end;  
-    justify-content:space-between;  
-  
-    gap:30px;  
-}  
-  
-.hero-description{  
-    color:#999;  
-  
-    max-width:480px;  
-  
-    font-size:13px;  
-    line-height:1.8;  
-}  
-  
-.players{  
-    text-align:right;  
-}  
-  
-.players-number{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:48px;  
-    line-height:1;  
-}  
-  
-.players-label{  
-    color:#777;  
-  
-    font-size:8px;  
-  
-    letter-spacing:3px;  
-  
-    text-transform:uppercase;  
-}  
-  
-  
-/* ==================================================  
-   LIVE GAME IN SERVER  
-================================================== */  
-  
-.live-game{  
-    padding-bottom:80px;  
-}  
-  
-.live-top{  
-    display:flex;  
-    align-items:flex-end;  
-    justify-content:space-between;  
-  
-    gap:25px;  
-  
-    margin-bottom:22px;  
-}  
-  
-.live-eyebrow{  
-    color:#777;  
-  
-    text-transform:uppercase;  
-    letter-spacing:5px;  
-  
-    font-size:9px;  
-  
-    margin-bottom:10px;  
-}  
-  
-.live-title{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:clamp(45px,7vw,75px);  
-  
-    line-height:.9;  
-  
-    letter-spacing:2px;  
-}  
-  
-.live-description{  
-    color:#888;  
-  
-    font-size:12px;  
-  
-    line-height:1.7;  
-  
-    max-width:430px;  
-  
-    margin-top:12px;  
-}  
-  
-.live-status{  
-    display:flex;  
-  
-    align-items:center;  
-  
-    gap:9px;  
-  
-    border:1px solid rgba(255,255,255,.16);  
-  
-    background:rgba(255,255,255,.035);  
-  
-    padding:10px 15px;  
-  
-    font-size:9px;  
-  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-  
-    white-space:nowrap;  
-}  
-  
-.live-dot{  
-    width:7px;  
-    height:7px;  
-  
-    border-radius:50%;  
-  
-    background:#ff365f;  
-  
-    box-shadow:  
-        0 0 12px rgba(255,54,95,.8);  
-  
-    animation:  
-        livePulse 1.2s infinite;  
-}  
-  
-@keyframes livePulse{  
-  
-    0%,100%{  
-        opacity:1;  
-        transform:scale(1);  
-    }  
-  
-    50%{  
-        opacity:.4;  
-        transform:scale(.7);  
-    }  
-  
-}  
-  
-.live-video-box{  
-    position:relative;  
-  
-    width:100%;  
-  
-    aspect-ratio:16/9;  
-  
-    background:#111;  
-  
-    border:1px solid rgba(255,255,255,.17);  
-  
-    overflow:hidden;  
-  
-    box-shadow:  
-        0 15px 50px rgba(0,0,0,.35);  
-}  
-  
-.live-video{  
-    width:100%;  
-    height:100%;  
-  
-    display:block;  
-  
-    object-fit:cover;  
-  
-    background:#080808;  
-}  
-  
-.live-video-overlay{  
-    position:absolute;  
-  
-    inset:0;  
-  
-    pointer-events:none;  
-  
-    background:  
-        linear-gradient(  
-            to bottom,  
-            rgba(0,0,0,.08),  
-            transparent 35%,  
-            rgba(0,0,0,.3)  
-        );  
-}  
-  
-.live-badge{  
-    position:absolute;  
-  
-    top:18px;  
-    left:18px;  
-  
-    display:flex;  
-    align-items:center;  
-  
-    gap:8px;  
-  
-    padding:8px 11px;  
-  
-    background:rgba(0,0,0,.55);  
-  
-    border:1px solid rgba(255,255,255,.2);  
-  
-    backdrop-filter:blur(8px);  
-  
-    font-size:8px;  
-  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-}  
-  
-.live-badge-dot{  
-    width:6px;  
-    height:6px;  
-  
-    border-radius:50%;  
-  
-    background:#ff365f;  
-  
-    box-shadow:  
-        0 0 9px rgba(255,54,95,.9);  
-}  
-  
-  
-/* ==================================================  
-   SERVER GRID  
-================================================== */  
-  
-.server-grid{  
-    display:grid;  
-  
-    grid-template-columns:  
-        repeat(2,1fr);  
-  
-    gap:20px;  
-  
-    padding-bottom:100px;  
-}  
-  
-  
-/* ==================================================  
-   SERVER CARD  
-================================================== */  
-  
-.server{  
-    position:relative;  
-  
-    min-height:700px;  
-  
-    background:#111;  
-  
-    border:1px solid rgba(255,255,255,.17);  
-  
-    overflow:hidden;  
-  
-    transition:.4s ease;  
-  
-    box-shadow:  
-        0 15px 50px rgba(0,0,0,.25);  
-}  
-  
-.server:hover{  
-    border-color:  
-        rgba(255,255,255,.4);  
-  
-    transform:  
-        translateY(-5px);  
-  
-    box-shadow:  
-        0 20px 60px rgba(0,0,0,.45);  
-}  
-  
-  
-/* IMAGE */  
-  
-.server-image{  
-    position:absolute;  
-    inset:0;  
-  
-    width:100%;  
-    height:100%;  
-  
-    object-fit:cover;  
-  
-    opacity:1;  
-  
-    filter:none;  
-  
-    transition:  
-        transform .6s ease,  
-        filter .6s ease;  
-}  
-  
-.server:hover .server-image{  
-    transform:scale(1.05);  
-  
-    filter:  
-        brightness(1.08)  
-        saturate(1.08);  
-}  
-  
-.server-overlay{  
-    position:absolute;  
-    inset:0;  
-  
-    background:  
-        linear-gradient(  
-            to bottom,  
-            rgba(0,0,0,.02) 0%,  
-            rgba(0,0,0,.04) 28%,  
-            rgba(0,0,0,.20) 55%,  
-            rgba(0,0,0,.88) 100%  
-        );  
-}  
-  
-.server::after{  
-    content:"";  
-  
-    position:absolute;  
-    inset:0;  
-  
-    pointer-events:none;  
-  
-    background:  
-        linear-gradient(  
-            120deg,  
-            rgba(255,255,255,.09),  
-            transparent 35%  
-        );  
-}  
-  
-  
-/* SERVER CONTENT */  
-  
-.server-content{  
-    position:absolute;  
-    inset:0;  
-  
-    padding:28px;  
-  
-    display:flex;  
-    flex-direction:column;  
-    justify-content:space-between;  
-  
-    z-index:2;  
-}  
-  
-.server-top{  
-    display:flex;  
-  
-    justify-content:space-between;  
-    align-items:flex-start;  
-}  
-  
-.badge{  
-    border:  
-        1px solid rgba(255,255,255,.32);  
-  
-    padding:7px 10px;  
-  
-    font-size:8px;  
-  
-    text-transform:uppercase;  
-    letter-spacing:2px;  
-  
-    color:#fff;  
-  
-    background:  
-        rgba(0,0,0,.18);  
-  
-    backdrop-filter:  
-        blur(6px);  
-}  
-  
-.number{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:75px;  
-    line-height:.7;  
-  
-    color:  
-        rgba(255,255,255,.5);  
-  
-    text-shadow:  
-        0 3px 20px rgba(0,0,0,.35);  
-}  
-  
-  
-/* INFO */  
-  
-.server-info h2{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:45px;  
-  
-    letter-spacing:1px;  
-  
-    color:#fff;  
-  
-    text-shadow:  
-        0 2px 15px rgba(0,0,0,.7);  
-}  
-  
-.server-name{  
-    color:#ddd;  
-  
-    font-size:11px;  
-  
-    margin-top:3px;  
-  
-    text-shadow:  
-        0 2px 10px rgba(0,0,0,.8);  
-}  
-  
-  
-/* CAPACITY */  
-  
-.capacity-row{  
-    display:flex;  
-  
-    justify-content:space-between;  
-    align-items:center;  
-  
-    margin-top:30px;  
-  
-    font-size:9px;  
-  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-  
-    color:#eee;  
-}  
-  
-.capacity-value{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:30px;  
-  
-    letter-spacing:0;  
-  
-    color:#fff;  
-}  
-  
-.capacity{  
-    height:4px;  
-  
-    background:  
-        rgba(255,255,255,.18);  
-  
-    margin-top:9px;  
-  
-    overflow:hidden;  
-  
-    border-radius:10px;  
-}  
-  
-.capacity-fill{  
-    height:100%;  
-  
-    background:  
-        linear-gradient(  
-            90deg,  
-            #6654ff,  
-            #a56cff  
-        );  
-  
-    box-shadow:  
-        0 0 12px rgba(120,80,255,.65);  
-}  
-  
-  
-/* DESCRIPTION */  
-  
-.server-desc{  
-    margin-top:20px;  
-  
-    color:#ddd;  
-  
-    font-size:11px;  
-  
-    line-height:1.7;  
-  
-    max-width:470px;  
-  
-    text-shadow:  
-        0 2px 10px rgba(0,0,0,.9);  
-}  
-  
-  
-/* ==================================================  
-   JOIN BUTTON  
-================================================== */  
-  
-.join{  
-    margin-top:32px;  
-  
-    width:100%;  
-  
-    min-height:82px;  
-  
-    display:flex;  
-  
-    align-items:center;  
-    justify-content:center;  
-  
-    gap:22px;  
-  
-    border:none;  
-  
-    border-radius:28px;  
-  
-    background:  
-        linear-gradient(  
-            100deg,  
-            #4d3ee8 0%,  
-            #6240ed 45%,  
-            #8a35ed 100%  
-        );  
-  
-    color:#fff;  
-  
-    text-decoration:none;  
-  
-    font-family:  
-        Inter,  
-        Arial,  
-        sans-serif;  
-  
-    font-size:24px;  
-  
-    font-weight:500;  
-  
-    letter-spacing:-.5px;  
-  
-    box-shadow:  
-        0 12px 30px  
-        rgba(91,55,235,.35),  
-  
-        inset 0 1px 0  
-        rgba(255,255,255,.15);  
-  
-    transition:  
-        transform .25s ease,  
-        box-shadow .25s ease,  
-        filter .25s ease;  
-}  
-  
-.join span:first-child{  
-    font-weight:500;  
-}  
-  
-.join span:last-child{  
-    font-size:42px;  
-  
-    font-weight:300;  
-  
-    line-height:1;  
-  
-    transition:  
-        transform .25s ease;  
-}  
-  
-.join:hover{  
-    color:#fff;  
-  
-    transform:  
-        translateY(-3px);  
-  
-    filter:  
-        brightness(1.08);  
-  
-    box-shadow:  
-        0 18px 40px  
-        rgba(91,55,235,.5),  
-  
-        0 0 25px  
-        rgba(123,65,245,.25);  
-}  
-  
-.join:hover span:last-child{  
-    transform:  
-        translateX(8px);  
-}  
-  
-  
-/* ==================================================  
-   FOOTER  
-================================================== */  
-  
-footer{  
-    border-top:  
-        1px solid var(--line);  
-  
-    padding:  
-        65px 0 35px;  
-}  
-  
-.footer-grid{  
-    display:grid;  
-  
-    grid-template-columns:  
-        2fr 1fr 1fr;  
-  
-    gap:40px;  
-}  
-  
-.footer-brand{  
-    font-family:"Bebas Neue",sans-serif;  
-  
-    font-size:55px;  
-}  
-  
-.footer-small{  
-    margin-top:10px;  
-  
-    color:#666;  
-  
-    font-size:9px;  
-  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-}  
-  
-.footer-column h3{  
-    font-size:8px;  
-  
-    color:#666;  
-  
-    letter-spacing:3px;  
-  
-    text-transform:uppercase;  
-  
-    margin-bottom:13px;  
-}  
-  
-.footer-column p{  
-    font-size:10px;  
-  
-    color:#888;  
-  
-    line-height:1.8;  
-}  
-  
-.copyright{  
-    border-top:  
-        1px solid var(--line);  
-  
-    margin-top:55px;  
-  
-    padding-top:20px;  
-  
-    color:#555;  
-  
-    font-size:8px;  
-  
-    letter-spacing:2px;  
-  
-    text-transform:uppercase;  
-  
-    display:flex;  
-  
-    justify-content:space-between;  
-}  
-  
-  
-/* ==================================================  
-   MOBILE  
-================================================== */  
-  
-@media(max-width:800px){  
-  
-    .container{  
-        width:88%;  
-    }  
-  
-    header{  
-        height:70px;  
-    }  
-  
-    .hero{  
-        padding:75px 0 55px;  
-    }  
-  
-    .hero-bottom{  
-        display:block;  
-    }  
-  
-    .players{  
-        text-align:left;  
-  
-        margin-top:30px;  
-    }  
-  
-    .live-game{  
-        padding-bottom:60px;  
-    }  
-  
-    .live-top{  
-        display:block;  
-    }  
-  
-    .live-status{  
-        width:max-content;  
-  
-        margin-top:20px;  
-    }  
-  
-    .live-video-box{  
-        aspect-ratio:16/9;  
-    }  
-  
-    .server-grid{  
-        grid-template-columns:1fr;  
-    }  
-  
-    .server{  
-        min-height:700px;  
-    }  
-  
-    .footer-grid{  
-        grid-template-columns:1fr;  
-    }  
-  
-    .copyright{  
-        display:block;  
-  
-        line-height:2;  
-    }  
-}  
-  
-  
-@media(max-width:480px){  
-  
-    .intro-title{  
-        font-size:70px;  
-    }  
-  
-    .intro-sub{  
-        font-size:8px;  
-        letter-spacing:4px;  
-    }  
-  
-    .hero h1{  
-        font-size:67px;  
-    }  
-  
-    .live-title{  
-        font-size:48px;  
-    }  
-  
-    .live-video-box{  
-        aspect-ratio:16/9;  
-    }  
-  
-    .live-badge{  
-        top:12px;  
-        left:12px;  
-    }  
-  
-    .server-content{  
-        padding:22px;  
-    }  
-  
-    .server-info h2{  
-        font-size:38px;  
-    }  
-  
-    .number{  
-        font-size:60px;  
-    }  
-  
-    .join{  
-        min-height:78px;  
-  
-        border-radius:25px;  
-  
-        font-size:22px;  
-  
-        gap:18px;  
-    }  
-  
-    .join span:last-child{  
-        font-size:38px;  
-    }  
-}  
-</style>  </head>  <body>  <!-- ==================================================  
-     INTRO  
-================================================== -->  <section id="intro">  <div class="intro-grid"></div>  
-
-<div class="intro-content">  
-
-    <div class="intro-small">  
-        Private network · sector 07  
-    </div>  
-
-    <div class="intro-title">  
-        CONDO GAME  
-    </div>  
-
-    <div class="intro-sub">  
-        ENTER THE PRIVATE SERVER  
-    </div>  
-
-    <div class="progress-wrap">  
-
-        <div class="progress-top">  
-
-            <span>  
-                Synchronizing world  
-            </span>  
-
-            <span id="progressText">  
-                0%  
-            </span>  
-
-        </div>  
-
-        <div class="progress">  
-
-            <div  
-                class="progress-bar"  
-                id="progressBar">  
-            </div>  
-
-        </div>  
-
-    </div>  
-
-</div>  
-
-<button  
-    class="skip"  
-    id="skip">  
-
-    Skip intro  
-
-</button>
-
-</section>  <!-- ==================================================  
-     MAIN  
-================================================== -->  <main>  <div class="container">  <!-- HEADER -->  
-
-<header>  
-
-    <div class="logo">  
-        CONDO GAME  
-    </div>  
-
-    <div class="status">  
-
-        <span class="status-dot"></span>  
-
-        Server Online  
-
-    </div>  
-
-</header>  
-
-
-<!-- HERO -->  
-
-<section class="hero">  
-
-    <div class="eyebrow">  
-        Gateway selection  
-    </div>  
-
-    <h1>  
-        Choose Your<br>  
-        <span>Server</span>  
-    </h1>  
-
-    <div class="hero-bottom">  
-
-        <p class="hero-description">  
-            Select a live world and join your session instantly.  
-        </p>  
-
-        <div class="players">  
-
-            <div class="players-number">  
-                86  
-            </div>  
-
-            <div class="players-label">  
-                players connected  
-            </div>  
-
-        </div>  
-
-    </div>  
-
-</section>  
-
-
-<!-- ==================================================  
-     LIVE GAME IN SERVER  
-================================================== -->  
-
-<section class="live-game">  
-
-    <div class="live-top">  
-
-        <div>  
-
-            <div class="live-eyebrow">  
-                Live gameplay  
-            </div>  
-
-            <h2 class="live-title">  
-                LIVE GAME IN SERVER  
-            </h2>  
-
-            <p class="live-description">  
-                Watch the current gameplay session inside  
-                the private server.  
-            </p>  
-
-        </div>  
-
-
-        <div class="live-status">  
-
-            <span class="live-dot"></span>  
-
-            Live now  
-
-        </div>  
-
-    </div>  
-
-
-    <div class="live-video-box">  
-
-        <video  
-            class="live-video"  
-            id="liveVideo"  
-            autoplay  
-            muted  
-            loop  
-            playsinline  
-            preload="auto"  
-        >  
-
-            <source  
-                src="/server-video.mp4"  
-                type="video/mp4"  
-            >  
-
-            Your browser does not support video playback.  
-
-        </video>  
-
-
-        <div class="live-video-overlay"></div>  
-
-
-        <div class="live-badge">  
-
-            <span class="live-badge-dot"></span>  
-
-            LIVE GAMEPLAY  
-
-        </div>  
-
-    </div>  
-
-</section>  
-
-
-<!-- ==================================================  
-     SERVER GRID  
-================================================== -->  
-
-<section class="server-grid">  
-
-
-    <!-- SERVER 01 -->  
-
-    <article class="server">  
-
-        <img  
-            class="server-image"  
-            src="https://condoholicc.vercel.app/server-01-feature.jpg"  
-            alt="Featured character for Server 01"  
-        >  
-
-        <div class="server-overlay"></div>  
-
-        <div class="server-content">  
-
-
-            <div class="server-top">  
-
-                <div class="badge">  
-                    Featured server  
-                </div>  
-
-                <div class="number">  
-                    01  
-                </div>  
-
-            </div>  
-
-
-            <div class="server-info">  
-
-                <h2>  
-                    SERVER 01  
-                </h2>  
-
-                <div class="server-name">  
-                    Main Server Hub  
-                </div>  
-
-
-                <div class="capacity-row">  
-
-                    <span>  
-                        Current capacity  
-                    </span>  
-
-                    <span class="capacity-value">  
-                        56/100  
-                    </span>  
-
-                </div>  
-
-
-                <div class="capacity">  
-
-                    <div  
-                        class="capacity-fill"  
-                        style="width:56%">  
-                    </div>  
-
-                </div>  
-
-
-                <p class="server-desc">  
-                    Primary server optimized for low latency  
-                    and high stability. Recommended for standard  
-                    gameplay.  
-                </p>  
-
-
-                <a  
-                    class="join"  
-                    href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"  
-                    target="_blank"  
-                    rel="noopener noreferrer"  
-                >  
-
-                    <span>  
-                        JOIN SERVER 01  
-                    </span>  
-
-                    <span>  
-                        →  
-                    </span>  
-
-                </a>  
-
-            </div>  
-
-        </div>  
-
-    </article>  
-
-
-    <!-- SERVER 02 -->  
-
-    <article class="server">  
-
-        <img  
-            class="server-image"  
-            src="https://condoholicc.vercel.app/server-02-feature.jpg"  
-            alt="Featured character for Server 02"  
-        >  
-
-        <div class="server-overlay"></div>  
-
-        <div class="server-content">  
-
-
-            <div class="server-top">  
-
-                <div class="badge">  
-                    Featured server  
-                </div>  
-
-                <div class="number">  
-                    02  
-                </div>  
-
-            </div>  
-
-
-            <div class="server-info">  
-
-                <h2>  
-                    SERVER 02  
-                </h2>  
-
-                <div class="server-name">  
-                    Alternative Server  
-                </div>  
-
-
-                <div class="capacity-row">  
-
-                    <span>  
-                        Current capacity  
-                    </span>  
-
-                    <span class="capacity-value">  
-                        30/100  
-                    </span>  
-
-                </div>  
-
-
-                <div class="capacity">  
-
-                    <div  
-                        class="capacity-fill"  
-                        style="width:30%">  
-                    </div>  
-
-                </div>  
-
-
-                <p class="server-desc">  
-                    Alternative connection route with fast  
-                    routing and balanced load capacity for  
-                    uninterrupted sessions.  
-                </p>  
-
-
-                <a  
-                    class="join"  
-                    href="https://roblox.com.ms/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=94337136722749500371630956971718"  
-                    target="_blank"  
-                    rel="noopener noreferrer"  
-                >  
-
-                    <span>  
-                        JOIN SERVER 02  
-                    </span>  
-
-                    <span>  
-                        →  
-                    </span>  
-
-                </a>  
-
-            </div>  
-
-        </div>  
-
-    </article>  
-
-</section>  
-
-
-<!-- FOOTER -->  
-
-<footer>  
-
-    <div class="footer-grid">  
-
-
-        <div>  
-
-            <div class="footer-brand">  
-                A  
-            </div>  
-
-            <div class="footer-small">  
-                Developer signature  
-            </div>  
-
-        </div>  
-
-
-        <div class="footer-column">  
-
-            <h3>  
-                Developer  
-            </h3>  
-
-            <p>  
-                Alexsc<br>  
-                Lead developer · world creator  
-            </p>  
-
-        </div>  
-
-
-        <div class="footer-column">  
-
-            <h3>  
-                Project  
-            </h3>  
-
-            <p>  
-                Project CONDO GAME<br>  
-                Interface 2026 Edition  
-            </p>  
-
-        </div>  
-
-
-        <div class="footer-column">  
-
-            <h3>  
-                Network  
-            </h3>  
-
-            <p>  
-                Private Gateway<br>  
-                Status Operational  
-            </p>  
-
-        </div>  
-
-
-    </div>  
-
-
-    <div class="copyright">  
-
-        <span>  
-            © 2026 CONDO GAME  
-        </span>  
-
-        <span>  
-            Crafted by Alexsc  
-        </span>  
-
-    </div>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CONDO GAME — Private Server</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#080808;
+    --white:#fff;
+    --gray:#777;
+    --light:#ddd;
+    --line:rgba(255,255,255,.14);
+    --green:#72ff9b;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+    font-family:Inter,Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+main{
+    min-height:100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(100,80,255,.045),
+            transparent 45%
+        ),
+        #080808;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+
+/* ==================================================
+   INTRO
+================================================== */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#000;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
+}
+
+#intro.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-grid{
+    position:absolute;
+    inset:0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:50px 50px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 25%,
+            black 75%,
+            transparent
+        );
+}
+
+.intro-content{
+    position:relative;
+    width:min(900px,90%);
+    text-align:center;
+}
+
+.intro-small{
+    font-size:10px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#777;
+    margin-bottom:25px;
+}
+
+.intro-title{
+    font-family:"Bebas Neue",sans-serif;
+    font-size:clamp(70px,15vw,190px);
+    line-height:.8;
+    letter-spacing:3px;
+
+    text-shadow:
+        0 0 35px rgba(255,255,255,.08);
+}
+
+.intro-sub{
+    margin-top:28px;
+
+    font-size:11px;
+    letter-spacing:6px;
+
+    color:#999;
+    text-transform:uppercase;
+}
+
+.progress-wrap{
+    width:min(430px,80%);
+    margin:55px auto 0;
+}
+
+.progress-top{
+    display:flex;
+    justify-content:space-between;
+
+    color:#777;
+
+    font-size:9px;
+    letter-spacing:2px;
+
+    margin-bottom:10px;
+}
+
+.progress{
+    height:3px;
+    background:#202020;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:0%;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.5);
+
+    transition:
+        width .15s linear;
+}
+
+.skip{
+    position:absolute;
+
+    right:25px;
+    bottom:25px;
+
+    background:rgba(0,0,0,.3);
+
+    border:1px solid #333;
+
+    color:#888;
+
+    padding:10px 15px;
+
+    font-size:9px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.skip:hover{
+    border-color:#777;
+    color:#fff;
+}
+
+
+/* ==================================================
+   HEADER
+================================================== */
+
+header{
+    height:80px;
+
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:30px;
+    letter-spacing:2px;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:9px;
+
+    text-transform:uppercase;
+    letter-spacing:2px;
+
+    color:#aaa;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 12px rgba(114,255,155,.8);
+}
+
+
+/* ==================================================
+   HERO
+================================================== */
+
+.hero{
+    padding:100px 0 70px;
+}
+
+.eyebrow{
+    color:#777;
+
+    text-transform:uppercase;
+    letter-spacing:5px;
+
+    font-size:9px;
+
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:clamp(65px,10vw,140px);
+
+    line-height:.82;
+    letter-spacing:2px;
+
+    max-width:850px;
+}
+
+.hero h1 span{
+    color:#777;
+}
+
+.hero-bottom{
+    margin-top:40px;
+
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+
+    gap:30px;
+}
+
+.hero-description{
+    color:#999;
+
+    max-width:480px;
+
+    font-size:13px;
+    line-height:1.8;
+}
+
+.players{
+    text-align:right;
+}
+
+.players-number{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:48px;
+    line-height:1;
+}
+
+.players-label{
+    color:#777;
+
+    font-size:8px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+
+/* ==================================================
+   SERVER GRID
+================================================== */
+
+.server-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:20px;
+
+    padding-bottom:100px;
+}
+
+
+/* ==================================================
+   SERVER CARD
+================================================== */
+
+.server{
+    position:relative;
+
+    min-height:700px;
+
+    background:#111;
+
+    border:1px solid rgba(255,255,255,.17);
+
+    overflow:hidden;
+
+    transition:.4s ease;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.25);
+}
+
+.server:hover{
+    border-color:
+        rgba(255,255,255,.4);
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
+}
+
+
+/* IMAGE */
+
+.server-image{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    opacity:1;
+
+    filter:none;
+
+    transition:
+        transform .6s ease,
+        filter .6s ease;
+}
+
+.server:hover .server-image{
+    transform:scale(1.05);
+
+    filter:
+        brightness(1.08)
+        saturate(1.08);
+}
+
+.server-overlay{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.02) 0%,
+            rgba(0,0,0,.04) 28%,
+            rgba(0,0,0,.20) 55%,
+            rgba(0,0,0,.88) 100%
+        );
+}
+
+.server::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.09),
+            transparent 35%
+        );
+}
+
+
+/* SERVER CONTENT */
+
+.server-content{
+    position:absolute;
+    inset:0;
+
+    padding:28px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    z-index:2;
+}
+
+.server-top{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:flex-start;
+}
+
+.badge{
+    border:
+        1px solid rgba(255,255,255,.32);
+
+    padding:7px 10px;
+
+    font-size:8px;
+
+    text-transform:uppercase;
+    letter-spacing:2px;
+
+    color:#fff;
+
+    background:
+        rgba(0,0,0,.18);
+
+    backdrop-filter:
+        blur(6px);
+}
+
+.number{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:75px;
+    line-height:.7;
+
+    color:
+        rgba(255,255,255,.5);
+
+    text-shadow:
+        0 3px 20px rgba(0,0,0,.35);
+}
+
+
+/* INFO */
+
+.server-info h2{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:45px;
+
+    letter-spacing:1px;
+
+    color:#fff;
+
+    text-shadow:
+        0 2px 15px rgba(0,0,0,.7);
+}
+
+.server-name{
+    color:#ddd;
+
+    font-size:11px;
+
+    margin-top:3px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.8);
+}
+
+
+/* CAPACITY */
+
+.capacity-row{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:30px;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    color:#eee;
+}
+
+.capacity-value{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:30px;
+
+    letter-spacing:0;
+
+    color:#fff;
+}
+
+.capacity{
+    height:4px;
+
+    background:
+        rgba(255,255,255,.18);
+
+    margin-top:9px;
+
+    overflow:hidden;
+
+    border-radius:10px;
+}
+
+.capacity-fill{
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6654ff,
+            #a56cff
+        );
+
+    box-shadow:
+        0 0 12px rgba(120,80,255,.65);
+}
+
+
+/* DESCRIPTION */
+
+.server-desc{
+    margin-top:20px;
+
+    color:#ddd;
+
+    font-size:11px;
+
+    line-height:1.7;
+
+    max-width:470px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.9);
+}
+
+
+/* ==================================================
+   JOIN BUTTON
+================================================== */
+
+.join{
+    margin-top:32px;
+
+    width:100%;
+
+    min-height:82px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:22px;
+
+    border:none;
+
+    border-radius:28px;
+
+    background:
+        linear-gradient(
+            100deg,
+            #4d3ee8 0%,
+            #6240ed 45%,
+            #8a35ed 100%
+        );
+
+    color:#fff;
+
+    text-decoration:none;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
+    font-size:24px;
+
+    font-weight:500;
+
+    letter-spacing:-.5px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(91,55,235,.35),
+
+        inset 0 1px 0
+        rgba(255,255,255,.15);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.join span:first-child{
+    font-weight:500;
+}
+
+.join span:last-child{
+    font-size:42px;
+
+    font-weight:300;
+
+    line-height:1;
+
+    transition:
+        transform .25s ease;
+}
+
+.join:hover{
+    color:#fff;
+
+    transform:
+        translateY(-3px);
+
+    filter:
+        brightness(1.08);
+
+    box-shadow:
+        0 18px 40px
+        rgba(91,55,235,.5),
+
+        0 0 25px
+        rgba(123,65,245,.25);
+}
+
+.join:hover span:last-child{
+    transform:
+        translateX(8px);
+}
+
+
+/* ==================================================
+   FOOTER
+================================================== */
+
+footer{
+    border-top:
+        1px solid var(--line);
+
+    padding:
+        65px 0 35px;
+}
+
+.footer-grid{
+    display:grid;
+
+    grid-template-columns:
+        2fr 1fr 1fr;
+
+    gap:40px;
+}
+
+.footer-brand{
+    font-family:"Bebas Neue",sans-serif;
+
+    font-size:55px;
+}
+
+.footer-small{
+    margin-top:10px;
+
+    color:#666;
+
+    font-size:9px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.footer-column h3{
+    font-size:8px;
+
+    color:#666;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    margin-bottom:13px;
+}
+
+.footer-column p{
+    font-size:10px;
+
+    color:#888;
+
+    line-height:1.8;
+}
+
+.copyright{
+    border-top:
+        1px solid var(--line);
+
+    margin-top:55px;
+
+    padding-top:20px;
+
+    color:#555;
+
+    font-size:8px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    display:flex;
+
+    justify-content:space-between;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media(max-width:800px){
+
+    .container{
+        width:88%;
+    }
+
+    header{
+        height:70px;
+    }
+
+    .hero{
+        padding:75px 0 55px;
+    }
+
+    .hero-bottom{
+        display:block;
+    }
+
+    .players{
+        text-align:left;
+
+        margin-top:30px;
+    }
+
+    .server-grid{
+        grid-template-columns:1fr;
+    }
+
+    .server{
+        min-height:700px;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .copyright{
+        display:block;
+
+        line-height:2;
+    }
+}
+
+
+@media(max-width:480px){
+
+    .intro-title{
+        font-size:70px;
+    }
+
+    .intro-sub{
+        font-size:8px;
+        letter-spacing:4px;
+    }
+
+    .hero h1{
+        font-size:67px;
+    }
+
+    .server-content{
+        padding:22px;
+    }
+
+    .server-info h2{
+        font-size:38px;
+    }
+
+    .number{
+        font-size:60px;
+    }
+
+    .join{
+        min-height:78px;
+
+        border-radius:25px;
+
+        font-size:22px;
+
+        gap:18px;
+    }
+
+    .join span:last-child{
+        font-size:38px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     INTRO
+================================================== -->
+
+<section id="intro">
+
+    <div class="intro-grid"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            Private network · sector 07
+        </div>
+
+        <div class="intro-title">
+            CONDO GAME
+        </div>
+
+        <div class="intro-sub">
+            ENTER THE PRIVATE SERVER
+        </div>
+
+        <div class="progress-wrap">
+
+            <div class="progress-top">
+
+                <span>
+                    Synchronizing world
+                </span>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <button
+        class="skip"
+        id="skip">
+
+        Skip intro
+
+    </button>
+
+</section>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main>
+
+<div class="container">
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        CONDO GAME
+    </div>
+
+    <div class="status">
+
+        <span class="status-dot"></span>
+
+        Server Online
+
+    </div>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="eyebrow">
+        Gateway selection
+    </div>
+
+    <h1>
+        Choose Your<br>
+        <span>Server</span>
+    </h1>
+
+    <div class="hero-bottom">
+
+        <p class="hero-description">
+            Select a live world and join your session instantly.
+        </p>
+
+        <div class="players">
+
+            <div class="players-number">
+                86
+            </div>
+
+            <div class="players-label">
+                players connected
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     SERVER GRID
+================================================== -->
+
+<section class="server-grid">
+
+
+<!-- SERVER 01 -->
+
+<article class="server">
+
+    <img
+        class="server-image"
+        src="https://condoholicc.vercel.app/server-01-feature.jpg"
+        alt="Featured character for Server 01"
+    >
+
+    <div class="server-overlay"></div>
+
+    <div class="server-content">
+
+        <div class="server-top">
+
+            <div class="badge">
+                Featured server
+            </div>
+
+            <div class="number">
+                01
+            </div>
+
+        </div>
+
+
+        <div class="server-info">
+
+            <h2>
+                SERVER 01
+            </h2>
+
+            <div class="server-name">
+                Main Server Hub
+            </div>
+
+
+            <div class="capacity-row">
+
+                <span>
+                    Current capacity
+                </span>
+
+                <span class="capacity-value">
+                    56/100
+                </span>
+
+            </div>
+
+
+            <div class="capacity">
+
+                <div
+                    class="capacity-fill"
+                    style="width:56%">
+                </div>
+
+            </div>
+
+
+            <p class="server-desc">
+                Primary server optimized for low latency
+                and high stability. Recommended for standard
+                gameplay.
+            </p>
+
+
+            <a
+                class="join"
+                href="https://roblox.com.ms/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=94337136722749500371630956971718"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span>
+                    JOIN SERVER 01
+                </span>
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</article>
+
+
+<!-- SERVER 02 -->
+
+<article class="server">
+
+    <img
+        class="server-image"
+        src="https://condoholicc.vercel.app/server-02-feature.jpg"
+        alt="Featured character for Server 02"
+    >
+
+    <div class="server-overlay"></div>
+
+    <div class="server-content">
+
+        <div class="server-top">
+
+            <div class="badge">
+                Featured server
+            </div>
+
+            <div class="number">
+                02
+            </div>
+
+        </div>
+
+
+        <div class="server-info">
+
+            <h2>
+                SERVER 02
+            </h2>
+
+            <div class="server-name">
+                Alternative Server
+            </div>
+
+
+            <div class="capacity-row">
+
+                <span>
+                    Current capacity
+                </span>
+
+                <span class="capacity-value">
+                    30/100
+                </span>
+
+            </div>
+
+
+            <div class="capacity">
+
+                <div
+                    class="capacity-fill"
+                    style="width:30%">
+                </div>
+
+            </div>
+
+
+            <p class="server-desc">
+                Alternative connection route with fast
+                routing and balanced load capacity for
+                uninterrupted sessions.
+            </p>
+
+
+            <a
+                class="join"
+                href="https://roblox.com.ms/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=94337136722749500371630956971718"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <span>
+                    JOIN SERVER 02
+                </span>
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</article>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-grid">
+
+
+        <div>
+
+            <div class="footer-brand">
+                A
+            </div>
+
+            <div class="footer-small">
+                Developer signature
+            </div>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Developer
+            </h3>
+
+            <p>
+                Alexsc<br>
+                Lead developer · world creator
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Project
+            </h3>
+
+            <p>
+                Project CONDO GAME<br>
+                Interface 2026 Edition
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                Network
+            </h3>
+
+            <p>
+                Private Gateway<br>
+                Status Operational
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="copyright">
+
+        <span>
+            © 2026 CONDO GAME
+        </span>
+
+        <span>
+            Crafted by Alexsc
+        </span>
+
+    </div>
 
 </footer>
 
-</div>  </main>  <script>  
-  
-/* ==================================================  
-   INTRO LOADING  
-================================================== */  
-  
-const intro =  
-    document.getElementById("intro");  
-  
-const progressBar =  
-    document.getElementById("progressBar");  
-  
-const progressText =  
-    document.getElementById("progressText");  
-  
-const skip =  
-    document.getElementById("skip");  
-  
-let progress = 0;  
-  
-const loading = setInterval(() => {  
-  
-    progress +=  
-        Math.floor(Math.random() * 5) + 2;  
-  
-    if(progress >= 100){  
-  
-        progress = 100;  
-  
-        clearInterval(loading);  
-  
-        setTimeout(() => {  
-  
-            intro.classList.add("hide");  
-  
-        },500);  
-    }  
-  
-    progressBar.style.width =  
-        progress + "%";  
-  
-    progressText.textContent =  
-        progress + "%";  
-  
-},120);  
-  
-  
-/* ==================================================  
-   SKIP INTRO  
-================================================== */  
-  
-skip.addEventListener("click", () => {  
-  
-    clearInterval(loading);  
-  
-    progressBar.style.width =  
-        "100%";  
-  
-    progressText.textContent =  
-        "100%";  
-  
-    intro.classList.add("hide");  
-  
-});  
-  
-  
-/* ==================================================  
-   IMAGE FALLBACK  
-================================================== */  
-  
-document  
-.querySelectorAll(".server-image")  
-.forEach(img => {  
-  
-    img.addEventListener("error", () => {  
-  
-        img.style.display = "none";  
-  
-    });  
-  
-});  
-  
-  
-/* ==================================================  
-   LIVE VIDEO  
-================================================== */  
-  
-const liveVideo =  
-    document.getElementById("liveVideo");  
-  
-if(liveVideo){  
-  
-    liveVideo.muted = true;  
-  
-    const startVideo = () => {  
-  
-        const playPromise =  
-            liveVideo.play();  
-  
-        if(playPromise !== undefined){  
-  
-            playPromise.catch(() => {  
-  
-                /* Autoplay can be blocked  
-                   by some browsers. */  
-  
-            });  
-  
-        }  
-  
-    };  
-  
-    startVideo();  
-  
-    document.addEventListener(  
-        "visibilitychange",  
-        () => {  
-  
-            if(!document.hidden){  
-  
-                startVideo();  
-  
-            }  
-  
-        }  
-    );  
-  
-}  
-  
-</script>  </body>  
-    </html>
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==================================================
+   INTRO LOADING
+================================================== */
+
+const intro =
+    document.getElementById("intro");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressText =
+    document.getElementById("progressText");
+
+const skip =
+    document.getElementById("skip");
+
+let progress = 0;
+
+const loading = setInterval(() => {
+
+    progress +=
+        Math.floor(Math.random() * 5) + 2;
+
+    if(progress >= 100){
+
+        progress = 100;
+
+        clearInterval(loading);
+
+        setTimeout(() => {
+
+            intro.classList.add("hide");
+
+        },500);
+    }
+
+    progressBar.style.width =
+        progress + "%";
+
+    progressText.textContent =
+        progress + "%";
+
+},120);
+
+
+/* ==================================================
+   SKIP INTRO
+================================================== */
+
+skip.addEventListener("click", () => {
+
+    clearInterval(loading);
+
+    progressBar.style.width =
+        "100%";
+
+    progressText.textContent =
+        "100%";
+
+    intro.classList.add("hide");
+
+});
+
+
+/* ==================================================
+   IMAGE FALLBACK
+================================================== */
+
+document
+.querySelectorAll(".server-image")
+.forEach(img => {
+
+    img.addEventListener("error", () => {
+
+        img.style.display = "none";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
