@@ -16,13 +16,12 @@
 }
 
 :root{
-    --bg:#050505;
-    --panel:#0b0b0b;
-    --line:rgba(255,255,255,.1);
-    --text:#fff;
-    --muted:#777;
+    --bg:#080808;
+    --white:#fff;
+    --gray:#777;
+    --light:#ddd;
+    --line:rgba(255,255,255,.14);
     --green:#72ff9b;
-    --red:#ff3d55;
 }
 
 html{
@@ -30,11 +29,28 @@ html{
 }
 
 body{
-    background:var(--bg);
-    color:var(--text);
+    background:#080808;
+    color:#fff;
     font-family:Inter,Arial,sans-serif;
     overflow-x:hidden;
 }
+
+main{
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(255,255,255,.045),
+            transparent 45%
+        ),
+        #080808;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
 
 /* =========================
    INTRO
@@ -43,12 +59,17 @@ body{
 #intro{
     position:fixed;
     inset:0;
-    z-index:9999;
-    background:#000;
+    z-index:99999;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    transition:opacity .7s ease,visibility .7s ease;
+
+    background:#000;
+
+    transition:
+        opacity .7s ease,
+        visibility .7s ease;
 }
 
 #intro.hide{
@@ -60,11 +81,28 @@ body{
 .intro-grid{
     position:absolute;
     inset:0;
+
     background-image:
-        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        );
+
     background-size:50px 50px;
-    mask-image:linear-gradient(to bottom,transparent,black 25%,black 75%,transparent);
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent,
+            black 25%,
+            black 75%,
+            transparent
+        );
 }
 
 .intro-content{
@@ -77,7 +115,7 @@ body{
     font-size:10px;
     letter-spacing:5px;
     text-transform:uppercase;
-    color:#555;
+    color:#777;
     margin-bottom:25px;
 }
 
@@ -86,13 +124,16 @@ body{
     font-size:clamp(70px,15vw,190px);
     line-height:.8;
     letter-spacing:3px;
+
+    text-shadow:
+        0 0 35px rgba(255,255,255,.08);
 }
 
 .intro-sub{
     margin-top:28px;
     font-size:11px;
     letter-spacing:6px;
-    color:#777;
+    color:#999;
     text-transform:uppercase;
 }
 
@@ -104,22 +145,26 @@ body{
 .progress-top{
     display:flex;
     justify-content:space-between;
-    color:#555;
+    color:#777;
     font-size:9px;
     letter-spacing:2px;
     margin-bottom:10px;
 }
 
 .progress{
-    height:2px;
-    background:#181818;
+    height:3px;
+    background:#202020;
     overflow:hidden;
 }
 
 .progress-bar{
     height:100%;
     width:0%;
-    background:white;
+    background:#fff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.5);
+
     transition:width .15s linear;
 }
 
@@ -127,34 +172,27 @@ body{
     position:absolute;
     right:25px;
     bottom:25px;
-    background:none;
-    border:1px solid #222;
-    color:#666;
+
+    background:rgba(0,0,0,.3);
+
+    border:1px solid #333;
+    color:#888;
+
     padding:10px 15px;
+
     font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
+
     cursor:pointer;
     transition:.25s;
 }
 
 .skip:hover{
-    border-color:#555;
-    color:white;
+    border-color:#777;
+    color:#fff;
 }
 
-/* =========================
-   MAIN
-========================= */
-
-main{
-    min-height:100vh;
-}
-
-.container{
-    width:min(1200px,90%);
-    margin:auto;
-}
 
 /* =========================
    HEADER
@@ -162,7 +200,9 @@ main{
 
 header{
     height:80px;
+
     border-bottom:1px solid var(--line);
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -178,19 +218,25 @@ header{
     display:flex;
     align-items:center;
     gap:9px;
+
     font-size:9px;
     text-transform:uppercase;
     letter-spacing:2px;
-    color:#777;
+
+    color:#aaa;
 }
 
 .status-dot{
     width:7px;
     height:7px;
     border-radius:50%;
+
     background:var(--green);
-    box-shadow:0 0 12px rgba(114,255,155,.7);
+
+    box-shadow:
+        0 0 12px rgba(114,255,155,.8);
 }
+
 
 /* =========================
    HERO
@@ -201,7 +247,7 @@ header{
 }
 
 .eyebrow{
-    color:#555;
+    color:#777;
     text-transform:uppercase;
     letter-spacing:5px;
     font-size:9px;
@@ -217,19 +263,21 @@ header{
 }
 
 .hero h1 span{
-    color:#555;
+    color:#777;
 }
 
 .hero-bottom{
     margin-top:40px;
+
     display:flex;
     align-items:end;
     justify-content:space-between;
+
     gap:30px;
 }
 
 .hero-description{
-    color:#666;
+    color:#999;
     max-width:480px;
     font-size:13px;
     line-height:1.8;
@@ -246,11 +294,12 @@ header{
 }
 
 .players-label{
-    color:#555;
+    color:#777;
     font-size:8px;
     letter-spacing:3px;
     text-transform:uppercase;
 }
+
 
 /* =========================
    SERVER GRID
@@ -263,53 +312,102 @@ header{
     padding-bottom:100px;
 }
 
+
+/* =========================
+   SERVER
+========================= */
+
 .server{
     position:relative;
     min-height:570px;
-    background:#090909;
-    border:1px solid var(--line);
+
+    background:#111;
+
+    border:1px solid rgba(255,255,255,.17);
+
     overflow:hidden;
+
     transition:.4s ease;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.25);
 }
 
 .server:hover{
-    border-color:rgba(255,255,255,.25);
+    border-color:rgba(255,255,255,.4);
+
     transform:translateY(-5px);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.45);
 }
 
 .server-image{
     position:absolute;
     inset:0;
-    height:100%;
+
     width:100%;
+    height:100%;
+
     object-fit:cover;
-    opacity:.48;
-    filter:grayscale(.3);
-    transition:.6s ease;
+
+    opacity:1;
+    filter:none;
+
+    transition:
+        transform .6s ease,
+        filter .6s ease;
 }
 
 .server:hover .server-image{
     transform:scale(1.05);
-    opacity:.62;
+
+    filter:
+        brightness(1.08)
+        saturate(1.08);
 }
 
 .server-overlay{
     position:absolute;
     inset:0;
+
     background:
-        linear-gradient(to bottom,
-            rgba(0,0,0,.2),
-            rgba(0,0,0,.45) 35%,
-            #080808 92%);
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,.02) 0%,
+            rgba(0,0,0,.04) 28%,
+            rgba(0,0,0,.20) 55%,
+            rgba(0,0,0,.80) 100%
+        );
+}
+
+.server::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(255,255,255,.09),
+            transparent 35%
+        );
 }
 
 .server-content{
     position:absolute;
     inset:0;
+
     padding:28px;
+
     display:flex;
     flex-direction:column;
     justify-content:space-between;
+
+    z-index:2;
 }
 
 .server-top{
@@ -319,82 +417,132 @@ header{
 }
 
 .badge{
-    border:1px solid rgba(255,255,255,.18);
+    border:1px solid rgba(255,255,255,.32);
+
     padding:7px 10px;
+
     font-size:8px;
     text-transform:uppercase;
     letter-spacing:2px;
-    background:rgba(0,0,0,.35);
-    backdrop-filter:blur(8px);
+
+    color:#fff;
+
+    background:rgba(0,0,0,.18);
+
+    backdrop-filter:blur(6px);
 }
 
 .number{
     font-family:"Bebas Neue",sans-serif;
     font-size:75px;
     line-height:.7;
-    color:rgba(255,255,255,.2);
+
+    color:rgba(255,255,255,.5);
+
+    text-shadow:
+        0 3px 20px rgba(0,0,0,.35);
 }
 
 .server-info h2{
     font-family:"Bebas Neue",sans-serif;
+
     font-size:45px;
     letter-spacing:1px;
+
+    color:#fff;
+
+    text-shadow:
+        0 2px 15px rgba(0,0,0,.7);
 }
 
 .server-name{
-    color:#888;
+    color:#ddd;
     font-size:11px;
     margin-top:3px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.8);
 }
 
 .capacity-row{
     display:flex;
     justify-content:space-between;
     align-items:center;
+
     margin-top:30px;
+
     font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
+
+    color:#eee;
 }
 
 .capacity-value{
     font-family:"Bebas Neue",sans-serif;
     font-size:30px;
     letter-spacing:0;
+    color:#fff;
 }
 
 .capacity{
-    height:2px;
-    background:rgba(255,255,255,.1);
+    height:3px;
+
+    background:
+        rgba(255,255,255,.25);
+
     margin-top:9px;
+
+    overflow:hidden;
 }
 
 .capacity-fill{
     height:100%;
-    background:white;
+
+    background:#fff;
+
+    box-shadow:
+        0 0 12px rgba(255,255,255,.55);
 }
 
 .server-desc{
     margin-top:20px;
-    color:#777;
+
+    color:#ddd;
+
     font-size:11px;
     line-height:1.7;
+
     max-width:470px;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.9);
 }
 
 .join{
     margin-top:28px;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    border-top:1px solid rgba(255,255,255,.12);
+
+    border-top:
+        1px solid rgba(255,255,255,.25);
+
     padding-top:18px;
-    color:white;
+
+    color:#fff;
+
     text-decoration:none;
+
     font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
+
     transition:.25s;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,.8);
 }
 
 .join span:last-child{
@@ -409,6 +557,7 @@ header{
 .join:hover span:last-child{
     transform:translateX(5px);
 }
+
 
 /* =========================
    FOOTER
@@ -432,7 +581,9 @@ footer{
 
 .footer-small{
     margin-top:10px;
-    color:#555;
+
+    color:#666;
+
     font-size:9px;
     letter-spacing:2px;
     text-transform:uppercase;
@@ -440,29 +591,36 @@ footer{
 
 .footer-column h3{
     font-size:8px;
-    color:#444;
+    color:#666;
+
     letter-spacing:3px;
     text-transform:uppercase;
+
     margin-bottom:13px;
 }
 
 .footer-column p{
     font-size:10px;
-    color:#777;
+    color:#888;
     line-height:1.8;
 }
 
 .copyright{
     border-top:1px solid var(--line);
+
     margin-top:55px;
     padding-top:20px;
-    color:#444;
+
+    color:#555;
+
     font-size:8px;
     letter-spacing:2px;
     text-transform:uppercase;
+
     display:flex;
     justify-content:space-between;
 }
+
 
 /* =========================
    MOBILE
@@ -541,9 +699,7 @@ footer{
 
 <body>
 
-<!-- =========================
-     INTRO SCREEN
-========================= -->
+<!-- INTRO -->
 
 <section id="intro">
 
@@ -571,7 +727,12 @@ footer{
             </div>
 
             <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
             </div>
 
         </div>
@@ -585,333 +746,336 @@ footer{
 </section>
 
 
-<!-- =========================
-     MAIN
-========================= -->
+<!-- MAIN -->
 
 <main>
 
-    <div class="container">
+<div class="container">
 
-        <!-- HEADER -->
+    <!-- HEADER -->
 
-        <header>
+    <header>
 
-            <div class="logo">
-                CONDO GAME
+        <div class="logo">
+            CONDO GAME
+        </div>
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            Server Online
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="eyebrow">
+            Gateway selection
+        </div>
+
+        <h1>
+            Choose Your<br>
+            <span>Server</span>
+        </h1>
+
+        <div class="hero-bottom">
+
+            <p class="hero-description">
+                Select a live world and join your session instantly.
+            </p>
+
+            <div class="players">
+
+                <div class="players-number">
+                    86
+                </div>
+
+                <div class="players-label">
+                    players connected
+                </div>
+
             </div>
 
-            <div class="status">
-                <span class="status-dot"></span>
-                Server Online
+        </div>
+
+    </section>
+
+
+    <!-- SERVERS -->
+
+    <section class="server-grid">
+
+
+        <!-- SERVER 01 -->
+
+        <article class="server">
+
+            <img
+                class="server-image"
+                src="https://condoholicc.vercel.app/server-01-feature.jpg"
+                alt="Featured character for Server 01"
+            >
+
+            <div class="server-overlay"></div>
+
+            <div class="server-content">
+
+                <div class="server-top">
+
+                    <div class="badge">
+                        Featured server
+                    </div>
+
+                    <div class="number">
+                        01
+                    </div>
+
+                </div>
+
+
+                <div class="server-info">
+
+                    <h2>
+                        SERVER 01
+                    </h2>
+
+                    <div class="server-name">
+                        Main Server Hub
+                    </div>
+
+
+                    <div class="capacity-row">
+
+                        <span>
+                            Current capacity
+                        </span>
+
+                        <span class="capacity-value">
+                            56/100
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity">
+
+                        <div
+                            class="capacity-fill"
+                            style="width:56%">
+                        </div>
+
+                    </div>
+
+
+                    <p class="server-desc">
+                        Primary server optimized for low latency
+                        and high stability. Recommended for standard
+                        gameplay.
+                    </p>
+
+
+                    <a
+                        class="join"
+                        href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <span>
+                            JOIN SERVER 01
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
             </div>
 
-        </header>
+        </article>
 
 
-        <!-- HERO -->
+        <!-- SERVER 02 -->
 
-        <section class="hero">
+        <article class="server">
 
-            <div class="eyebrow">
-                Gateway selection
+            <img
+                class="server-image"
+                src="https://condoholicc.vercel.app/server-02-feature.jpg"
+                alt="Featured character for Server 02"
+            >
+
+            <div class="server-overlay"></div>
+
+            <div class="server-content">
+
+                <div class="server-top">
+
+                    <div class="badge">
+                        Featured server
+                    </div>
+
+                    <div class="number">
+                        02
+                    </div>
+
+                </div>
+
+
+                <div class="server-info">
+
+                    <h2>
+                        SERVER 02
+                    </h2>
+
+                    <div class="server-name">
+                        Alternative Server
+                    </div>
+
+
+                    <div class="capacity-row">
+
+                        <span>
+                            Current capacity
+                        </span>
+
+                        <span class="capacity-value">
+                            30/100
+                        </span>
+
+                    </div>
+
+
+                    <div class="capacity">
+
+                        <div
+                            class="capacity-fill"
+                            style="width:30%">
+                        </div>
+
+                    </div>
+
+
+                    <p class="server-desc">
+                        Alternative connection route with fast
+                        routing and balanced load capacity for
+                        uninterrupted sessions.
+                    </p>
+
+
+                    <a
+                        class="join"
+                        href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+
+                        <span>
+                            JOIN SERVER 02
+                        </span>
+
+                        <span>
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
             </div>
 
-            <h1>
-                Choose Your<br>
-                <span>Server</span>
-            </h1>
+        </article>
 
-            <div class="hero-bottom">
+    </section>
 
-                <p class="hero-description">
-                    Select a live world and join your session instantly.
-                    Private gateway connection with optimized routing
-                    and live server capacity.
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <div class="footer-brand">
+                    A
+                </div>
+
+                <div class="footer-small">
+                    Developer signature
+                </div>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h3>
+                    Developer
+                </h3>
+
+                <p>
+                    Alexsc<br>
+                    Lead developer · world creator
                 </p>
 
-                <div class="players">
-
-                    <div class="players-number">
-                        86
-                    </div>
-
-                    <div class="players-label">
-                        players connected
-                    </div>
-
-                </div>
-
             </div>
 
-        </section>
 
+            <div class="footer-column">
 
-        <!-- SERVERS -->
+                <h3>
+                    Project
+                </h3>
 
-        <section class="server-grid">
-
-
-            <!-- SERVER 01 -->
-
-            <article class="server">
-
-                <img
-                    class="server-image"
-                    src="https://condoholicc.vercel.app/server-01-feature.jpg"
-                    alt="Featured character for Server 01"
-                >
-
-                <div class="server-overlay"></div>
-
-                <div class="server-content">
-
-                    <div class="server-top">
-
-                        <div class="badge">
-                            Featured server
-                        </div>
-
-                        <div class="number">
-                            01
-                        </div>
-
-                    </div>
-
-
-                    <div class="server-info">
-
-                        <h2>
-                            SERVER 01
-                        </h2>
-
-                        <div class="server-name">
-                            Main Server Hub
-                        </div>
-
-
-                        <div class="capacity-row">
-
-                            <span>
-                                Current capacity
-                            </span>
-
-                            <span class="capacity-value">
-                                56/100
-                            </span>
-
-                        </div>
-
-                        <div class="capacity">
-
-                            <div
-                                class="capacity-fill"
-                                style="width:56%">
-                            </div>
-
-                        </div>
-
-
-                        <p class="server-desc">
-                            Primary server optimized for low latency
-                            and high stability. Recommended for
-                            standard gameplay.
-                        </p>
-
-
-                        <a
-                            href="#"
-                            class="join"
-                            onclick="serverMessage(event,'SERVER 01')"
-                        >
-
-                            <span>
-                                JOIN SERVER 01
-                            </span>
-
-                            <span>
-                                →
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-
-            <!-- SERVER 02 -->
-
-            <article class="server">
-
-                <img
-                    class="server-image"
-                    src="https://condoholicc.vercel.app/server-02-feature.jpg"
-                    alt="Featured character for Server 02"
-                >
-
-                <div class="server-overlay"></div>
-
-                <div class="server-content">
-
-                    <div class="server-top">
-
-                        <div class="badge">
-                            Featured server
-                        </div>
-
-                        <div class="number">
-                            02
-                        </div>
-
-                    </div>
-
-
-                    <div class="server-info">
-
-                        <h2>
-                            SERVER 02
-                        </h2>
-
-                        <div class="server-name">
-                            Alternative Server
-                        </div>
-
-
-                        <div class="capacity-row">
-
-                            <span>
-                                Current capacity
-                            </span>
-
-                            <span class="capacity-value">
-                                30/100
-                            </span>
-
-                        </div>
-
-                        <div class="capacity">
-
-                            <div
-                                class="capacity-fill"
-                                style="width:30%">
-                            </div>
-
-                        </div>
-
-
-                        <p class="server-desc">
-                            Alternative connection route with fast
-                            routing and balanced load capacity for
-                            uninterrupted sessions.
-                        </p>
-
-
-                        <a
-                            href="#"
-                            class="join"
-                            onclick="serverMessage(event,'SERVER 02')"
-                        >
-
-                            <span>
-                                JOIN SERVER 02
-                            </span>
-
-                            <span>
-                                →
-                            </span>
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </article>
-
-        </section>
-
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <div class="footer-grid">
-
-                <div>
-
-                    <div class="footer-brand">
-                        A
-                    </div>
-
-                    <div class="footer-small">
-                        Developer signature
-                    </div>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h3>
-                        Developer
-                    </h3>
-
-                    <p>
-                        Alexsc<br>
-                        Lead developer · world creator
-                    </p>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h3>
-                        Project
-                    </h3>
-
-                    <p>
-                        Project CONDO GAME<br>
-                        Interface 2026 Edition
-                    </p>
-
-                </div>
-
-
-                <div class="footer-column">
-
-                    <h3>
-                        Network
-                    </h3>
-
-                    <p>
-                        Private Gateway<br>
-                        Status Operational
-                    </p>
-
-                </div>
+                <p>
+                    Project CONDO GAME<br>
+                    Interface 2026 Edition
+                </p>
 
             </div>
 
 
-            <div class="copyright">
+            <div class="footer-column">
 
-                <span>
-                    © 2026 CONDO GAME
-                </span>
+                <h3>
+                    Network
+                </h3>
 
-                <span>
-                    Crafted by Alexsc
-                </span>
+                <p>
+                    Private Gateway<br>
+                    Status Operational
+                </p>
 
             </div>
 
-        </footer>
+        </div>
 
-    </div>
+
+        <div class="copyright">
+
+            <span>
+                © 2026 CONDO GAME
+            </span>
+
+            <span>
+                Crafted by Alexsc
+            </span>
+
+        </div>
+
+    </footer>
+
+</div>
 
 </main>
 
@@ -919,76 +1083,73 @@ footer{
 <script>
 
 /* =========================
-   INTRO ANIMATION
+   INTRO LOADING
 ========================= */
 
-const intro = document.getElementById("intro");
-const progressBar = document.getElementById("progressBar");
-const progressText = document.getElementById("progressText");
-const skip = document.getElementById("skip");
+const intro =
+    document.getElementById("intro");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressText =
+    document.getElementById("progressText");
+
+const skip =
+    document.getElementById("skip");
 
 let progress = 0;
 
-const interval = setInterval(() => {
+const loading = setInterval(() => {
 
-    progress += Math.floor(Math.random() * 5) + 2;
+    progress +=
+        Math.floor(Math.random() * 5) + 2;
 
     if(progress >= 100){
 
         progress = 100;
 
-        clearInterval(interval);
+        clearInterval(loading);
 
         setTimeout(() => {
-            intro.classList.add("hide");
-        },500);
 
+            intro.classList.add("hide");
+
+        },500);
     }
 
-    progressBar.style.width = progress + "%";
-    progressText.textContent = progress + "%";
+    progressBar.style.width =
+        progress + "%";
+
+    progressText.textContent =
+        progress + "%";
 
 },120);
 
 
-/* SKIP */
+/* =========================
+   SKIP INTRO
+========================= */
 
 skip.addEventListener("click", () => {
 
-    clearInterval(interval);
+    clearInterval(loading);
 
     progressBar.style.width = "100%";
     progressText.textContent = "100%";
 
-    setTimeout(() => {
-        intro.classList.add("hide");
-    },150);
+    intro.classList.add("hide");
 
 });
-
-
-/* =========================
-   JOIN BUTTON
-========================= */
-
-function serverMessage(event, server){
-
-    event.preventDefault();
-
-    alert(
-        server +
-        " selected.\n\n" +
-        "Replace the href in the HTML with your real server destination."
-    );
-
-}
 
 
 /* =========================
    IMAGE FALLBACK
 ========================= */
 
-document.querySelectorAll(".server-image").forEach(img => {
+document
+.querySelectorAll(".server-image")
+.forEach(img => {
 
     img.addEventListener("error", () => {
 
