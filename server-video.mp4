@@ -1,0 +1,9 @@
+<video
+    class="server-image"
+    autoplay
+    muted
+    loop
+    playsinline
+>
+    <source src="/server-video.mp4" type="video/mp4">
+</video>
