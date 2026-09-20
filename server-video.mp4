@@ -1,1 +1,10 @@
-<source src="/server-video.mp4" type="video/mp4">
+<video
+    class="live-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    controls
+>
+    <source src="/server-video.mp4" type="video/mp4">
+</video>
