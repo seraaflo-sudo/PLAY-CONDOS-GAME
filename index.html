@@ -656,73 +656,6 @@ button{
 
 
 /* =====================================================
-   VIDEO SECTION
-===================================================== */
-
-.video-section{
-    padding:10px 0 90px;
-}
-
-.video-title{
-    font-family:"Orbitron",sans-serif;
-
-    font-size:27px;
-    font-weight:600;
-
-    margin-bottom:22px;
-}
-
-.video-box{
-    width:100%;
-
-    border:1px solid rgba(137,90,255,.5);
-
-    border-radius:25px;
-
-    overflow:hidden;
-
-    background:#09080f;
-
-    box-shadow:
-        0 15px 50px rgba(0,0,0,.35);
-}
-
-.video-frame{
-    width:100%;
-    height:600px;
-
-    border:0;
-    display:block;
-
-    background:#050509;
-}
-
-.video-fallback{
-    padding:18px;
-
-    display:flex;
-    justify-content:center;
-
-    background:#0d0b15;
-}
-
-.video-fallback a{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:13px 25px;
-
-    border-radius:12px;
-
-    background:#7350ff;
-
-    font-weight:700;
-    font-size:13px;
-}
-
-
-/* =====================================================
    FOOTER
 ===================================================== */
 
@@ -887,10 +820,6 @@ footer{
         min-height:68px;
     }
 
-    .video-frame{
-        height:430px;
-    }
-
     .discord{
         width:62px;
         height:62px;
@@ -964,10 +893,6 @@ footer{
         border-radius:17px;
         min-height:65px;
         font-size:16px;
-    }
-
-    .video-frame{
-        height:360px;
     }
 }
 </style>
@@ -1133,9 +1058,7 @@ footer{
     <div class="server-list">
 
 
-        <!-- =============================================
-             SERVER 01
-        ============================================== -->
+        <!-- SERVER 01 -->
 
         <article class="server-card">
 
@@ -1227,9 +1150,7 @@ footer{
 
 
 
-        <!-- =============================================
-             SERVER 02
-        ============================================== -->
+        <!-- SERVER 02 -->
 
         <article class="server-card">
 
@@ -1319,57 +1240,6 @@ footer{
 
         </article>
 
-
-    </div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     VIDEO
-===================================================== -->
-
-<section class="video-section">
-
-<div class="container">
-
-    <div class="video-title">
-        CONDO VIDEO
-    </div>
-
-
-    <div class="video-box">
-
-        <!--
-            ShareKit URL yang kamu kirim adalah halaman
-            share video, jadi kita tampilkan halaman video
-            tersebut di dalam frame.
-        -->
-
-        <iframe
-            class="video-frame"
-            src="https://sharekit.app/s/vdbgdbab"
-            title="CONDO GAME VIDEO"
-            allow="autoplay; fullscreen"
-            allowfullscreen>
-        </iframe>
-
-
-        <div class="video-fallback">
-
-            <a
-                href="https://sharekit.app/s/vdbgdbab"
-                target="_blank"
-                rel="noopener noreferrer">
-
-                OPEN VIDEO
-
-            </a>
-
-        </div>
 
     </div>
 
