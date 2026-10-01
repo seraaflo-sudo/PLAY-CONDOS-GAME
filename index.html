@@ -255,9 +255,6 @@ button{
     background:#080711;
 }
 
-
-/* VIDEO */
-
 .hero-video{
     position:absolute;
     inset:0;
@@ -271,9 +268,6 @@ button{
 
     pointer-events:none;
 }
-
-
-/* DARK OVERLAY */
 
 .hero:before{
     content:"";
@@ -291,9 +285,6 @@ button{
         );
 }
 
-
-/* BOTTOM GRADIENT */
-
 .hero:after{
     content:"";
     position:absolute;
@@ -309,7 +300,6 @@ button{
             rgba(7,7,14,.98) 100%
         );
 }
-
 
 .hero-content{
     position:relative;
@@ -930,11 +920,6 @@ footer{
 
 <body>
 
-
-<!-- =====================================================
-     INTRO
-===================================================== -->
-
 <section id="intro">
 
     <div class="intro-grid"></div>
@@ -991,11 +976,6 @@ footer{
 </section>
 
 
-
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header class="site-header">
 
     <div class="brand">
@@ -1019,14 +999,7 @@ footer{
 </header>
 
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
 <section class="hero">
-
-    <!-- VIDEO BACKGROUND -->
 
     <video
         class="hero-video"
@@ -1041,7 +1014,6 @@ footer{
             type="video/mp4">
 
     </video>
-
 
     <div class="hero-content">
 
@@ -1062,11 +1034,6 @@ footer{
 
 </section>
 
-
-
-<!-- =====================================================
-     SERVERS
-===================================================== -->
 
 <section class="servers-section">
 
@@ -1101,11 +1068,7 @@ footer{
     </div>
 
 
-
     <div class="server-list">
-
-
-        <!-- SERVER 01 -->
 
         <article class="server-card">
 
@@ -1131,7 +1094,6 @@ footer{
                     Server Condo 01
                 </div>
 
-
                 <div class="server-stats">
 
                     <div class="server-stat">
@@ -1144,7 +1106,6 @@ footer{
                         </span>
 
                     </div>
-
 
                     <div class="server-stat">
 
@@ -1195,9 +1156,6 @@ footer{
 
         </article>
 
-
-
-        <!-- SERVER 02 -->
 
         <article class="server-card">
 
@@ -1223,7 +1181,6 @@ footer{
                     Server Condo 02
                 </div>
 
-
                 <div class="server-stats">
 
                     <div class="server-stat">
@@ -1236,7 +1193,6 @@ footer{
                         </span>
 
                     </div>
-
 
                     <div class="server-stat">
 
@@ -1287,18 +1243,12 @@ footer{
 
         </article>
 
-
     </div>
 
 </div>
 
 </section>
 
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer>
 
@@ -1321,17 +1271,14 @@ footer{
 </footer>
 
 
-
-<!-- =====================================================
-     DISCORD BUTTON
-===================================================== -->
+<!-- DISCORD -->
 
 <a
-    href="https://discord.com/"
+    href="https://discord.gg/vGPKrUJQ5"
     class="discord"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Discord">
+    aria-label="Join Discord">
 
     <svg
         viewBox="0 0 24 24"
@@ -1344,12 +1291,7 @@ footer{
 </a>
 
 
-
 <script>
-
-/* =====================================================
-   INTRO
-===================================================== */
 
 const intro =
     document.getElementById("intro");
@@ -1393,11 +1335,6 @@ const loading = setInterval(() => {
 },100);
 
 
-
-/* =====================================================
-   SKIP
-===================================================== */
-
 skip.addEventListener("click",() => {
 
     clearInterval(loading);
@@ -1412,11 +1349,6 @@ skip.addEventListener("click",() => {
 
 });
 
-
-
-/* =====================================================
-   IMAGE FALLBACK
-===================================================== */
 
 document
 .querySelectorAll(".server-image")
