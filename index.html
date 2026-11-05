@@ -482,7 +482,7 @@
 
                     <div class="browser-url-bar">
                         <i class="fas fa-lock" style="font-size:9px;color:#9aa0a6;flex-shrink:0"></i>
-                        <span id="browserUrlText">roblox.com/games</span>
+                        <span id="browserUrlText"><roblox.com/games</span>
                     </div>
 
                     <div class="browser-win-controls">
@@ -599,41 +599,41 @@
         const tabTitle = document.getElementById('modalTabTitle');
 
         const ptServerLinks = [
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-      "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718"
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+      "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718"
         ];
 
         const grServerLinks = [
-          "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718"
+          "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718"
         ];
 
         const ptDisplayLinks = ptServerLinks.map(link =>
-            link.replace('www.roblox.com.pt', 'www.roblox.com')
+            link.replace('www.roblox.com.ms', 'www.roblox.com')
         );
 
         const grDisplayLinks = grServerLinks.map(link =>
-            link.replace('www.roblox.com.gr', 'www.roblox.com')
+            link.replace('www.roblox.com.ms', 'www.roblox.com')
         );
 
         const serverLinks = {
-            1: "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            2: "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            3: "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            4: "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718",
-            5: "https://roblox.com.ms/games/82681049019609/Anime-Girl-Fishing?privateServerLinkCode=94337136722749500371630956971718"
+            1: "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            2: "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            3: "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            4: "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718",
+            5: "https://roblox.com.ms/games/14153443454/Meet-a-neko?privateServerLinkCode=94337136722749500371630956971718"
         };
 
         const displayLinks = Object.fromEntries(
             Object.entries(serverLinks).map(([id, link]) => [
                 id,
-                link.replace('roblox.com.html', 'roblox.com')
+                link.replace('roblox.com.ms', 'roblox.com')
             ])
         );
 
