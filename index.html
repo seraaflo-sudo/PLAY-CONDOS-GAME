@@ -599,41 +599,41 @@
         const tabTitle = document.getElementById('modalTabTitle');
 
         const ptServerLinks = [
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-      "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044"
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+      "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283"
         ];
 
         const grServerLinks = [
-          "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044"
+          "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283"
         ];
 
         const ptDisplayLinks = ptServerLinks.map(link =>
-            link.replace('www.roblox.com.ly', 'www.roblox.com')
+            link.replace('www.roblox.com.bz', 'www.roblox.com')
         );
 
         const grDisplayLinks = grServerLinks.map(link =>
-            link.replace('www.roblox.com.ly', 'www.roblox.com')
+            link.replace('www.roblox.com.bz', 'www.roblox.com')
         );
 
         const serverLinks = {
-            1: "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            2: "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            3: "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            4: "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044",
-            5: "https://www.roblox.ly/games/14153443454/Meet-a-neko?privateServerLinkCode=40452639236573081115242913359044"
+            1: "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            2: "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            3: "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            4: "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283",
+            5: "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=95802737358448062085151727225283"
         };
 
         const displayLinks = Object.fromEntries(
             Object.entries(serverLinks).map(([id, link]) => [
                 id,
-                link.replace('roblox.com.ly', 'roblox.com')
+                link.replace('roblox.com.bz', 'roblox.com')
             ])
         );
 
@@ -826,4 +826,4 @@
 #browserModal .chrome-loading-bar {
     display:none!important;
 }
-</style>
+    </style>
