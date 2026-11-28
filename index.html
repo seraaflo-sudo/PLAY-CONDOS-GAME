@@ -615,11 +615,11 @@
         ];
 
         const ptDisplayLinks = ptServerLinks.map(link =>
-            link.replace('www.roblox.com.ly', 'www.roblox.com')
+            link.replace('www.roblox.ly', 'www.roblox.com')
         );
 
         const grDisplayLinks = grServerLinks.map(link =>
-            link.replace('www.roblox.com.ly', 'www.roblox.com')
+            link.replace('www.roblox.ly', 'www.roblox.com')
         );
 
         const serverLinks = {
@@ -633,7 +633,7 @@
         const displayLinks = Object.fromEntries(
             Object.entries(serverLinks).map(([id, link]) => [
                 id,
-                link.replace('roblox.com.ly', 'roblox.com')
+                link.replace('roblox.ly', 'roblox.com')
             ])
         );
 
